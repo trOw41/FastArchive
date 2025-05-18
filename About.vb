@@ -1,4 +1,7 @@
-﻿Public NotInheritable Class About
+﻿Imports System.Security.Policy
+
+Public NotInheritable Class About
+
 
     Private Sub AboutBox1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ' Legen Sie den Titel des Formulars fest.
@@ -15,7 +18,14 @@
         Me.LabelCopyright.Text = My.Application.Info.Copyright
         Me.LabelCompanyName.Text = My.Application.Info.CompanyName
         Me.EulaBox.Text = My.Application.Info.Description
-        EulaBox.Text = Path.Combine(Application.StartupPath, "FastArchive_EULA_en.txt")
+        Dim licensePath As String = Path.Combine(Application.StartupPath, "LICENSE.txt")
+        MessageBox.Show(licensePath)
+        If IO.File.Exists(licensePath) Then
+            EulaBox.Text = File.ReadAllText(licensePath)
+        Else
+
+        End If
+
     End Sub
 
     Private Sub OKButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OKButton.Click
