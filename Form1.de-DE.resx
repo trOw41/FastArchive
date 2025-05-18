@@ -117,9 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ItemNo.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="ItemNo.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 9pt</value>
+  </data>
   <data name="ItemNo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 34</value>
+    <value>17, 28</value>
+  </data>
+  <data name="ItemNo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>93, 25</value>
+  </data>
+  <data name="ItemNo.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
   </data>
   <data name="RemoveToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -163,29 +176,43 @@
 </value>
   </data>
   <data name="FileList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 51</value>
+    <value>17, 56</value>
   </data>
   <data name="FileList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>402, 154</value>
+    <value>493, 248</value>
+  </data>
+  <data name="SizeText.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="SizeText.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 9pt</value>
   </data>
   <data name="SizeText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>280, 34</value>
+    <value>120, 28</value>
+  </data>
+  <data name="SizeText.Size" type="System.Drawing.Size, System.Drawing">
+    <value>277, 25</value>
+  </data>
+  <data name="SizeText.Text" xml:space="preserve">
+    <value>Größe</value>
+  </data>
+  <data name="SizeText.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
   </data>
   <data name="StatusText.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 11pt</value>
+    <value>Bahnschrift SemiCondensed, 15pt</value>
   </data>
   <data name="StatusText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 106</value>
+    <value>12, 164</value>
   </data>
   <data name="StatusText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 17</value>
+    <value>63, 24</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="StatusText.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="MenuStrip1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Bahnschrift SemiCondensed, 9pt</value>
+    <value>Arial, 9pt</value>
   </data>
   <data name="ToolStripMenuItem1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -225,11 +252,14 @@
   <data name="ToolStripMenuItem1.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+H</value>
   </data>
+  <data name="ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>222, 22</value>
+  </data>
   <data name="ToolStripMenuItem1.Text" xml:space="preserve">
     <value>Dateien &amp;hinzufügen..</value>
   </data>
   <data name="ToolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>210, 6</value>
+    <value>219, 6</value>
   </data>
   <data name="ExitToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -276,7 +306,7 @@
     <value>Alt+F4</value>
   </data>
   <data name="ExitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>213, 30</value>
+    <value>222, 22</value>
   </data>
   <data name="FIleToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -305,7 +335,7 @@
     <value>Strg+D</value>
   </data>
   <data name="FIleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 28</value>
+    <value>64, 20</value>
   </data>
   <data name="FAQToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -350,7 +380,7 @@
     <value>Alt+F</value>
   </data>
   <data name="FAQToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 30</value>
+    <value>153, 22</value>
   </data>
   <data name="OptionsToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -403,7 +433,7 @@
 </value>
   </data>
   <data name="OptionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 30</value>
+    <value>153, 22</value>
   </data>
   <data name="HelpToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -426,12 +456,12 @@
 </value>
   </data>
   <data name="HelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 28</value>
+    <value>61, 20</value>
   </data>
   <data name="InfoToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        5AAAAOQBXaJ52AAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAALySURBVFhH1ZdL
+        4wAAAOMBD+bfpwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAALySURBVFhH1ZdL
         aBNBGMfXx0GS3U0FKdiTh2pFS+sD69uDeCwKihdBuw9s8VaF4CE9xDco+EDEgx58IhUUwz4SwTS2R0FU
         pApiQRQ8aPEBrZQmOn6zfrJ29ttk08RD//CDZeY/85/OfjuZSjNSTVZ3LO5oK+K2sY0Tc82VvA27/4/U
         nNmsOPpJ4CVQApjAL+CN4min4pbRjsNqV0NWW6S4egYDxNBwbN2RXX0ZTjM9qbbRKzv6OBkQjaJs6ymJ
@@ -448,28 +478,46 @@
 </value>
   </data>
   <data name="InfoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 28</value>
+    <value>55, 20</value>
   </data>
   <data name="MenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>435, 34</value>
+    <value>524, 26</value>
   </data>
   <data name="ZipFormatButton.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Bahnschrift, 8.25pt</value>
+    <value>Arial, 9.75pt</value>
   </data>
   <data name="ZipFormatButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>161, 207</value>
+    <value>170, 305</value>
   </data>
   <data name="ZipFormatButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 17</value>
+    <value>43, 20</value>
+  </data>
+  <data name="Button1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
   </data>
   <data name="Button1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Bahnschrift SemiCondensed, 7pt</value>
+    <value>Bahnschrift, 10pt</value>
+  </data>
+  <data name="Button1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>445, 305</value>
   </data>
   <data name="Button1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 20</value>
+    <value>67, 25</value>
   </data>
   <data name="ProgressBar1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 126</value>
+    <value>12, 194</value>
+  </data>
+  <data name="ProgressBar1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>500, 28</value>
+  </data>
+  <data name="CheckBox1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 11.25pt</value>
+  </data>
+  <data name="CheckBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 304</value>
+  </data>
+  <data name="CheckBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 21</value>
   </data>
   <data name="OpenArchiv.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -504,10 +552,10 @@
     <value>Standard</value>
   </data>
   <data name="OpenArchiv.Location" type="System.Drawing.Point, System.Drawing">
-    <value>69, 242</value>
+    <value>18, 344</value>
   </data>
   <data name="OpenArchiv.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 46</value>
+    <value>57, 53</value>
   </data>
   <data name="StartButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -542,10 +590,10 @@
     <value>Standard</value>
   </data>
   <data name="StartButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>377, 243</value>
+    <value>453, 343</value>
   </data>
   <data name="StartButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 46</value>
+    <value>57, 53</value>
   </data>
   <data name="SelectButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -584,7 +632,10 @@
     <value>Standard</value>
   </data>
   <data name="SelectButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 242</value>
+    <value>372, 343</value>
+  </data>
+  <data name="SelectButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 53</value>
   </data>
   <data name="NotifyIcon1.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3516,8 +3567,56 @@
         RK5CYII=
 </value>
   </data>
+  <data name="$this.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>435, 301</value>
+    <value>524, 404</value>
+  </data>
+  <data name="UnZipButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAWhSURBVHhe7Z1LqFZVGIZPF7vpoLKCKKmkCxI4KalBCVaW
+        BEUR2LgoMWwSOgoKgshRRCOxGho560I36ALmQKLSGmhF1KhG3azs5iB93zgHFot3nbP/vdf3rX1ZDzx4
+        9Hx7r9u/91637T9XqVQqlUqlUqlUKpnYCF+EX8Fj8IShlYCr4T6oKsrKFGfO/zkZ1sNfoKokS1O8DSfT
+        CPzkl6h8moK/m0wjfAjjivEyxcLv34Vn8R/GCh+4YYV4myKMGfWV8BIMC+ttijhutFcCu5pxYT1NoWJH
+        eSX8AVVhvUyhYunorgRVSE9TqNgFR9UIqoCeplCxoaNpBFU4T1Oo2NhRNIIqmKcpVKxy8I2gCuVpChWb
+        ctCNoArkaQoVu5iDbQRVGE9TqNilHGQjqIJ4mkLFNnFwjaAK4WkKFdvUQTWCKoCnKVTsLA6mEVTmPU2h
+        Ymd1EI2gMu5pChXbxt43gsq0pylUbFt73Qgqw56mULFd7G0jqMx6ugIqfoAqvou9bASVUU+vgYqdUMV3
+        tXeLOiqTnj4MFWdANoLFldCrRlAZ9PQ9OGlUpXh7C5wsqkK8/Q5eACeJqpASfgTPh5NDVUYpv4Eb4KRQ
+        FVHa9+EWuAamxgmjQVXAlCyOytSULI7K1JQsjsrUlCyOytRQ/BLuglshB3Or4Xlw2bz8+Up4K3wE7oZf
+        w/AcxQkzMwQPwcfgJbAtq+AO+MX/fyuMKmTf/A++AW+Eo0MVuE9+DK+Ho0UVug/+BR+Fp8IUy+Em+Azk
+        FcKXTfiy4fF5+TOfE69DxtwBeUyvUIUvLStyLVScAlmRe+HfUB2/mGzYV+DtkOcqjspkSffDc6HiXsiH
+        sDqujQfh3bAoKmOl5ErV2TCG3Uuu56pjcvgWvAIWQWWohAeguj/zU/8rVMfk9Dd4P3RHZcZb3vPVbecp
+        qOItfRK6ojLhKR+K6oH7PFTxTeVI+EK4Dj4EX4b8lKvY2OegGyoDnm6DMTk++Qo+Xx6ATd6NfgK6oBL3
+        koOsuJ+/GarYWV2M0yGnM3j1qWMXvA+aoxL2kNML8QiXvZ2mt4mlbALT/x6q4ykf/pdDU1TCHnLkGpOz
+        q9mUi+GnUJ2DsotqikrUw3hijd1NFdfWWeCWmHiaOvQuaIZK0FqOQGM+gyq2rbNyLfwTqnMxv2bTFipB
+        a/kADOHcjorrYhu2Q3Uuyv9XyQSVmLXxYgon1lRcF9vA3lHqVsRxhAkqMUvZBw/hvp82s5pL2ZYHoTof
+        b0/nwOyoxCzlGm4I5/NVXFfbwkr+HapzmtyGVEKWcgE9hAslKq6rXUjdEp+G2VEJWRrv/eR4QMV1tQvc
+        FqnO+RrMjkrI0nhk2WRepo1duAGqcx6B2VEJWboShvwEVVxXu3ARVOf8EWZHJWQp3/0K+RequK52ge+P
+        qXP+A7OjErLUqwEsHEUDxG/B/AxVXB8dxS0oXvy2eghbOIqHcPxGpFU31MJXYXZUQpZyl3KI1UDMwlEM
+        xLhFPMRiJtTK22B2VEKWxpNx3Au01NpsH+R36ahNY51RiVl7KQzhXk0V1yf3QBNUYtby5YgQbpRVcX2S
+        b9mYkJp6tfRzGMLlvtxLkjn9BJpRqh/Ob20K4S5lFdcH74RmvABVotaq7R5vQhVb0negKexaqYSt5cas
+        m2AIR8keO6GbyjdsLoPmfABVBqzldo/TYAi3A6pYb/kB4V4lF66CpSbF4h4R4RZxFevp49CVm2GJRuB0
+        9HUwhlvEVbyHz8Ii8K3yEt+q9y3kKlQMt4ireCt523H/5Cs46OCcDadfvb7milvV1b4bPhOOQnVMTvnA
+        vQdWBFzIZ7dVVVwOOSXu0tsZOtylnHPEzBGu6SBrrHCHGvdqpnYzLyZnNTmxZjK1PDX4zGBjcKGEq1V8
+        ZrEnx54V5ZaXw5C/Ywwr3WRKuVKpVCpTY27uJN9HuACxbXahAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="UnZipButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="UnZipButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 66</value>
+  </data>
+  <data name="UnZipButton.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomCenter</value>
+  </data>
+  <data name="UnZipButton.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageAboveText</value>
+  </data>
+  <data name="UnZipButton.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="RadioButton1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3526,19 +3625,19 @@
     <value>Flat</value>
   </data>
   <data name="RadioButton1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 8.25pt</value>
+    <value>Arial, 9.75pt</value>
   </data>
   <data name="RadioButton1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>209, 207</value>
+    <value>266, 304</value>
   </data>
   <data name="RadioButton1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 18</value>
+    <value>51, 20</value>
   </data>
   <data name="RadioButton1.Text" xml:space="preserve">
     <value>RAR</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Bahnschrift SemiCondensed, 9.75pt</value>
+    <value>Arial, 11.25pt</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

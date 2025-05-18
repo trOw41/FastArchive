@@ -58,6 +58,7 @@ Partial Class Form1
         RadioButton1 = New RadioButton()
         FileListIconList = New ImageList(components)
         ToolTip1 = New ToolTip(components)
+        UnZipButton = New Button()
         CType(DataSet1, ComponentModel.ISupportInitialize).BeginInit()
         FileListContextMenuStrip.SuspendLayout()
         MenuStrip1.SuspendLayout()
@@ -77,6 +78,7 @@ Partial Class Form1
         ' FileList
         ' 
         resources.ApplyResources(FileList, "FileList")
+        FileList.BackColor = SystemColors.GradientInactiveCaption
         FileList.CheckBoxes = True
         FileList.ContextMenuStrip = FileListContextMenuStrip
         FileList.FullRowSelect = True
@@ -113,10 +115,11 @@ Partial Class Form1
         ' MenuStrip1
         ' 
         resources.ApplyResources(MenuStrip1, "MenuStrip1")
+        MenuStrip1.GripMargin = New Padding(0)
         MenuStrip1.GripStyle = ToolStripGripStyle.Visible
-        MenuStrip1.ImageScalingSize = New Size(24, 24)
         MenuStrip1.Items.AddRange(New ToolStripItem() {FIleToolStripMenuItem, HelpToolStripMenuItem, InfoToolStripMenuItem})
         MenuStrip1.Name = "MenuStrip1"
+        MenuStrip1.RenderMode = ToolStripRenderMode.Professional
         MenuStrip1.ShowItemToolTips = True
         ToolTip1.SetToolTip(MenuStrip1, resources.GetString("MenuStrip1.ToolTip"))
         ' 
@@ -267,20 +270,28 @@ Partial Class Form1
         ' 
         ' ToolTip1
         ' 
-        ToolTip1.AutoPopDelay = 500
+        ToolTip1.AutoPopDelay = 5000
         ToolTip1.InitialDelay = 500
         ToolTip1.IsBalloon = True
         ToolTip1.OwnerDraw = True
-        ToolTip1.ReshowDelay = 300
+        ToolTip1.ReshowDelay = 500
         ToolTip1.ShowAlways = True
         ToolTip1.ToolTipIcon = ToolTipIcon.Info
         ToolTip1.ToolTipTitle = "Quick Info:"
+        ' 
+        ' UnZipButton
+        ' 
+        resources.ApplyResources(UnZipButton, "UnZipButton")
+        UnZipButton.Name = "UnZipButton"
+        ToolTip1.SetToolTip(UnZipButton, resources.GetString("UnZipButton.ToolTip"))
+        UnZipButton.UseVisualStyleBackColor = True
         ' 
         ' Form1
         ' 
         resources.ApplyResources(Me, "$this")
         AutoScaleMode = AutoScaleMode.Dpi
         ContextMenuStrip = FileListContextMenuStrip
+        Controls.Add(UnZipButton)
         Controls.Add(RadioButton1)
         Controls.Add(CheckBox1)
         Controls.Add(Button1)
@@ -339,6 +350,7 @@ Partial Class Form1
     Friend WithEvents FileListIconList As ImageList
     Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
-    Friend WithEvents ToolTip1 As ToolTip
+    Friend WithEvents UnZipButton As Button
+    Public WithEvents ToolTip1 As ToolTip
 End Class
 

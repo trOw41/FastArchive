@@ -56,7 +56,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Bahnschrift, 11.25pt")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Arial, 12pt")>  _
         Public Property AppFont() As Global.System.Drawing.Font
             Get
                 Return CType(Me("AppFont"),Global.System.Drawing.Font)
@@ -75,6 +75,18 @@ Namespace My
             End Get
             Set
                 Me("AppColor") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("ControlText")>  _
+        Public Property StringColor() As Global.System.Drawing.Color
+            Get
+                Return CType(Me("StringColor"),Global.System.Drawing.Color)
+            End Get
+            Set
+                Me("StringColor") = value
             End Set
         End Property
     End Class

@@ -117,95 +117,165 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;FileListContextMenuStrip.Name" xml:space="preserve">
-    <value>FileListContextMenuStrip</value>
+  <data name="&gt;&gt;Combo1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ItemNo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ProgressBar1.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="FAQToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;FAQ</value>
   </data>
   <data name="&gt;&gt;HelpToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="OptionsToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Alt+O</value>
+  <data name="&gt;&gt;Button2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="UnZipButton.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ItemNo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 5, 0</value>
+  </data>
+  <data name="&gt;&gt;FileList.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="SelectButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Zoom</value>
   </data>
-  <data name="&gt;&gt;SizeText.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;FileList.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Button1.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+  <data name="ItemNo.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;ZipFormatButton.Name" xml:space="preserve">
+    <value>ZipFormatButton</value>
+  </data>
+  <data name="StartButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="&gt;&gt;Label2.Name" xml:space="preserve">
+    <value>Label2</value>
+  </data>
+  <data name="&gt;&gt;CheckBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Button1.Text" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="ZipFormatButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="StartButton.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="Label2.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="Label1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 9pt</value>
+  <data name="Button1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Bahnschrift SemiCondensed, 8pt</value>
   </data>
-  <data name="FileList.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9pt</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Form1</value>
   </data>
-  <data name="&gt;&gt;BinfoText.Name" xml:space="preserve">
-    <value>BinfoText</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SelectButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;Process1.Type" xml:space="preserve">
+    <value>System.Diagnostics.Process, System.Diagnostics.Process, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FIleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 20</value>
+  </data>
+  <data name="Label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>173, 226</value>
+  </data>
+  <data name="&gt;&gt;Label1.Name" xml:space="preserve">
+    <value>Label1</value>
+  </data>
+  <data name="&gt;&gt;OpenArchiv.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;SelectButton.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;SelectButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CheckBox1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;CheckBox1.Name" xml:space="preserve">
+    <value>CheckBox1</value>
   </data>
   <data name="Button1.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 19</value>
   </data>
-  <data name="&gt;&gt;BinfoText.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="OpenArchiv.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Zoom</value>
   </data>
-  <data name="&gt;&gt;ToolTip1.Name" xml:space="preserve">
-    <value>ToolTip1</value>
+  <data name="ToolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 6</value>
   </data>
-  <data name="&gt;&gt;ToolTip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;ItemNo.Name" xml:space="preserve">
+    <value>ItemNo</value>
   </data>
-  <data name="ItemNo.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Bahnschrift SemiCondensed, 9pt</value>
-  </data>
-  <data name="&gt;&gt;ZipFormatButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;RadioButton1.Name" xml:space="preserve">
-    <value>RadioButton1</value>
-  </data>
-  <data name="&gt;&gt;Process1.Name" xml:space="preserve">
-    <value>Process1</value>
-  </data>
-  <data name="&gt;&gt;PageSetupDialog1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PageSetupDialog, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="MenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>435, 26</value>
-  </data>
-  <data name="ExitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="HelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 20</value>
-  </data>
-  <data name="FIleToolStripMenuItem.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;StartButton.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="ZipFormatButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>38, 17</value>
-  </data>
-  <data name="ZipFormatButton.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Bahnschrift SemiCondensed, 8pt</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>Form1</value>
-  </data>
-  <data name="ImageList1.ImageSize" type="System.Drawing.Size, System.Drawing">
-    <value>16, 16</value>
-  </data>
-  <data name="OpenArchiv.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+  <data name="HelpToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Help</value>
   </data>
   <data name="OpenArchiv.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial, 9.75pt</value>
+  </data>
+  <data name="&gt;&gt;OptionsToolStripMenuItem.Name" xml:space="preserve">
+    <value>OptionsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;FAQToolStripMenuItem.Name" xml:space="preserve">
+    <value>FAQToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;StatusText.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Label2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;OpenArchiv.Name" xml:space="preserve">
+    <value>OpenArchiv</value>
+  </data>
+  <data name="FileList.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
+  </data>
+  <data name="Button1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 3, 5, 3</value>
+  </data>
+  <data name="&gt;&gt;SelectButton.Name" xml:space="preserve">
+    <value>SelectButton</value>
+  </data>
+  <data name="MenuStrip1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FileListIconList.ImageSize" type="System.Drawing.Size, System.Drawing">
+    <value>16, 16</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItem1.Name" xml:space="preserve">
+    <value>ToolStripMenuItem1</value>
+  </data>
+  <data name="FileListContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 26</value>
+  </data>
+  <data name="BinfoText.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
   </data>
   <data name="FAQToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -246,188 +316,29 @@
         AIBIJBL5H+GPRKmdiX1RAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="StatusText.ToolTip" xml:space="preserve">
-    <value />
+  <data name="OptionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
   </data>
-  <data name="&gt;&gt;StartButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="$this.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ToolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 6</value>
-  </data>
-  <data name="&gt;&gt;FileList.Name" xml:space="preserve">
-    <value>FileList</value>
-  </data>
-  <data name="SelectButton.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="StartButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 3, 5, 3</value>
-  </data>
-  <data name="MenuStrip1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;ProgressBar1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="FileListContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 26</value>
-  </data>
-  <data name="&gt;&gt;BinfoText.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="RadioButton1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;CheckBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="ZipFormatButton.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;ItemNo.ZOrder" xml:space="preserve">
-    <value>8</value>
+  <data name="&gt;&gt;HelpToolStripMenuItem.Name" xml:space="preserve">
+    <value>HelpToolStripMenuItem</value>
   </data>
   <data name="OpenArchiv.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="StartButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Zoom</value>
+  <data name="&gt;&gt;Combo1.Name" xml:space="preserve">
+    <value>Combo1</value>
   </data>
-  <data name="&gt;&gt;SelectButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="NotifyIcon1.BalloonTipTitle" xml:space="preserve">
-    <value>Datei Liste</value>
-  </data>
-  <data name="ZipFormatButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="ItemNo.Text" xml:space="preserve">
-    <value>Einträge:</value>
-  </data>
-  <data name="&gt;&gt;ToolStripMenuItem1.Name" xml:space="preserve">
-    <value>ToolStripMenuItem1</value>
-  </data>
-  <data name="&gt;&gt;FolderBrowserDialog1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.FolderBrowserDialog, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ItemNo.Name" xml:space="preserve">
-    <value>ItemNo</value>
-  </data>
-  <data name="Label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 0, 5, 0</value>
-  </data>
-  <data name="&gt;&gt;RemoveToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="BinfoText.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="ProgressBar1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>408, 31</value>
-  </data>
-  <data name="&gt;&gt;Label1.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;Button1.Name" xml:space="preserve">
-    <value>Button1</value>
-  </data>
-  <data name="Label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="RadioButton1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>212, 220</value>
-  </data>
-  <data name="&gt;&gt;FileList.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="StartButton.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="FAQToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="&gt;&gt;FileListIconList.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="ExitToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        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
-</value>
-  </data>
-  <data name="MenuStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="Button1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>360, 207</value>
-  </data>
-  <data name="ProgressBar1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;MenuStrip1.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="FileListIconList.ImageSize" type="System.Drawing.Size, System.Drawing">
-    <value>16, 16</value>
-  </data>
-  <data name="&gt;&gt;FileListIconList.Name" xml:space="preserve">
-    <value>FileListIconList</value>
-  </data>
-  <data name="ToolStripComboBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 23</value>
-  </data>
-  <data name="ExitToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+B</value>
-  </data>
-  <data name="&gt;&gt;RadioButton1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;OptionsToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;MenuStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="HelpToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+H</value>
+  </data>
+  <data name="&gt;&gt;BinfoText.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="FIleToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Datei</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3258,8 +3169,223 @@
         Y4wxxhhjjDHGGGOMMcYYY4wxefD/kTMYLucU/JIAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="&gt;&gt;SelectButton.Parent" xml:space="preserve">
+  <data name="ProgressBar1.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;Label1.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;StartButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ExitToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+B</value>
+  </data>
+  <data name="Button2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BinfoText.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 5, 0</value>
+  </data>
+  <data name="FileList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 77</value>
+  </data>
+  <data name="&gt;&gt;InfoToolStripMenuItem.Name" xml:space="preserve">
+    <value>InfoToolStripMenuItem</value>
+  </data>
+  <data name="SizeText.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 14</value>
+  </data>
+  <data name="Label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 5, 0</value>
+  </data>
+  <data name="BinfoText.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 9pt</value>
+  </data>
+  <data name="&gt;&gt;FileList.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;MenuStrip1.Parent" xml:space="preserve">
     <value>$this</value>
+  </data>
+  <data name="ExitToolStripMenuItem.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="ProgressBar1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 321</value>
+  </data>
+  <data name="RadioButton1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>212, 220</value>
+  </data>
+  <data name="&gt;&gt;RadioButton1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;Button1.Name" xml:space="preserve">
+    <value>Button1</value>
+  </data>
+  <data name="SizeText.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Bahnschrift SemiCondensed, 9pt</value>
+  </data>
+  <data name="CheckBox1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 8.25pt</value>
+  </data>
+  <data name="&gt;&gt;ProgressBar1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ProgressBar, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Label1.Text" xml:space="preserve">
+    <value>&amp;Start</value>
+  </data>
+  <data name="MenuStrip1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>7, 3, 0, 3</value>
+  </data>
+  <data name="Label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 15</value>
+  </data>
+  <data name="&gt;&gt;Button1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Combo1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 23</value>
+  </data>
+  <data name="&gt;&gt;UnZipButton.Name" xml:space="preserve">
+    <value>UnZipButton</value>
+  </data>
+  <data name="&gt;&gt;FolderBrowserDialog1.Name" xml:space="preserve">
+    <value>FolderBrowserDialog1</value>
+  </data>
+  <data name="SelectButton.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>96, 96</value>
+  </data>
+  <data name="&gt;&gt;Label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FileList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>402, 128</value>
+  </data>
+  <data name="&gt;&gt;PageSetupDialog1.Name" xml:space="preserve">
+    <value>PageSetupDialog1</value>
+  </data>
+  <data name="OptionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="&gt;&gt;ImageList1.Name" xml:space="preserve">
+    <value>ImageList1</value>
+  </data>
+  <data name="StartButton.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UnZipButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>81, 331</value>
+  </data>
+  <data name="ZipFormatButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 3, 5, 3</value>
+  </data>
+  <data name="&gt;&gt;ItemNo.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="CheckBox1.Text" xml:space="preserve">
+    <value>A&amp;lle </value>
+  </data>
+  <data name="&gt;&gt;PageSetupDialog1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PageSetupDialog, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RemoveToolStripMenuItem.Name" xml:space="preserve">
+    <value>RemoveToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;Button2.Name" xml:space="preserve">
+    <value>Button2</value>
+  </data>
+  <data name="StatusText.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 15</value>
+  </data>
+  <data name="SelectButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 240</value>
+  </data>
+  <data name="Button2.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NotifyIcon1.Text" xml:space="preserve">
+    <value>NotifyIcon1</value>
+  </data>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;FileListContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SizeText.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="MenuStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="&gt;&gt;ProgressBar1.Name" xml:space="preserve">
+    <value>ProgressBar1</value>
+  </data>
+  <data name="&gt;&gt;StartButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;SizeText.Name" xml:space="preserve">
+    <value>SizeText</value>
+  </data>
+  <data name="ItemNo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 59</value>
+  </data>
+  <data name="ItemNo.Text" xml:space="preserve">
+    <value>Einträge:</value>
+  </data>
+  <data name="ExitToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>435, 363</value>
+  </data>
+  <data name="&gt;&gt;CheckBox1.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="OpenArchiv.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3290,44 +3416,17 @@
         2tp/ITiyva5ItSsAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="CheckBox1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
+  <data name="&gt;&gt;OptionsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;ItemNo.Parent" xml:space="preserve">
+  <data name="&gt;&gt;ZipFormatButton.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;CheckBox1.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="InfoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 20</value>
   </data>
-  <data name="FileListContextMenuStrip.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ZipFormatButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>312, 210</value>
-  </data>
-  <data name="&gt;&gt;SizeText.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="OpenArchiv.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="SelectButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 240</value>
-  </data>
-  <data name="SizeText.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;StatusText.Name" xml:space="preserve">
-    <value>StatusText</value>
-  </data>
-  <data name="Label1.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;Combo1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="StartButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>367, 240</value>
+  <data name="&gt;&gt;DataSet1.Name" xml:space="preserve">
+    <value>DataSet1</value>
   </data>
   <data name="RemoveToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3370,56 +3469,427 @@
         Frdk4HFDCCGEEEIIIYQQQgghhBBCCCGEEEJtbW2/AVb4anosnwAIAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="&gt;&gt;OpenArchiv.Parent" xml:space="preserve">
+  <data name="FAQToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="&gt;&gt;FAQToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Label2.Text" xml:space="preserve">
+    <value>Archiv &amp;Öffnen</value>
+  </data>
+  <data name="&gt;&gt;StartButton.Name" xml:space="preserve">
+    <value>StartButton</value>
+  </data>
+  <data name="FIleToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAJAAAACQCAYAAADnRuK4AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAABp5JREFUeF7t3UtsVFUcx/GjLjAxrN2wQgE7A9QCxfISLdAG5KUINigFKbUYo+xc
+        aWjiCx+o+ECgRcQWFiKgG6gkhITOtDPtvOmDlxb6UEpcCGVRHvf+/Y89Nx3hMNw7d7pgzu+bfNIu5p5m
+        7vk71TnpKBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghZKOuPeLhy/vEpv79Inh5v7jG6L6yTwz2
+        7xPd/P3h/nqx7uwRMUo+NTTS/V0nxlyuF3HehORG5IZ60cUWy6eIRqrkK09/nYjzP7WUay7VC4O/vi2f
+        KhqJLtWJTYxy2V91olo+XZTt/vxRBPkGJ29yrsMQjUR9e8UADxFpYa/YIp82ylY8QKSTXgxRduv7gW+s
+        Znr3YIiyVm/yhuoIQ5SdevYI0lU3hsh93d/zjdTZbrGVfhIPyduBnHZxtyDdXdgt4vy1vGeXGINhchjf
+        vOQNhBzVVSuuXagVAf7+rbPbRuB8kBcn0ESNiCVfZeXWZ6euGp5S0McuEcvqK9EfuwSBdt6U2+++33lB
+        0Mv5naJZbr/7eLHkgqCXAbn97ju3QxDoR26/+85+Jwj0I7fffarFIffJ7Xffme2CQD9y+913+ltBoB+5
+        /e7r5MVAP3L73dfxjSDQj9x+97V/LQj0I7fffe1f8YKgHbn97mvjxUA/cvvdd2qbINCP3H73Jb4UBPqR
+        2++++BeCQD9y+90X48VAP3L73Rf9XBDoR26/+6JbeUHQjtx+90U+EwT6kdvvvjAvBvqR2+++0KeC4N56
+        DxeQ0V5JdPr1+57ZWcVfN17g73dSe9U4OQqZ1fqJIEiv79dpyRuemzqrBulMVbkcB+e1fCwI7q7vl6l8
+        k1/LbR2VBnVULZAj4SzVTYMhQ8PDv7Z00FF5mmjzg3Is7BfcIgju1Ht4Ct/UDXo5VVkox8J+gY8Ewf/1
+        HirgG7peP53r18mxsF/zh4JgWE9yeNpf1VPHug1yLOzXxDcNhvQcepJv5FqdLZdjYT//B4JAUPfBfL6B
+        5XrrWDNDjoX9/O/zDdRc9888PG1rILF6rBwL+/neE6Sz7gOT+ea9DEmxVx6RY2G/Rr6Jurp4YBL/p+tq
+        SEqsTv+JHdRWtpYSZQN0qowvALhNouy8HBV1lFgVoMRL/EAAhfgqvxwVdZRYeZTxgwEU4isPylFRR4kV
+        NZR4kR8MoLJiuxwVdRR7YTPFV/CkASjwfMhRUUexZRUUf54fDKAQW75Rjoo6ii4v4QclHwhwp+iy9McY
+        FFnqodhSfjCAQnhx+mMM6lw6mqJLeNIAFBLP3fsYg6KL/2F8AcBtYgvufYxBkUVtFF3EFwCkiCyy98Hj
+        RmRhgxlZSACpeC7SH2NYGeGSGjNSyhcBDDPCpT45IumjUMlmM1xCAKmM0IL0xxhWFCmuMMPz+SKAYUZ4
+        fvpjDCsKPVtihuYRQCoKFac/xrDiVyCPGSrmiwCGUWtx+mMMK/LNHG22PkMAqSg01/5fYxitc6+YrXP5
+        QoAhFHza/l9jGK1z2szWOXwhwBBqmW3/rzGMllkNZstsArDYOsaw4gGqMVtm8YUAs8gIznT2/081gjOq
+        zeAMAkgyAkX2jjGsKFBUYQaL+GKAIh6gp+wdY1hRsLDUDEwngCQjMN3eMYYVBaZ7zEAhXwxQyAM0zd4x
+        htV/byYGpvLFAFOJAlPsHWOkZjQVXDGbpxAANRVUybGwHw9Qm9lcwAuA7sif7/xDpYym/AazKZ8AyFfg
+        /EOlDP+kWrNpMi8AuqPGSc4/VMrwe6tN/0QCoN8mO/9QKWr0Vph+Ly8AOuMXEmfHGFbk95aqFgS9GH6P
+        s2MMKzrp8agWBL0YPo+zYwwr8k0YrVoQ9MKvQM6OMVIzfN4rqkVBHzxAzo4xUuN/gWpXLQr6IJ/H+TGG
+        Ff/+a1AtCvqgJo/zYwwrfvmqVS0K+iB/nvNjDKuhNxPVC4MeyDfR+TGGFd5MhIyOMazwZiJkdIxhRY15
+        XtWioIeMjzGs8Gai3gyf95wchczDm4n6yvgYIzW8magvV8cYVngzUV+ujjGseJEa1eKQ+8jveVeOQebx
+        Im+oFofcR43eJXIMMo+aJz7Kv8ZuqH4A5K6bJ/Ou0pHHR8kxcNetxrx3VD8EctetxifK5fa7j0g8MHh8
+        /A7Tp/5hkDtu+Tzm9ePjquXWZ7ebJ8fPGzj2WHTwxAT8SsshBr8wDJ4Yf/3q0bHBG8cmTJPbjRBCCCGE
+        EEIIIYQQQgghhBBCCCGEEEIIIYQQQgihuyfEv7kX1CEePuiHAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="$this.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;RemoveToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CheckBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;SizeText.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ToolStripSeparator1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CheckBox1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NotifyIcon1.BalloonTipTitle" xml:space="preserve">
+    <value>Datei Liste</value>
+  </data>
+  <data name="&gt;&gt;Label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Label1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;Label1.Name" xml:space="preserve">
-    <value>Label1</value>
+  <data name="&gt;&gt;FileListContextMenuStrip.Name" xml:space="preserve">
+    <value>FileListContextMenuStrip</value>
+  </data>
+  <data name="Label1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 9pt</value>
+  </data>
+  <data name="ZipFormatButton.Text" xml:space="preserve">
+    <value>ZIP</value>
+  </data>
+  <data name="InfoToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Info</value>
+  </data>
+  <data name="Label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;ZipFormatButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;ZipFormatButton.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="SizeText.Text" xml:space="preserve">
+    <value>Archiv Größe:</value>
+  </data>
+  <data name="&gt;&gt;UnZipButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="Label1.Location" type="System.Drawing.Point, System.Drawing">
     <value>335, 256</value>
   </data>
-  <data name="&gt;&gt;FIleToolStripMenuItem.Type" xml:space="preserve">
+  <data name="ZipFormatButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;InfoToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;OpenArchiv.ZOrder" xml:space="preserve">
-    <value>10</value>
+  <data name="&gt;&gt;Button1.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
-  <data name="&gt;&gt;ExitToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;FIleToolStripMenuItem.Name" xml:space="preserve">
+    <value>FIleToolStripMenuItem</value>
   </data>
-  <data name="ItemNo.ToolTip" xml:space="preserve">
-    <value />
+  <data name="OpenArchiv.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 47</value>
   </data>
-  <data name="&gt;&gt;Button1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="NotifyIcon1.Text" xml:space="preserve">
-    <value>NotifyIcon1</value>
-  </data>
-  <data name="&gt;&gt;Label2.Name" xml:space="preserve">
-    <value>Label2</value>
-  </data>
-  <data name="StatusText.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="SizeText.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 0, 5, 0</value>
   </data>
-  <data name="&gt;&gt;FolderBrowserDialog1.Name" xml:space="preserve">
-    <value>FolderBrowserDialog1</value>
+  <data name="&gt;&gt;BinfoText.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="OptionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+  <data name="&gt;&gt;ToolStripSeparator1.Name" xml:space="preserve">
+    <value>ToolStripSeparator1</value>
+  </data>
+  <data name="HelpToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAJAAAACQCAYAAADnRuK4AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAA/xJREFUeF7t3NdulEcYh/E9AS4Am2J6j+mms76BXAvtFriDaA0JhN57b0kgoRt7
+        VwLEAbLXBkI3vdgfHL/MuztWFDEn+818eGw9P+k55uD9y9jyenIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        EJmfu2VEvpSsNRXzxeRLcymRH5X590x9km/vk5VtWq+suGVq7ZXlrZ9l+c3PsuyG9kmWXf8kS69pH2XJ
+        VdOVj7L4ygdZfPmDLPqnWtPf76XpUrWFF9/Jwr/eyQLtz7cy/49q8y68kXnn38hc7dxrmXv2tczRzryS
+        2aerNZ7qkcaTPfKTduKlzDpuO/ZCZh6tNuOI6fBzma4dei7TDj6rNPWAaf/TSlP2mfY+kcnanicyaffj
+        ShN3mXb+W2nCDtP2RzJe2/ZIxm19WKlhi+n3BzJW22za9EDGbOqWMb91y+hftS4ZtdG0oUvqN5SlvuX/
+        1bWUv9QVyu31hY41ufX3h9tzh7Wi7eu4fKnvnuu4Wcd4shvPdxU6747c2Nlgzx5G9SsP4xny4/mvO0G/
+        Eq0sJetcx806xjMg4+lvtT2/v+ZiUnIdOMsYz4COR/R7Int+f+ab5sR15KxiPAM7Hs0MKLHn9+c6clYx
+        noEfT3/2/P5ch84ixhPPeDR7fn+uY4eO8cQ1Hs2e35/r4CFjPPGNR7Pn9+c6eqgYT5zj0ez5/bkOHyLG
+        E+94NHt+f1n8GM944h5PfaGz157fn/7y1DWCtDGeyMdjqmspt9nz+2suJmtcQ0gT44l/PJUK5VX2/P5m
+        35fhzcW+u65B1BLjGSTjaSnfzm25PcyeP4x869cGnxExnsEznrpfOsbas4dV/UqUrDa11fKNNeOJezz6
+        ey/Trcp/W6G/8gAAAAAAAAAAAAAAAAAAAITFG4lD82OxvJHIeMJ9ppo3EhlPgA/k80Yi40k9nv54I5Hx
+        pP9TIN5IZDypx6PxRiLjcQ6jluz5/bkOnUWMJ57xaPb8/lzHDh3jiWs8mj2/P9fBQ8Z44huPZs/vz3X0
+        UDGeOMej2fP7cx0+RIwn3vFo9vz+svgxnvHEPR7eSGQ8XvFGIuPxizcSGY9HvJHIeFLHG4mMp7Z4IxEA
+        AAAAAAAAAAAAAAAAAAwivJE4ND8WyxuJjCfcZ6p5I5HxBPhAPm8kMp7U4+mPNxIZT/o/BeKNRMaTejwa
+        byQyHucwasme35/r0FnEeOIZj2bP78917NAxnrjGo9nz+3MdPGSMJ77xaPb8/lxHDxXjiXM8mj2/P9fh
+        Q8R44h2PZs/vL4sf4xlP3OPhjUTG4xVvJDIev3gjkfF4xBuJjCd1vJHIeGqLNxIBAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAARC2X+wYXqhq2+v+2YQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="OpenArchiv.Location" type="System.Drawing.Point, System.Drawing">
+    <value>190, 241</value>
+  </data>
+  <data name="FAQToolStripMenuItem.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="HelpToolStripMenuItem.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>Form1</value>
+  </data>
+  <data name="&gt;&gt;FolderBrowserDialog1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FolderBrowserDialog, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SizeText.Location" type="System.Drawing.Point, System.Drawing">
+    <value>309, 59</value>
+  </data>
+  <data name="&gt;&gt;ImageList1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Button1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>360, 207</value>
+  </data>
+  <data name="Label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 15</value>
+  </data>
+  <data name="StartButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>367, 240</value>
   </data>
   <data name="CheckBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 18</value>
   </data>
-  <data name="&gt;&gt;ProgressBar1.Name" xml:space="preserve">
-    <value>ProgressBar1</value>
+  <data name="&gt;&gt;MenuStrip1.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;FileListIconList.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ExitToolStripMenuItem.Name" xml:space="preserve">
+    <value>ExitToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;Button1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ToolStripComboBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NotifyIcon1.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;FileList.Name" xml:space="preserve">
+    <value>FileList</value>
+  </data>
+  <data name="SelectButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 47</value>
+  </data>
+  <data name="NotifyIcon1.BalloonTipText" xml:space="preserve">
+    <value>Dateien zur Liste hinzufügen..</value>
+  </data>
+  <data name="ZipFormatButton.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Bahnschrift SemiCondensed, 8pt</value>
+  </data>
+  <data name="FileList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 3, 5, 3</value>
+  </data>
+  <data name="ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>213, 30</value>
+  </data>
+  <data name="ItemNo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 14</value>
+  </data>
+  <data name="FileList.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SizeText.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="StartButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="&gt;&gt;RadioButton1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;Button2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="CheckBox1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="&gt;&gt;Process1.Name" xml:space="preserve">
+    <value>Process1</value>
+  </data>
+  <data name="BinfoText.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;RadioButton1.Name" xml:space="preserve">
+    <value>RadioButton1</value>
+  </data>
+  <data name="&gt;&gt;StatusText.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="StartButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        ARjH+kIdA6kAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="StartButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 47</value>
   </data>
   <data name="StatusText.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial, 9pt</value>
+  </data>
+  <data name="OptionsToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Alt+O</value>
+  </data>
+  <data name="&gt;&gt;ItemNo.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="Label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;ProgressBar1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ToolStripComboBox1.Name" xml:space="preserve">
+    <value>ToolStripComboBox1</value>
+  </data>
+  <data name="MenuStrip1.Text" xml:space="preserve">
+    <value>MenuStrip1</value>
+  </data>
+  <data name="Button1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;StatusText.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;SizeText.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;OpenZip.Name" xml:space="preserve">
+    <value>OpenZip</value>
+  </data>
+  <data name="&gt;&gt;Label2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="Label2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 9pt</value>
+  </data>
+  <data name="SelectButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="&gt;&gt;StatusText.Name" xml:space="preserve">
+    <value>StatusText</value>
+  </data>
+  <data name="ItemNo.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BinfoText.Text" xml:space="preserve">
+    <value>&amp;Add</value>
+  </data>
+  <data name="&gt;&gt;OpenZip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ProgressBar1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label1.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;BinfoText.Name" xml:space="preserve">
+    <value>BinfoText</value>
+  </data>
+  <data name="RemoveToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Remove </value>
+  </data>
+  <data name="&gt;&gt;NotifyIcon1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NotifyIcon, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FIleToolStripMenuItem.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="ZipFormatButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 17</value>
+  </data>
+  <data name="RemoveToolStripMenuItem.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 8pt</value>
+  </data>
+  <data name="&gt;&gt;SizeText.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="StatusText.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 303</value>
+  </data>
+  <data name="ZipFormatButton.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;FileListIconList.Name" xml:space="preserve">
+    <value>FileListIconList</value>
+  </data>
+  <data name="UnZipButton.ToolTip" xml:space="preserve">
+    <value>Startet den Entpack- Vorgang..</value>
+  </data>
+  <data name="&gt;&gt;NotifyIcon1.Name" xml:space="preserve">
+    <value>NotifyIcon1</value>
+  </data>
+  <data name="ItemNo.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Bahnschrift SemiCondensed, 9pt</value>
+  </data>
+  <data name="FIleToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+D</value>
+  </data>
+  <data name="ProgressBar1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>408, 31</value>
+  </data>
+  <data name="&gt;&gt;RadioButton1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ZipFormatButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>312, 210</value>
+  </data>
+  <data name="&gt;&gt;MenuStrip1.Name" xml:space="preserve">
+    <value>MenuStrip1</value>
+  </data>
+  <data name="StatusText.Text" xml:space="preserve">
+    <value>Status:</value>
+  </data>
+  <data name="&gt;&gt;UnZipButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Button1.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="BinfoText.Size" type="System.Drawing.Size, System.Drawing">
+    <value>26, 18</value>
+  </data>
+  <data name="StatusText.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ZipFormatButton.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="ToolStripComboBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 23</value>
+  </data>
+  <data name="RadioButton1.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
   </data>
   <data name="NotifyIcon1.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -6351,252 +6821,17 @@
         RK5CYII=
 </value>
   </data>
-  <data name="&gt;&gt;Label2.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;FIleToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ItemNo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 0, 5, 0</value>
+  <data name="RemoveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 22</value>
   </data>
-  <data name="&gt;&gt;SelectButton.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="InfoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 20</value>
-  </data>
-  <data name="SelectButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 47</value>
-  </data>
-  <data name="&gt;&gt;OpenZip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;OpenArchiv.Name" xml:space="preserve">
-    <value>OpenArchiv</value>
-  </data>
-  <data name="&gt;&gt;PageSetupDialog1.Name" xml:space="preserve">
-    <value>PageSetupDialog1</value>
-  </data>
-  <data name="BinfoText.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 0, 5, 0</value>
-  </data>
-  <data name="Button1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="StartButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 3, 5, 3</value>
   </data>
-  <data name="FAQToolStripMenuItem.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="Label2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 9pt</value>
-  </data>
-  <data name="CheckBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="InfoToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Info</value>
-  </data>
-  <data name="&gt;&gt;FileListContextMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="StartButton.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;MenuStrip1.Name" xml:space="preserve">
-    <value>MenuStrip1</value>
-  </data>
-  <data name="FileList.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="SizeText.Text" xml:space="preserve">
-    <value>Archiv Größe:</value>
-  </data>
-  <data name="FileList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 3, 5, 3</value>
-  </data>
-  <data name="Combo1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 23</value>
-  </data>
-  <data name="RemoveToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Remove </value>
-  </data>
-  <data name="Button1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Bahnschrift SemiCondensed, 8pt</value>
-  </data>
-  <data name="MenuStrip1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>7, 3, 0, 3</value>
-  </data>
-  <data name="&gt;&gt;OpenArchiv.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="OpenArchiv.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 47</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Form1</value>
-  </data>
-  <data name="FIleToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        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
-</value>
-  </data>
-  <data name="SelectButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        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
-        WLogsK8AAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="SelectButton.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomLeft</value>
-  </data>
-  <data name="ItemNo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 14</value>
-  </data>
-  <data name="SizeText.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 0, 5, 0</value>
-  </data>
-  <data name="SizeText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 14</value>
-  </data>
-  <data name="&gt;&gt;Label1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>435, 363</value>
-  </data>
-  <data name="&gt;&gt;SizeText.Name" xml:space="preserve">
-    <value>SizeText</value>
-  </data>
-  <data name="Label2.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="FAQToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;FAQ</value>
-  </data>
-  <data name="&gt;&gt;ImageList1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="ProgressBar1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 321</value>
-  </data>
-  <data name="InfoToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        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
-</value>
-  </data>
-  <data name="&gt;&gt;MenuStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>173, 226</value>
-  </data>
-  <data name="OpenArchiv.Location" type="System.Drawing.Point, System.Drawing">
-    <value>190, 241</value>
-  </data>
-  <data name="StatusText.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;OptionsToolStripMenuItem.Name" xml:space="preserve">
-    <value>OptionsToolStripMenuItem</value>
-  </data>
-  <data name="BinfoText.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="Button1.Text" xml:space="preserve">
-    <value>Clear</value>
-  </data>
-  <data name="OptionsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Options</value>
-  </data>
-  <data name="Label2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;UnZipButton.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="OptionsToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -6648,413 +6883,220 @@
         SUVORK5CYII=
 </value>
   </data>
-  <data name="Label2.Text" xml:space="preserve">
-    <value>Archiv &amp;Öffnen</value>
+  <data name="MenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>435, 26</value>
   </data>
-  <data name="&gt;&gt;ItemNo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="FileList.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;MenuStrip1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="OpenArchiv.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Zoom</value>
-  </data>
-  <data name="&gt;&gt;Process1.Type" xml:space="preserve">
-    <value>System.Diagnostics.Process, System.Diagnostics.Process, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SizeText.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="CheckBox1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;InfoToolStripMenuItem.Name" xml:space="preserve">
-    <value>InfoToolStripMenuItem</value>
-  </data>
-  <data name="CheckBox1.Text" xml:space="preserve">
-    <value>A&amp;lle </value>
-  </data>
-  <data name="&gt;&gt;Button1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;SelectButton.Name" xml:space="preserve">
-    <value>SelectButton</value>
-  </data>
-  <data name="FileList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>402, 128</value>
-  </data>
-  <data name="HelpToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="InfoToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        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
+        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
 </value>
   </data>
-  <data name="FIleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 20</value>
-  </data>
-  <data name="&gt;&gt;RadioButton1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;CheckBox1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;Button2.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="SelectButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 3, 5, 3</value>
-  </data>
-  <data name="&gt;&gt;BinfoText.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;ExitToolStripMenuItem.Name" xml:space="preserve">
-    <value>ExitToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;OpenZip.Name" xml:space="preserve">
-    <value>OpenZip</value>
-  </data>
-  <data name="CheckBox1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;DataSet1.Name" xml:space="preserve">
-    <value>DataSet1</value>
-  </data>
-  <data name="ProgressBar1.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;FIleToolStripMenuItem.Name" xml:space="preserve">
-    <value>FIleToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;CheckBox1.Name" xml:space="preserve">
-    <value>CheckBox1</value>
-  </data>
-  <data name="&gt;&gt;Combo1.Name" xml:space="preserve">
-    <value>Combo1</value>
-  </data>
-  <data name="&gt;&gt;ZipFormatButton.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;StatusText.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="ItemNo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 59</value>
-  </data>
-  <data name="StartButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        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
-        ARjH+kIdA6kAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="$this.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;ToolStripMenuItem1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;RadioButton1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="BinfoText.Text" xml:space="preserve">
-    <value>&amp;Add</value>
-  </data>
-  <data name="CheckBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 209</value>
-  </data>
-  <data name="&gt;&gt;ProgressBar1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ProgressBar, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;StartButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="ZipFormatButton.Text" xml:space="preserve">
-    <value>ZIP</value>
-  </data>
-  <data name="&gt;&gt;ToolStripComboBox1.Name" xml:space="preserve">
-    <value>ToolStripComboBox1</value>
-  </data>
-  <data name="&gt;&gt;StartButton.Name" xml:space="preserve">
-    <value>StartButton</value>
-  </data>
-  <data name="SelectButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+  <data name="OpenArchiv.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
-  <data name="BinfoText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>26, 18</value>
+  <data name="&gt;&gt;OpenArchiv.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;ImageList1.Name" xml:space="preserve">
-    <value>ImageList1</value>
-  </data>
-  <data name="&gt;&gt;RemoveToolStripMenuItem.Name" xml:space="preserve">
-    <value>RemoveToolStripMenuItem</value>
-  </data>
-  <data name="SizeText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>309, 59</value>
-  </data>
-  <data name="ZipFormatButton.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ZipFormatButton.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="NotifyIcon1.Visible" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;FAQToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="StatusText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 15</value>
-  </data>
-  <data name="ExitToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Beenden</value>
-  </data>
-  <data name="&gt;&gt;Label2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;ZipFormatButton.Name" xml:space="preserve">
-    <value>ZipFormatButton</value>
-  </data>
-  <data name="ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>213, 30</value>
-  </data>
-  <data name="&gt;&gt;NotifyIcon1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NotifyIcon, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="ZipFormatButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 3, 5, 3</value>
-  </data>
-  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 11pt</value>
-  </data>
-  <data name="&gt;&gt;InfoToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="StatusText.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;FileList.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="SelectButton.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="RadioButton1.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="BinfoText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>60, 256</value>
-  </data>
-  <data name="FIleToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+D</value>
-  </data>
-  <data name="MenuStrip1.Text" xml:space="preserve">
-    <value>MenuStrip1</value>
-  </data>
-  <data name="&gt;&gt;Label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="RemoveToolStripMenuItem.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 8pt</value>
+  <data name="&gt;&gt;ProgressBar1.ZOrder" xml:space="preserve">
+    <value>13</value>
   </data>
   <data name="ItemNo.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="Label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 15</value>
+  <data name="FileList.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="&gt;&gt;StatusText.ZOrder" xml:space="preserve">
-    <value>13</value>
+  <data name="Button2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>81, 331</value>
   </data>
-  <data name="&gt;&gt;StatusText.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="HelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 20</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;HelpToolStripMenuItem.Name" xml:space="preserve">
-    <value>HelpToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;ToolStripComboBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ProgressBar1.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;FAQToolStripMenuItem.Name" xml:space="preserve">
-    <value>FAQToolStripMenuItem</value>
-  </data>
-  <data name="NotifyIcon1.BalloonTipText" xml:space="preserve">
-    <value>Dateien zur Liste hinzufügen..</value>
-  </data>
-  <data name="&gt;&gt;Label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="BinfoText.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 9pt</value>
-  </data>
-  <data name="ItemNo.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;ToolStripSeparator1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="FileList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 77</value>
-  </data>
-  <data name="Label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>78, 15</value>
-  </data>
-  <data name="StatusText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 303</value>
-  </data>
-  <data name="StartButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="RemoveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 22</value>
-  </data>
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 3, 5, 3</value>
-  </data>
-  <data name="&gt;&gt;Button1.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="ProgressBar1.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="HelpToolStripMenuItem.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="SizeText.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;FileList.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="Button1.ToolTip" xml:space="preserve">
+  <data name="SizeText.ToolTip" xml:space="preserve">
     <value />
-  </data>
-  <data name="Label1.Text" xml:space="preserve">
-    <value>&amp;Start</value>
-  </data>
-  <data name="SizeText.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Bahnschrift SemiCondensed, 9pt</value>
-  </data>
-  <data name="&gt;&gt;ToolStripSeparator1.Name" xml:space="preserve">
-    <value>ToolStripSeparator1</value>
-  </data>
-  <data name="ExitToolStripMenuItem.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="HelpToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Help</value>
-  </data>
-  <data name="StatusText.Text" xml:space="preserve">
-    <value>Status:</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>96, 96</value>
-  </data>
-  <data name="&gt;&gt;NotifyIcon1.Name" xml:space="preserve">
-    <value>NotifyIcon1</value>
-  </data>
-  <data name="&gt;&gt;SizeText.ZOrder" xml:space="preserve">
-    <value>7</value>
   </data>
   <data name="&gt;&gt;DataSet1.Type" xml:space="preserve">
     <value>System.Data.DataSet, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="CheckBox1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 8.25pt</value>
+  <data name="CheckBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 209</value>
   </data>
-  <data name="StartButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 47</value>
+  <data name="BinfoText.Location" type="System.Drawing.Point, System.Drawing">
+    <value>60, 256</value>
   </data>
-  <data name="FIleToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Datei</value>
+  <data name="&gt;&gt;ToolTip1.Name" xml:space="preserve">
+    <value>ToolTip1</value>
   </data>
-  <data name="MenuStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
+  <data name="SelectButton.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <metadata name="PageSetupDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>904, 17</value>
-  </metadata>
-  <metadata name="NotifyIcon1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>688, 17</value>
-  </metadata>
+  <data name="SelectButton.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomLeft</value>
+  </data>
+  <data name="&gt;&gt;OpenArchiv.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="StatusText.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="SelectButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 3, 5, 3</value>
+  </data>
+  <data name="ExitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="StatusText.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 5, 0</value>
+  </data>
+  <data name="&gt;&gt;CheckBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 11pt</value>
+  </data>
+  <data name="SelectButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        WLogsK8AAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="&gt;&gt;ToolTip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="StatusText.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ExitToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Beenden</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 3, 5, 3</value>
+  </data>
+  <data name="OpenArchiv.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="RadioButton1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;ExitToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BinfoText.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MenuStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="FileListContextMenuStrip.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;StartButton.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="ImageList1.ImageSize" type="System.Drawing.Size, System.Drawing">
+    <value>16, 16</value>
+  </data>
   <metadata name="OpenZip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>419, 17</value>
-  </metadata>
-  <metadata name="FileListIconList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>904, 17</value>
   </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="ToolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1035, 17</value>
-  </metadata>
-  <metadata name="DataSet1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <metadata name="Process1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>804, 17</value>
   </metadata>
-  <metadata name="FolderBrowserDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>519, 17</value>
+  <metadata name="PageSetupDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>904, 17</value>
+  </metadata>
+  <metadata name="FileListIconList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>904, 17</value>
   </metadata>
   <metadata name="$this.Language" type="System.Globalization.CultureInfo, System.Private.CoreLib, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
     <value>de-DE</value>
   </metadata>
-  <metadata name="ImageList1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>904, 17</value>
-  </metadata>
   <metadata name="MenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>304, 17</value>
   </metadata>
+  <metadata name="FolderBrowserDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>519, 17</value>
+  </metadata>
+  <metadata name="ToolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1035, 17</value>
+  </metadata>
+  <metadata name="ImageList1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>904, 17</value>
+  </metadata>
   <metadata name="FileListContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>117, 17</value>
+  </metadata>
+  <metadata name="NotifyIcon1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>688, 17</value>
+  </metadata>
+  <metadata name="DataSet1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
   </metadata>
 </root>
