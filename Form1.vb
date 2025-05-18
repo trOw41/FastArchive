@@ -382,6 +382,7 @@ Public Class Form1
         ' Standardmäßig ZIP-Format auswählen
         ZipFormatButton.Checked = True
         FileList.SmallImageList = FileListIconList
+        ToolTip1.ShowAlways = True
         ' Konfiguration des BackgroundWorker
         _backgroundWorker = New BackgroundWorker With {
             .WorkerReportsProgress = True,
@@ -518,18 +519,39 @@ Public Class Form1
     End Sub
 
     Private Sub ToolTip1_Popup(sender As Object, e As PopupEventArgs) Handles ToolTip1.Popup
-        If True Then
-            ToolTip1.SetToolTip(FileList, "Hier werden die Dateien zum archivieren angezeigt..")
+        If True Then ' Hier können Sie die Bedingung anpassen
+            ToolTip1.SetToolTip(FileList, "Hier werden die Dateien zum Archivieren angezeigt.")
             ToolTip1.SetToolTip(SelectButton, "Dateien zum Archivieren auswählen")
             ToolTip1.SetToolTip(StartButton, "Archiv erstellen")
             ToolTip1.SetToolTip(OpenArchiv, "Archiv entpacken")
             ToolTip1.SetToolTip(ZipFormatButton, "Archiv im Zip-Format erstellen")
             ToolTip1.SetToolTip(CheckBox1, "Alle Dateien auswählen")
         End If
+#Const ShowToolTips = True
     End Sub
 
     Private Sub SelectButton_MouseEnter(sender As Object, e As EventArgs) Handles SelectButton.MouseEnter
-        ToolTip1.SetToolTip(SelectButton, "Dateien zum Archivieren auswählen")
+        ToolTip1.GetToolTip(SelectButton)
+    End Sub
+
+    Private Sub OpenArchiv_MouseEnter(sender As Object, e As EventArgs) Handles OpenArchiv.MouseEnter
+        ToolTip1.GetToolTip(OpenArchiv)
+    End Sub
+
+    Private Sub StartButton_MouseEnter(sender As Object, e As EventArgs) Handles StartButton.MouseEnter
+        ToolTip1.GetToolTip(StartButton)
+    End Sub
+
+    Private Sub FileList_MouseEnter(sender As Object, e As EventArgs) Handles FileList.MouseEnter
+        ToolTip1.GetToolTip(FileList)
+    End Sub
+
+    Private Sub ZipFormatButton_MouseEnter(sender As Object, e As EventArgs) Handles ZipFormatButton.MouseEnter
+        ToolTip1.GetToolTip(ZipFormatButton)
+    End Sub
+
+    Private Sub Button1_MouseEnter(sender As Object, e As EventArgs) Handles Button1.MouseEnter
+        ToolTip1.SetToolTip(Button1, "Alle Einträge entfernen")
     End Sub
 End Class
 

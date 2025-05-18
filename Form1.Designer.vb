@@ -267,7 +267,13 @@ Partial Class Form1
         ' 
         ' ToolTip1
         ' 
+        ToolTip1.AutoPopDelay = 500
+        ToolTip1.InitialDelay = 500
+        ToolTip1.IsBalloon = True
         ToolTip1.OwnerDraw = True
+        ToolTip1.ReshowDelay = 300
+        ToolTip1.ShowAlways = True
+        ToolTip1.ToolTipIcon = ToolTipIcon.Info
         ToolTip1.ToolTipTitle = "Quick Info:"
         ' 
         ' Form1
