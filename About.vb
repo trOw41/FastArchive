@@ -1,6 +1,4 @@
-﻿Imports System.Security.Policy
-
-Public NotInheritable Class About
+﻿Public NotInheritable Class About
 
 
     Private Sub AboutBox1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load

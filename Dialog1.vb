@@ -1,14 +1,4 @@
-﻿Imports System.ComponentModel
-Imports System.Drawing
-Imports System.Drawing.Design
-Imports System.Drawing.Text
-Imports System.Windows.Forms
-Imports ABI.Windows.UI
-Imports Microsoft.VisualBasic.Logging
-Imports Windows.UI
-Imports Windows.UI.Text
-
-Public Class Dialog1
+﻿Public Class Dialog1
     Private cold As ColorDialog
     Private defFont As New Font("Arial", 11, Drawing.FontStyle.Regular)
     Private defColor As Drawing.Color = SystemColors.Control
@@ -110,7 +100,7 @@ Public Class Dialog1
             Me.SetFormFont(defFont) ' Clear any saved custom font
             CheckBox1.Checked = False
             FontBox.SelectedItem = 0
-            Form1.FileList.BackColor = Form1.GetDefaultListViewColors
+            Form1.FileList.BackColor = Form1.GetDefaultListViewColors()
             Form1.FileList.GridLines = True
             Form1.UpdateChildControlBackColors(Form1, SystemColors.Control)
             Form1.UpdateChildControlForeColors(Form1, SystemColors.ControlText)

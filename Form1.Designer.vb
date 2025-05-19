@@ -33,6 +33,7 @@ Partial Class Form1
         FileList = New ListView()
         FileListContextMenuStrip = New ContextMenuStrip(components)
         RemoveToolStripMenuItem = New ToolStripMenuItem()
+        FileListIconList = New ImageList(components)
         SizeText = New Label()
         StatusText = New Label()
         MenuStrip1 = New MenuStrip()
@@ -56,7 +57,6 @@ Partial Class Form1
         NotifyIcon1 = New NotifyIcon(components)
         Process1 = New Process()
         RadioButton1 = New RadioButton()
-        FileListIconList = New ImageList(components)
         ToolTip1 = New ToolTip(components)
         UnZipButton = New Button()
         CType(DataSet1, ComponentModel.ISupportInitialize).BeginInit()
@@ -78,12 +78,16 @@ Partial Class Form1
         ' FileList
         ' 
         resources.ApplyResources(FileList, "FileList")
-        FileList.BackColor = SystemColors.GradientInactiveCaption
+        FileList.Activation = ItemActivation.OneClick
         FileList.CheckBoxes = True
         FileList.ContextMenuStrip = FileListContextMenuStrip
         FileList.FullRowSelect = True
         FileList.GridLines = True
+        FileList.HotTracking = True
+        FileList.HoverSelection = True
+        FileList.LargeImageList = FileListIconList
         FileList.Name = "FileList"
+        FileList.ShowItemToolTips = True
         ToolTip1.SetToolTip(FileList, resources.GetString("FileList.ToolTip"))
         FileList.UseCompatibleStateImageBehavior = False
         ' 
@@ -99,6 +103,12 @@ Partial Class Form1
         ' 
         resources.ApplyResources(RemoveToolStripMenuItem, "RemoveToolStripMenuItem")
         RemoveToolStripMenuItem.Name = "RemoveToolStripMenuItem"
+        ' 
+        ' FileListIconList
+        ' 
+        FileListIconList.ColorDepth = ColorDepth.Depth32Bit
+        resources.ApplyResources(FileListIconList, "FileListIconList")
+        FileListIconList.TransparentColor = Color.Transparent
         ' 
         ' SizeText
         ' 
@@ -262,12 +272,6 @@ Partial Class Form1
         ToolTip1.SetToolTip(RadioButton1, resources.GetString("RadioButton1.ToolTip"))
         RadioButton1.UseVisualStyleBackColor = True
         ' 
-        ' FileListIconList
-        ' 
-        FileListIconList.ColorDepth = ColorDepth.Depth32Bit
-        resources.ApplyResources(FileListIconList, "FileListIconList")
-        FileListIconList.TransparentColor = Color.Transparent
-        ' 
         ' ToolTip1
         ' 
         ToolTip1.AutoPopDelay = 5000
@@ -350,7 +354,7 @@ Partial Class Form1
     Friend WithEvents FileListIconList As ImageList
     Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
-    Friend WithEvents UnZipButton As Button
+    Public WithEvents UnZipButton As Button
     Public WithEvents ToolTip1 As ToolTip
 End Class
 

@@ -123,7 +123,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="ItemNo.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 9pt</value>
+    <value>Arial, 8pt</value>
   </data>
   <data name="ItemNo.Location" type="System.Drawing.Point, System.Drawing">
     <value>17, 28</value>
@@ -181,11 +181,14 @@
   <data name="FileList.Size" type="System.Drawing.Size, System.Drawing">
     <value>493, 248</value>
   </data>
+  <data name="FileList.ToolTip" xml:space="preserve">
+    <value>Archiv-dateien Liste</value>
+  </data>
   <data name="SizeText.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="SizeText.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 9pt</value>
+    <value>Arial, 8pt</value>
   </data>
   <data name="SizeText.Location" type="System.Drawing.Point, System.Drawing">
     <value>120, 28</value>
@@ -212,7 +215,7 @@
     <value>False</value>
   </data>
   <data name="MenuStrip1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 9pt</value>
+    <value>Arial, 11.25pt</value>
   </data>
   <data name="ToolStripMenuItem1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -253,13 +256,13 @@
     <value>Alt+H</value>
   </data>
   <data name="ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>222, 22</value>
+    <value>252, 22</value>
   </data>
   <data name="ToolStripMenuItem1.Text" xml:space="preserve">
     <value>Dateien &amp;hinzufügen..</value>
   </data>
   <data name="ToolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 6</value>
+    <value>249, 6</value>
   </data>
   <data name="ExitToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -306,7 +309,7 @@
     <value>Alt+F4</value>
   </data>
   <data name="ExitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>222, 22</value>
+    <value>252, 22</value>
   </data>
   <data name="FIleToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -335,7 +338,7 @@
     <value>Strg+D</value>
   </data>
   <data name="FIleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 20</value>
+    <value>70, 21</value>
   </data>
   <data name="FAQToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -380,7 +383,7 @@
     <value>Alt+F</value>
   </data>
   <data name="FAQToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 22</value>
+    <value>172, 22</value>
   </data>
   <data name="OptionsToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -433,7 +436,7 @@
 </value>
   </data>
   <data name="OptionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 22</value>
+    <value>172, 22</value>
   </data>
   <data name="HelpToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -456,7 +459,7 @@
 </value>
   </data>
   <data name="HelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 20</value>
+    <value>65, 21</value>
   </data>
   <data name="InfoToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -478,25 +481,25 @@
 </value>
   </data>
   <data name="InfoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 20</value>
+    <value>59, 21</value>
   </data>
   <data name="MenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>524, 26</value>
+    <value>524, 27</value>
+  </data>
+  <data name="ZipFormatButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Standard</value>
   </data>
   <data name="ZipFormatButton.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 9.75pt</value>
+    <value>Arial, 9pt</value>
   </data>
   <data name="ZipFormatButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>170, 305</value>
+    <value>186, 308</value>
   </data>
   <data name="ZipFormatButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 20</value>
-  </data>
-  <data name="Button1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
+    <value>43, 19</value>
   </data>
   <data name="Button1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Bahnschrift, 10pt</value>
+    <value>Arial, 8.25pt</value>
   </data>
   <data name="Button1.Location" type="System.Drawing.Point, System.Drawing">
     <value>445, 305</value>
@@ -510,14 +513,17 @@
   <data name="ProgressBar1.Size" type="System.Drawing.Size, System.Drawing">
     <value>500, 28</value>
   </data>
+  <data name="CheckBox1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Standard</value>
+  </data>
   <data name="CheckBox1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 11.25pt</value>
+    <value>Arial, 9pt</value>
   </data>
   <data name="CheckBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 304</value>
+    <value>17, 308</value>
   </data>
   <data name="CheckBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 21</value>
+    <value>49, 19</value>
   </data>
   <data name="OpenArchiv.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3575,32 +3581,32 @@
   </data>
   <data name="UnZipButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        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
+        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
 </value>
   </data>
   <data name="UnZipButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
@@ -3621,17 +3627,14 @@
   <data name="RadioButton1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="RadioButton1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
   <data name="RadioButton1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 9.75pt</value>
+    <value>Arial, 9pt</value>
   </data>
   <data name="RadioButton1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>266, 304</value>
+    <value>253, 308</value>
   </data>
   <data name="RadioButton1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 20</value>
+    <value>50, 19</value>
   </data>
   <data name="RadioButton1.Text" xml:space="preserve">
     <value>RAR</value>
