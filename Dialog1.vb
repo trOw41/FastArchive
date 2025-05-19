@@ -100,12 +100,12 @@
             Me.SetFormFont(defFont) ' Clear any saved custom font
             CheckBox1.Checked = False
             FontBox.SelectedItem = 0
-            Form1.FileList.BackColor = Form1.GetDefaultListViewColors()
-            Form1.FileList.GridLines = True
-            Form1.UpdateChildControlBackColors(Form1, SystemColors.Control)
-            Form1.UpdateChildControlForeColors(Form1, SystemColors.ControlText)
-            UpdateChildControlBackColors(Me, SystemColors.Control)
-            UpdateChildControlForeColors(Me, SystemColors.ControlText)
+            Form1.FileList.BackColor = SystemColors.Window
+            Form1.FileList.ForeColor = SystemColors.WindowText
+            Form1.UpdateChildControlBackColors(Form1, DefaultBackColor)
+            Form1.UpdateChildControlForeColors(Form1, DefaultForeColor)
+            UpdateChildControlBackColors(Me, DefaultBackColor)
+            UpdateChildControlForeColors(Me, DefaultForeColor)
             My.Settings.AppFont = defFont
             My.Settings.Save()
             Me.Close()

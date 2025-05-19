@@ -368,7 +368,7 @@ Public Class Form1
         Me.Text = AppName
         FileList.View = View.Details
         FileList.Columns.Add("Datei:", 250)
-        FileList.Columns.Add("Größe:", 100)
+        FileList.Columns.Add("Größe:", 130)
         FileList.MultiSelect = True
         CheckBox1.Checked = False
         ZipFormatButton.Checked = True
@@ -394,9 +394,11 @@ Public Class Form1
             openFileDialog.Title = "ZIP-Datei zum Öffnen auswählen"
             FileList.Items.Clear()
             FileList.Columns.Clear()
+            FileList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent)
+            FileList.AutoArrange = True
             FileList.View = View.Details
             FileList.Columns.Add("Datei:", 250)
-            FileList.Columns.Add("Größe(in Archiv):", 80)
+            FileList.Columns.Add("Größe(in Archiv):", 130)
             If openFileDialog.ShowDialog() = DialogResult.OK Then
                 _zipFilePath = openFileDialog.FileName
                 Dim zipName As String = Path.GetFileName(_zipFilePath)
@@ -553,14 +555,14 @@ Public Class Form1
         UnZipButton.Visible = False
         StatusText.Visible = False
         If e.Cancelled Then
-            'StatusText.Text = "Entpacken abgebrochen."
+            StatusText.Text = "Entpacken abgebrochen."
             MessageBox.Show("Entpacken abgebrochen.", "Abgebrochen", MessageBoxButtons.OK, MessageBoxIcon.Information)
         ElseIf e.Error IsNot Nothing Then
             'StatusText.Text = "Fehler beim Entpacken."
             MessageBox.Show($"Fehler beim Entpacken: {e.Error.Message}", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
             'StatusText.Text = "Entpacken abgeschlossen!"
-            MessageBox.Show($"Archiv erfolgreich entpackt nach: {e.Result}", "Erfolg", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show($"Archiv erfolgreich entpackt nach: {e.Result}", "Erfolg")
         End If
         _isCancellationPending = False
     End Sub

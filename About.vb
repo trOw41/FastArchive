@@ -17,7 +17,7 @@
         Me.LabelCompanyName.Text = My.Application.Info.CompanyName
         Me.EulaBox.Text = My.Application.Info.Description
         Dim licensePath As String = Path.Combine(Application.StartupPath, "LICENSE.txt")
-        MessageBox.Show(licensePath)
+        'MessageBox.Show(licensePath)
         If IO.File.Exists(licensePath) Then
             EulaBox.Text = File.ReadAllText(licensePath)
         Else
