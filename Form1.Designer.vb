@@ -196,7 +196,8 @@ Partial Class Form1
         resources.ApplyResources(ProgressBar1, "ProgressBar1")
         ProgressBar1.ForeColor = SystemColors.HotTrack
         ProgressBar1.Name = "ProgressBar1"
-        ProgressBar1.Step = 1
+        ProgressBar1.Step = 5
+        ProgressBar1.Style = ProgressBarStyle.Continuous
         ToolTip1.SetToolTip(ProgressBar1, resources.GetString("ProgressBar1.ToolTip"))
         ProgressBar1.Value = 10
         ' 

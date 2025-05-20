@@ -27,6 +27,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="FastArchiver%28SourceCode%29.zip" />
     <None Remove="LICENSE.txt" />
     <None Remove="Resources\LICENSE.txt" />
   </ItemGroup>

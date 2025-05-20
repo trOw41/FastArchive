@@ -11,5 +11,11 @@
     <Setting Name="StringColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">ControlText</Value>
     </Setting>
+    <Setting Name="ControlColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">WindowFrame</Value>
+    </Setting>
+    <Setting Name="ListViewStandard" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

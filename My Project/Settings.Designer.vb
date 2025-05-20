@@ -89,6 +89,30 @@ Namespace My
                 Me("StringColor") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("WindowFrame")>  _
+        Public Property ControlColor() As Global.System.Drawing.Color
+            Get
+                Return CType(Me("ControlColor"),Global.System.Drawing.Color)
+            End Get
+            Set
+                Me("ControlColor") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property ListViewStandard() As Boolean
+            Get
+                Return CType(Me("ListViewStandard"),Boolean)
+            End Get
+            Set
+                Me("ListViewStandard") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

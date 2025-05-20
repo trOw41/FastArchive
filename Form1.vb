@@ -1,7 +1,9 @@
 ﻿Imports System.ComponentModel
 Imports System.Diagnostics
+Imports System.Dynamic
 Imports System.IO.Compression
 Imports System.Threading
+Imports Microsoft.VisualBasic.Logging
 
 Public Class Form1
 
@@ -63,9 +65,10 @@ Public Class Form1
     End Function
 
 #Const ShowToolTips = True
-    Public Sub SetControlColor(sender As Object, e As Drawing.FontStyle)
+    Public Sub SetControlColor(sender As Object, e As Drawing.Color)
         Dim controlColor As Color = My.Settings.AppColor
-        Me.BackColor = controlColor
+        'Me.BackColor = controlColor
+        My.Settings.ControlColor = controlColor
         UpdateChildControlBackColors(Me, controlColor)
     End Sub
 
@@ -85,6 +88,18 @@ Public Class Form1
                 UpdateChildControlForeColors(childControl, color)
             End If
         Next
+    End Sub
+    Shared Function GetDefaultListViewForeColors() As Color
+        Return SystemColors.WindowText
+    End Function
+    Shared Function GetDefaultListViewBackColors() As Color
+        Return SystemColors.ControlLightLight
+    End Function
+    Public Sub GetListViewDefault()
+        If My.Settings.ListViewStandard = True Then
+            FileList.BackColor = GetDefaultListViewBackColors()
+            FileList.ForeColor = GetDefaultListViewForeColors()
+        End If
     End Sub
 
     Public Sub SetFormFont(newFont As Font)
@@ -350,9 +365,12 @@ Public Class Form1
     Private Sub Form1_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Me.BackColor = My.Settings.AppColor
         Me.ForeColor = My.Settings.StringColor
+        SetControlColor(sender, My.Settings.ControlColor)
+        SetFormFont(My.Settings.AppFont)
+        UpdateChildControlFonts(Me, My.Settings.AppFont)
         FileList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent)
         FileList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize)
-        FileList.BackColor = GetDefaultListViewColors()
+        'FileList.BackColor = GetDefaultListViewColors()
         If My.Settings.AppFont IsNot Nothing AndAlso My.Settings.AppFont.FontFamily IsNot Nothing AndAlso
            Not String.IsNullOrEmpty(My.Settings.AppFont.FontFamily.Name) Then
             Try
@@ -368,7 +386,7 @@ Public Class Form1
         Me.Text = AppName
         FileList.View = View.Details
         FileList.Columns.Add("Datei:", 250)
-        FileList.Columns.Add("Größe:", 130)
+        FileList.Columns.Add("Größe:", 200)
         FileList.MultiSelect = True
         CheckBox1.Checked = False
         ZipFormatButton.Checked = True
@@ -440,6 +458,11 @@ Public Class Form1
                     End Using
                 Catch ex As Exception
                     MessageBox.Show($"Fehler beim Öffnen des Archivs: {ex.Message}", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    If UnZipButton.Visible Then UnZipButton.Visible = False
+                    If Not StartButton.Enabled Then StartButton.Enabled = True
+                    If Not SelectButton.Enabled Then SelectButton.Enabled = True
+                    If Not ZipFormatButton.Enabled Then ZipFormatButton.Enabled = True
+                    If Not OpenArchiv.Enabled Then OpenArchiv.Enabled = True
                 End Try
             End If
         End Using
@@ -583,9 +606,7 @@ Public Class Form1
         Next
     End Sub
 
-    Shared Function GetDefaultListViewColors() As Color
-        Return SystemColors.Window
-    End Function
+
 
     Private Function FormatFileSize(bytes As Long) As String
         If bytes < 1024 Then
