@@ -370,7 +370,7 @@ Public Class Form1
         UpdateChildControlFonts(Me, My.Settings.AppFont)
         FileList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent)
         FileList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize)
-        'FileList.BackColor = GetDefaultListViewColors()
+        FileList.ForeColor = My.Settings.StringColor
         If My.Settings.AppFont IsNot Nothing AndAlso My.Settings.AppFont.FontFamily IsNot Nothing AndAlso
            Not String.IsNullOrEmpty(My.Settings.AppFont.FontFamily.Name) Then
             Try
@@ -380,7 +380,7 @@ Public Class Form1
             Catch ex As Exception
                 MessageBox.Show($"Fehler beim Laden der Schriftart: {ex.Message}", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
-            My.Settings.AppColor = DefaultBackColor
+            'My.Settings.AppColor = DefaultBackColor
         End If
         IsUserAdministrator()
         Me.Text = AppName
@@ -606,8 +606,6 @@ Public Class Form1
         Next
     End Sub
 
-
-
     Private Function FormatFileSize(bytes As Long) As String
         If bytes < 1024 Then
             Return $"{bytes} Bytes"
@@ -619,4 +617,88 @@ Public Class Form1
             Return $"{Math.Round(bytes / (1024.0 * 1024 * 1024), 2)} GB"
         End If
     End Function
+
+    Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
+        SelectButton_Click(sender, e)
+    End Sub
+    ' Drag & Drop Event Handler
+
+    Private Sub FileList_DragDrop(sender As Object, e As DragEventArgs) Handles MyBase.DragDrop, FileList.DragDrop
+        Dim files = CType(e.Data.GetData(DataFormats.FileDrop), String())
+
+        ' Überprüfen, ob eine einzelne ZIP-Datei gezogen wurde
+        If files.Length = 1 AndAlso files(0).ToLower.EndsWith(".zip") Then
+            Dim zipFilePath = files(0)
+            ' Setze _zipFilePath für OpenArchiv_Click
+            _zipFilePath = zipFilePath
+            Dim zipName As String = Path.GetFileName(_zipFilePath)
+            Dim zippath As String = Path.GetDirectoryName(_zipFilePath)
+            UnZipButton.Visible = True
+            StartButton.Enabled = False
+            SelectButton.Enabled = False
+            ZipFormatButton.Enabled = False
+            OpenArchiv.Enabled = False
+            Try
+                Using zip As ZipArchive = ZipFile.Open(_zipFilePath, ZipArchiveMode.Read)
+                    ItemNo.Text = "Dateien: " & zip.Entries.Count.ToString()
+                    For Each zEntry As ZipArchiveEntry In zip.Entries
+                        Dim fileName As String = zEntry.FullName
+                        Dim entryFullPath As String = Path.Combine(zippath, fileName)
+                        Dim item As New ListViewItem With {
+                            .Text = fileName,
+                            .Tag = entryFullPath,
+                            .Checked = False
+                        }
+                        item.SubItems.Add(FormatFileSize(zEntry.CompressedLength))
+                        Dim fileIcon As Icon = Nothing
+                        Try
+                            If File.Exists(entryFullPath) Then
+                                fileIcon = System.Drawing.Icon.ExtractAssociatedIcon(entryFullPath)
+                            Else
+                                fileIcon = SystemIcons.WinLogo
+                            End If
+                        Catch ex As Exception
+                            fileIcon = SystemIcons.WinLogo
+                        End Try
+                        Dim iconIndex As Integer = FileListIconList.Images.Count
+                        FileListIconList.Images.Add(fileIcon)
+                        item.ImageIndex = iconIndex
+                        FileList.Items.Add(item)
+                        UpdateTotalSizeLabel()
+                    Next
+                End Using
+            Catch ex As Exception
+                MessageBox.Show($"Fehler beim Öffnen des Archivs: {ex.Message}", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        Else
+            ' Füge alle anderen Dateien zur Liste hinzu
+            SelectButton_Click(sender, e)
+            ' Füge die gezogenen Dateien zur Liste hinzu
+            For Each filePath In files
+                Dim item As New ListViewItem With {
+                    .Text = Path.GetFileName(filePath),
+                    .Tag = filePath,
+                    .Checked = False
+                }
+                Dim fileInfo As New FileInfo(filePath)
+                Dim fileSize = FormatFileSize(fileInfo.Length)
+                Dim fileIcon = Icon.ExtractAssociatedIcon(filePath)
+                Dim iconIndex = FileListIconList.Images.Count
+                FileListIconList.Images.Add(fileIcon)
+                item.ImageIndex = iconIndex
+                item.SubItems.Add(fileSize)
+                FileList.Items.Add(item)
+            Next
+        End If
+
+    End Sub
+
+    Private Sub FileList_DragEnter(sender As Object, e As DragEventArgs) Handles FileList.DragEnter
+        ' Prüfen, ob die gezogenen Daten Dateipfade sind
+        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
+            e.Effect = DragDropEffects.Copy ' Zeige an, dass Kopieren erlaubt ist
+        Else
+            e.Effect = DragDropEffects.None ' Keine anderen Daten akzeptieren
+        End If
+    End Sub
 End Class

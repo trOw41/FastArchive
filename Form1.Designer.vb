@@ -79,6 +79,7 @@ Partial Class Form1
         ' 
         resources.ApplyResources(FileList, "FileList")
         FileList.Activation = ItemActivation.OneClick
+        FileList.AllowDrop = True
         FileList.CheckBoxes = True
         FileList.ContextMenuStrip = FileListContextMenuStrip
         FileList.FullRowSelect = True
@@ -294,6 +295,7 @@ Partial Class Form1
         ' Form1
         ' 
         resources.ApplyResources(Me, "$this")
+        AllowDrop = True
         AutoScaleMode = AutoScaleMode.Dpi
         ContextMenuStrip = FileListContextMenuStrip
         Controls.Add(UnZipButton)
