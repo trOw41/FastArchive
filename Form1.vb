@@ -671,8 +671,6 @@ Public Class Form1
                 MessageBox.Show($"Fehler beim Öffnen des Archivs: {ex.Message}", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         Else
-            ' Füge alle anderen Dateien zur Liste hinzu
-            SelectButton_Click(sender, e)
             ' Füge die gezogenen Dateien zur Liste hinzu
             For Each filePath In files
                 Dim item As New ListViewItem With {
