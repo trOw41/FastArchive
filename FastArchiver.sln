@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.36105.23 d17.13
+VisualStudioVersion = 17.13.36105.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "FastArchiver", "FastArchiver.vbproj", "{C46A741E-56CE-4FEE-9509-875B1B395C19}"
 EndProject
@@ -9,6 +9,7 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		Description = FastArchiver is an efficient and user-friendly application for managing your files through compression and extraction. Designed to simplify archive management, FastArchiver offers an intuitive interface and powerful features.
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C46A741E-56CE-4FEE-9509-875B1B395C19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

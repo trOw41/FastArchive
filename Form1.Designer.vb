@@ -56,7 +56,7 @@ Partial Class Form1
         FolderBrowserDialog1 = New FolderBrowserDialog()
         NotifyIcon1 = New NotifyIcon(components)
         Process1 = New Process()
-        RadioButton1 = New RadioButton()
+        RawFormatButton = New RadioButton()
         ToolTip1 = New ToolTip(components)
         UnZipButton = New Button()
         CType(DataSet1, ComponentModel.ISupportInitialize).BeginInit()
@@ -266,13 +266,13 @@ Partial Class Form1
         Process1.StartInfo.UserName = ""
         Process1.SynchronizingObject = Me
         ' 
-        ' RadioButton1
+        ' RawFormatButton
         ' 
-        resources.ApplyResources(RadioButton1, "RadioButton1")
-        RadioButton1.Name = "RadioButton1"
-        RadioButton1.TabStop = True
-        ToolTip1.SetToolTip(RadioButton1, resources.GetString("RadioButton1.ToolTip"))
-        RadioButton1.UseVisualStyleBackColor = True
+        resources.ApplyResources(RawFormatButton, "RawFormatButton")
+        RawFormatButton.Name = "RawFormatButton"
+        RawFormatButton.TabStop = True
+        ToolTip1.SetToolTip(RawFormatButton, resources.GetString("RawFormatButton.ToolTip"))
+        RawFormatButton.UseVisualStyleBackColor = True
         ' 
         ' ToolTip1
         ' 
@@ -299,7 +299,7 @@ Partial Class Form1
         AutoScaleMode = AutoScaleMode.Dpi
         ContextMenuStrip = FileListContextMenuStrip
         Controls.Add(UnZipButton)
-        Controls.Add(RadioButton1)
+        Controls.Add(RawFormatButton)
         Controls.Add(CheckBox1)
         Controls.Add(Button1)
         Controls.Add(ZipFormatButton)
@@ -353,7 +353,7 @@ Partial Class Form1
     Friend WithEvents NotifyIcon1 As NotifyIcon
     Friend WithEvents Process1 As Process
     Friend WithEvents OptionsToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents RadioButton1 As RadioButton
+    Friend WithEvents RawFormatButton As RadioButton
     Friend WithEvents FileListIconList As ImageList
     Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator

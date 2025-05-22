@@ -8,14 +8,15 @@ Imports Windows.Media.Capture
 Imports Syncfusion.XForms.Themes
 Imports Windows.Devices.Sensors
 Imports Windows.Management.Deployment.Preview
+Imports System.IO.Compression
 
 Public Class SettingsDialog
     Private cold As ColorDialog
-    Private defFont As New Font("Arial", 11, Drawing.FontStyle.Regular)
+    Private defFont As New Font("Arial", 10, Drawing.FontStyle.Regular)
     Private defBackColor As Drawing.Color = SystemColors.ControlLightLight
     Private defFontColor As Drawing.Color = SystemColors.WindowText
     Private defControlColor As Drawing.Color = SystemColors.ControlLightLight
-    Private newFont As New Font("Bahnschrift SemiLight Condensed", 11)
+    Private newFont As New Font("Bahnschrift SemiLight Condensed", 12, Drawing.FontStyle.Regular)
     Private cont As Control
     Private checked As Boolean
     Dim Color As Drawing.Color
@@ -35,12 +36,18 @@ Public Class SettingsDialog
             Font1.Checked = True
         ElseIf Style1 = Modern Then
             Font2.Checked = True
-
         End If
         If Style2 = Light Then
             LightT.Checked = True
         ElseIf Style2 = Dark Then
             DarkT.Checked = True
+        End If
+        If My.Settings.CompressionMode = modeOptimal Then
+            RadioButton2.Checked = True
+        ElseIf My.Settings.CompressionMode = modeFast Then
+            RadioButton1.Checked = True
+        ElseIf My.Settings.CompressionMode = modeUltra Then
+            RadioButton3.Checked = True
         End If
     End Sub
 
@@ -170,4 +177,33 @@ Public Class SettingsDialog
         End If
         My.Settings.Save()
     End Sub
+
+    Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.CheckedChanged
+
+        If RadioButton2.Checked = True Then
+            RadioButton1.Checked = False
+            RadioButton3.Checked = False
+            My.Settings.CompressionMode = modeOptimal
+        End If
+    End Sub
+
+    Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged
+        If RadioButton1.Checked = True Then
+            RadioButton2.Checked = False
+            RadioButton3.Checked = False
+            My.Settings.CompressionMode = modeFast
+        End If
+    End Sub
+
+    Private Sub RadioButton3_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton3.CheckedChanged
+        If RadioButton3.Checked = True Then
+            RadioButton1.Checked = False
+            RadioButton2.Checked = False
+            My.Settings.CompressionMode = modeUltra
+        End If
+    End Sub
+
+    Private modeFast As String = CompressionLevel.Fastest
+    Private modeOptimal As String = CompressionLevel.Optimal
+    Private modeUltra As String = CompressionLevel.SmallestSize
 End Class
