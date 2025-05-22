@@ -4,27 +4,18 @@ Imports System.Dynamic
 Imports System.IO.Compression
 Imports System.Threading
 Imports Microsoft.VisualBasic.Logging
+Imports Windows.Management.Deployment.Preview
 
 Public Class Form1
 
     Private _isCancellationPending As Boolean = False
-    Private WithEvents _backgroundWorker1 As BackgroundWorker ' Korrekt deklariert mit WithEvents
+    Private WithEvents _backgroundWorker As BackgroundWorker ' Korrekt deklariert mit WithEvents
     Private AppName As String = "FastArchive"
     Private _zipFilePath As String = ""
     Private _extractPath As String = ""
     Private WithEvents _unzipWorker As BackgroundWorker
 
-    Public Sub New()
-        InitializeComponent() 'Stelle sicher, dass die Komponente initialisiert wird
-        _backgroundWorker1 = New BackgroundWorker With {
-            .WorkerReportsProgress = True,
-            .WorkerSupportsCancellation = True
-        }
-        _unzipWorker = New BackgroundWorker With {
-            .WorkerReportsProgress = True,
-            .WorkerSupportsCancellation = True
-        }
-    End Sub
+
 
     Private Function EnsureAdminRightsAndCreateDirectory(directoryPath As String) As Boolean
         If Not IsUserAdministrator() Then
@@ -96,7 +87,7 @@ Public Class Form1
         Return SystemColors.ControlLightLight
     End Function
     Public Sub GetListViewDefault()
-        If My.Settings.ListViewStandard = True Then
+        If My.Settings.StyleC = "Classic" Then
             FileList.BackColor = GetDefaultListViewBackColors()
             FileList.ForeColor = GetDefaultListViewForeColors()
         End If
@@ -117,7 +108,7 @@ Public Class Form1
     End Sub
 
     Private Sub OpenSettingsDialog()
-        Using settingsDialog As New Dialog1()
+        Using settingsDialog As New SettingsDialog()
             If settingsDialog.ShowDialog() = DialogResult.OK Then
             End If
         End Using
@@ -194,13 +185,13 @@ Public Class Form1
                 }
 
                 _isCancellationPending = False
-                _backgroundWorker1.RunWorkerAsync(parameters)
+                _backgroundWorker.RunWorkerAsync(parameters)
             End If
         End Using
     End Sub
 
-    Private Sub BackgroundWorker_DoWork(sender As Object, e As DoWorkEventArgs) Handles _backgroundWorker1.DoWork
-        Dim worker As BackgroundWorker = DirectCast(sender, BackgroundWorker)
+    Private Sub BackgroundWorker_DoWork(sender As Object, e As DoWorkEventArgs) Handles _backgroundWorker.DoWork
+        '_backgroundWorker = DirectCast(sender, BackgroundWorker)
         Dim parameters As CompressionParameters = DirectCast(e.Argument, CompressionParameters)
 
         Try
@@ -208,12 +199,12 @@ Public Class Form1
                 Using archive As New ZipArchive(archiveStream, If(parameters.IsZip, ZipArchiveMode.Create, ZipArchiveMode.Create))
                     Dim totalFiles As Integer = parameters.FilePaths.Length
                     For i As Integer = 0 To totalFiles - 1
-                        If worker.CancellationPending OrElse _isCancellationPending Then
+                        If _backgroundWorker.CancellationPending OrElse _isCancellationPending Then
                             e.Cancel = True
                             Exit For
                         End If
                         Dim progress As Integer = Math.Min(100, CInt((i + 1) / CDbl(totalFiles) * 100))
-                        worker.ReportProgress(progress, New CompressionProgressInfo With {.ArchiveFilePath = parameters.ArchiveFilePath, .CurrentFile = parameters.FilePaths(i)})
+                        _backgroundWorker.ReportProgress(progress, New CompressionProgressInfo With {.ArchiveFilePath = parameters.ArchiveFilePath, .CurrentFile = parameters.FilePaths(i)})
                         Dim fileToAdd As String = parameters.FilePaths(i)
                         Dim entryName As String = Path.GetFileName(fileToAdd)
 
@@ -230,15 +221,18 @@ Public Class Form1
         End Try
     End Sub
 
-    Private Sub BackgroundWorker_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles _backgroundWorker1.ProgressChanged
-        If TypeOf e.UserState Is CompressionProgressInfo Then
-            Dim progressInfo As CompressionProgressInfo = DirectCast(e.UserState, CompressionProgressInfo)
-            ProgressBar1.Value = e.ProgressPercentage
-            StatusText.Text = $"Komprimiere: {Path.GetFileName(progressInfo.CurrentFile)} ({e.ProgressPercentage}%)"
-        End If
-    End Sub
+    Private Sub BackgroundWorker_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles _backgroundWorker.ProgressChanged
+        Dim progressInfo As CompressionProgressInfo = DirectCast(e.UserState, CompressionProgressInfo)
+        Me.Invoke(Sub()
 
-    Private Sub BackgroundWorker_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles _backgroundWorker1.RunWorkerCompleted
+                      If TypeOf e.UserState Is CompressionProgressInfo Then
+
+                          ProgressBar1.Value = e.ProgressPercentage
+                          StatusText.Text = $"Komprimiere: {Path.GetFileName(progressInfo.CurrentFile)} ({e.ProgressPercentage}%)"
+                      End If
+                  End Sub)
+    End Sub
+    Private Sub BackgroundWorker_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles _backgroundWorker.RunWorkerCompleted
         StartButton.Enabled = True
         SelectButton.Enabled = True
         ZipFormatButton.Enabled = True
@@ -392,20 +386,21 @@ Public Class Form1
         ZipFormatButton.Checked = True
         FileList.SmallImageList = FileListIconList
         ToolTip1.ShowAlways = True
+        _backgroundWorker.WorkerReportsProgress = True
+        _backgroundWorker.WorkerSupportsCancellation = True
 
-        _backgroundWorker1.WorkerReportsProgress = True
-        _backgroundWorker1.WorkerSupportsCancellation = True
-        AddHandler _backgroundWorker1.DoWork, AddressOf BackgroundWorker_DoWork
-        AddHandler _backgroundWorker1.ProgressChanged, AddressOf BackgroundWorker_ProgressChanged
-        AddHandler _backgroundWorker1.RunWorkerCompleted, AddressOf BackgroundWorker_RunWorkerCompleted
-
-        _unzipWorker.WorkerReportsProgress = True
-        _unzipWorker.WorkerSupportsCancellation = True
-        AddHandler _unzipWorker.DoWork, AddressOf UnzipWorker_DoWork
-        AddHandler _unzipWorker.ProgressChanged, AddressOf UnzipWorker_ProgressChanged
-        AddHandler _unzipWorker.RunWorkerCompleted, AddressOf UnzipWorker_RunWorkerCompleted
     End Sub
-
+    Public Sub New()
+        InitializeComponent() 'Stelle sicher, dass die Komponente initialisiert wird
+        _backgroundWorker = New BackgroundWorker With {
+            .WorkerReportsProgress = True,
+            .WorkerSupportsCancellation = True
+        }
+        _unzipWorker = New BackgroundWorker With {
+            .WorkerReportsProgress = True,
+            .WorkerSupportsCancellation = True
+        }
+    End Sub
     Private Sub OpenArchiv_Click(sender As Object, e As EventArgs) Handles OpenArchiv.Click
         Using openFileDialog As New OpenFileDialog()
             openFileDialog.Filter = "ZIP-Dateien (*.zip)|*.zip|Alle Dateien (*.*)|*.*"
@@ -591,7 +586,7 @@ Public Class Form1
     End Sub
 
     Private Sub OptionsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OptionsToolStripMenuItem.Click
-        Dialog1.ShowDialog()
+        SettingsDialog.ShowDialog()
     End Sub
 
     Public Shared Sub Form1BackColor(sender As Object, it As Drawing.Color)
@@ -599,7 +594,7 @@ Public Class Form1
         form.BackColor = it
     End Sub
 
-    Public Shared Sub Form1Font(dialog1 As Dialog1, font As Font)
+    Public Shared Sub Form1Font(dialog1 As SettingsDialog, font As Font)
         Form1.Font = font
         For Each ctrl As Control In Form1.Controls
             ctrl.Font = font

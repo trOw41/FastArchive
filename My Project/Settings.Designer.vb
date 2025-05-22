@@ -104,13 +104,25 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-        Public Property ListViewStandard() As Boolean
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property StyleC() As String
             Get
-                Return CType(Me("ListViewStandard"),Boolean)
+                Return CType(Me("StyleC"),String)
             End Get
             Set
-                Me("ListViewStandard") = value
+                Me("StyleC") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property StyleF() As String
+            Get
+                Return CType(Me("StyleF"),String)
+            End Get
+            Set
+                Me("StyleF") = value
             End Set
         End Property
     End Class

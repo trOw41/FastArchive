@@ -5,8 +5,11 @@ Imports Windows.UI.WindowManagement
 Imports Windows.System
 Imports System.Drawing.Font
 Imports Windows.Media.Capture
+Imports Syncfusion.XForms.Themes
+Imports Windows.Devices.Sensors
+Imports Windows.Management.Deployment.Preview
 
-Public Class Dialog1
+Public Class SettingsDialog
     Private cold As ColorDialog
     Private defFont As New Font("Arial", 11, Drawing.FontStyle.Regular)
     Private defBackColor As Drawing.Color = SystemColors.ControlLightLight
@@ -14,10 +17,31 @@ Public Class Dialog1
     Private defControlColor As Drawing.Color = SystemColors.ControlLightLight
     Private newFont As New Font("Bahnschrift SemiLight Condensed", 11)
     Private cont As Control
+    Private checked As Boolean
     Dim Color As Drawing.Color
+    Dim Dark As String = "Dark"
+    Dim Light As String = "Light"
+    Dim Classic As String = "Classic"
+    Dim Modern As String = "Modern"
+    Dim Style1 As String = ""
+    Dim Style2 As String = ""
     Private Sub Dialog1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Me.BackColor = My.Settings.AppColor
         Me.ForeColor = My.Settings.StringColor
+        Style1 = My.Settings.StyleF
+        Style2 = My.Settings.StyleC
+        If Style1 Is Nothing Then
+            Style1 = Classic
+            Font1.Checked = True
+        ElseIf Style1 = Modern Then
+            Font2.Checked = True
+
+        End If
+        If Style2 = Light Then
+            LightT.Checked = True
+        ElseIf Style2 = Dark Then
+            DarkT.Checked = True
+        End If
     End Sub
 
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
@@ -78,9 +102,12 @@ Public Class Dialog1
             Form1.SetFormFont(defFont)
             SetFormFont(defFont)
             UpdateChildControlFonts(Form1, defFont)
+            My.Settings.StyleF = "Classic"
             My.Settings.AppFont = defFont
-            My.Settings.Save()
+        Else
+            Font2.Checked = True
         End If
+        My.Settings.Save()
     End Sub
 
     Private Sub Font2_CheckedChanged(sender As Object, e As EventArgs) Handles Font2.CheckedChanged
@@ -89,17 +116,20 @@ Public Class Dialog1
             Form1.SetFormFont(newFont)
             SetFormFont(newFont)
             UpdateChildControlFonts(Form1, newFont)
+            My.Settings.StyleF = Modern
             My.Settings.AppFont = newFont
-            My.Settings.Save()
+        Else
+            Font1.Checked = True
         End If
+        My.Settings.Save()
     End Sub
 
-    Private Sub LightTheme_CheckedChanged(sender As Object, e As EventArgs) Handles LightTheme.CheckedChanged
+    Private Sub LightTheme_CheckedChanged(sender As Object, e As EventArgs) Handles LightT.CheckedChanged
         Dim bc As Drawing.Color = defBackColor
         Dim fc As Drawing.Color = defFontColor
         Dim cc As Drawing.Color = defControlColor
-        If LightTheme.Checked Then
-            DarkTheme.Checked = False
+        If LightT.Checked Then
+            DarkT.Checked = False
             My.Settings.AppColor = bc
             Form1.BackColor = bc
             Panel2.BackColor = bc
@@ -110,17 +140,20 @@ Public Class Dialog1
             SetControlColor(sender, cc)
             UpdateChildControlBackColors(Form1, cc)
             UpdateChildControlForeColors(Form1, fc)
+            My.Settings.StyleC = "Light"
 
-            My.Settings.Save()
+        Else
+            DarkT.Checked = True
         End If
+        My.Settings.Save()
     End Sub
 
-    Private Sub DarkTheme_CheckedChanged(sender As Object, e As EventArgs) Handles DarkTheme.CheckedChanged
+    Private Sub DarkTheme_CheckedChanged(sender As Object, e As EventArgs) Handles DarkT.CheckedChanged
         Dim bc As Drawing.Color = SystemColors.ControlDarkDark
         Dim fc As Drawing.Color = WhiteSmoke
         Dim cc As Drawing.Color = SystemColors.WindowFrame
-        If DarkTheme.Checked Then
-            LightTheme.Checked = False
+        If DarkT.Checked Then
+            LightT.Checked = False
             My.Settings.AppColor = bc
             Form1.BackColor = bc
             Panel2.BackColor = bc
@@ -131,8 +164,10 @@ Public Class Dialog1
             SetControlColor(sender, cc)
             UpdateChildControlBackColors(Form1, cc)
             UpdateChildControlForeColors(Form1, fc)
-
-            My.Settings.Save()
+            My.Settings.StyleC = "Dark"
+        Else
+            LightT.Checked = True
         End If
+        My.Settings.Save()
     End Sub
 End Class

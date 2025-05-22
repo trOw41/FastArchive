@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Dialog1
+Partial Class SettingsDialog
     Inherits System.Windows.Forms.Form
 
     'Das Formular überschreibt den Löschvorgang, um die Komponentenliste zu bereinigen.
@@ -22,7 +22,7 @@ Partial Class Dialog1
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Dialog1))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SettingsDialog))
         TableLayoutPanel1 = New TableLayoutPanel()
         OK_Button = New Button()
         Label1 = New Label()
@@ -32,9 +32,9 @@ Partial Class Dialog1
         Panel2 = New Panel()
         PictureBox2 = New PictureBox()
         Label4 = New Label()
-        LightTheme = New CheckBox()
+        LightT = New CheckBox()
         Label3 = New Label()
-        DarkTheme = New CheckBox()
+        DarkT = New CheckBox()
         Panel3 = New Panel()
         Label6 = New Label()
         Font2 = New CheckBox()
@@ -102,7 +102,7 @@ Partial Class Dialog1
         ' 
         ' Panel1
         ' 
-        Panel1.BackColor = Color.Ivory
+        Panel1.BackColor = Color.Transparent
         Panel1.Controls.Add(Panel2)
         Panel1.Controls.Add(Panel3)
         Panel1.Location = New Point(7, 14)
@@ -117,9 +117,9 @@ Partial Class Dialog1
         Panel2.Controls.Add(PictureBox2)
         Panel2.Controls.Add(Label2)
         Panel2.Controls.Add(Label4)
-        Panel2.Controls.Add(LightTheme)
+        Panel2.Controls.Add(LightT)
         Panel2.Controls.Add(Label3)
-        Panel2.Controls.Add(DarkTheme)
+        Panel2.Controls.Add(DarkT)
         Panel2.Location = New Point(5, 127)
         Panel2.Name = "Panel2"
         Panel2.Size = New Size(342, 105)
@@ -147,18 +147,18 @@ Partial Class Dialog1
         Label4.TabIndex = 14
         Label4.Text = "Dark Back Color / White Font Color"
         ' 
-        ' LightTheme
+        ' LightT
         ' 
-        LightTheme.AutoSize = True
-        LightTheme.BackColor = SystemColors.ControlLightLight
-        LightTheme.FlatStyle = FlatStyle.System
-        LightTheme.Font = New Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        LightTheme.Location = New Point(68, 26)
-        LightTheme.Name = "LightTheme"
-        LightTheme.Size = New Size(67, 21)
-        LightTheme.TabIndex = 9
-        LightTheme.Text = " Light"
-        LightTheme.UseVisualStyleBackColor = False
+        LightT.AutoSize = True
+        LightT.BackColor = SystemColors.ControlLightLight
+        LightT.FlatStyle = FlatStyle.System
+        LightT.Font = New Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        LightT.Location = New Point(68, 26)
+        LightT.Name = "LightT"
+        LightT.Size = New Size(67, 21)
+        LightT.TabIndex = 9
+        LightT.Text = " Light"
+        LightT.UseVisualStyleBackColor = False
         ' 
         ' Label3
         ' 
@@ -170,18 +170,18 @@ Partial Class Dialog1
         Label3.TabIndex = 13
         Label3.Text = "(default) Theme"
         ' 
-        ' DarkTheme
+        ' DarkT
         ' 
-        DarkTheme.AutoSize = True
-        DarkTheme.BackColor = SystemColors.WindowFrame
-        DarkTheme.Font = New Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DarkTheme.ForeColor = Color.WhiteSmoke
-        DarkTheme.Location = New Point(68, 61)
-        DarkTheme.Name = "DarkTheme"
-        DarkTheme.Size = New Size(60, 20)
-        DarkTheme.TabIndex = 10
-        DarkTheme.Text = " Dark"
-        DarkTheme.UseVisualStyleBackColor = False
+        DarkT.AutoSize = True
+        DarkT.BackColor = SystemColors.WindowFrame
+        DarkT.Font = New Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DarkT.ForeColor = Color.WhiteSmoke
+        DarkT.Location = New Point(68, 61)
+        DarkT.Name = "DarkT"
+        DarkT.Size = New Size(60, 20)
+        DarkT.TabIndex = 10
+        DarkT.Text = " Dark"
+        DarkT.UseVisualStyleBackColor = False
         ' 
         ' Panel3
         ' 
@@ -255,8 +255,6 @@ Partial Class Dialog1
         AcceptButton = OK_Button
         AutoScaleDimensions = New SizeF(8F, 17F)
         AutoScaleMode = AutoScaleMode.Font
-        AutoSize = True
-        AutoSizeMode = AutoSizeMode.GrowAndShrink
         AutoValidate = AutoValidate.EnableAllowFocusChange
         BackColor = SystemColors.ControlLightLight
         ClientSize = New Size(366, 295)
@@ -272,7 +270,6 @@ Partial Class Dialog1
         MinimizeBox = False
         Name = "Dialog1"
         ShowInTaskbar = False
-        StartPosition = FormStartPosition.CenterParent
         Text = "Einstellungen"
         TableLayoutPanel1.ResumeLayout(False)
         Panel1.ResumeLayout(False)
@@ -296,8 +293,8 @@ Partial Class Dialog1
     Friend WithEvents PictureBox2 As PictureBox
     Friend WithEvents Font2 As CheckBox
     Friend WithEvents Font1 As CheckBox
-    Friend WithEvents DarkTheme As CheckBox
-    Friend WithEvents LightTheme As CheckBox
+    Friend WithEvents DarkT As CheckBox
+    Friend WithEvents LightT As CheckBox
     Friend WithEvents Label4 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents Label6 As Label
