@@ -37,7 +37,7 @@ Partial Class SettingsDialog
         Label6 = New Label()
         Font2 = New CheckBox()
         PictureBox1 = New PictureBox()
-        Panel2 = New Panel()
+        Panel_11 = New Panel()
         PictureBox2 = New PictureBox()
         Label4 = New Label()
         LightT = New CheckBox()
@@ -49,7 +49,7 @@ Partial Class SettingsDialog
         Panel1.SuspendLayout()
         CType(PictureBox3, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
-        Panel2.SuspendLayout()
+        Panel_11.SuspendLayout()
         CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -59,7 +59,7 @@ Partial Class SettingsDialog
         OK_Button.AutoEllipsis = True
         OK_Button.BackColor = SystemColors.ControlLightLight
         OK_Button.Font = New Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        OK_Button.Location = New Point(278, 301)
+        OK_Button.Location = New Point(279, 303)
         OK_Button.Margin = New Padding(5, 3, 5, 3)
         OK_Button.Name = "OK_Button"
         OK_Button.Size = New Size(87, 31)
@@ -90,6 +90,7 @@ Partial Class SettingsDialog
         ' Panel1
         ' 
         Panel1.BackColor = Color.Transparent
+        Panel1.Controls.Add(OK_Button)
         Panel1.Controls.Add(RadioButton2)
         Panel1.Controls.Add(RadioButton3)
         Panel1.Controls.Add(RadioButton1)
@@ -100,11 +101,11 @@ Partial Class SettingsDialog
         Panel1.Controls.Add(Label6)
         Panel1.Controls.Add(Font2)
         Panel1.Controls.Add(PictureBox1)
-        Panel1.Controls.Add(Panel2)
+        Panel1.Controls.Add(Panel_11)
         Panel1.Controls.Add(Font1)
         Panel1.Location = New Point(7, 12)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(371, 258)
+        Panel1.Size = New Size(371, 337)
         Panel1.TabIndex = 5
         ' 
         ' RadioButton2
@@ -204,20 +205,20 @@ Partial Class SettingsDialog
         PictureBox1.TabIndex = 7
         PictureBox1.TabStop = False
         ' 
-        ' Panel2
+        ' Panel_11
         ' 
-        Panel2.BackColor = SystemColors.ControlLightLight
-        Panel2.BorderStyle = BorderStyle.FixedSingle
-        Panel2.Controls.Add(PictureBox2)
-        Panel2.Controls.Add(Label2)
-        Panel2.Controls.Add(Label4)
-        Panel2.Controls.Add(LightT)
-        Panel2.Controls.Add(Label3)
-        Panel2.Controls.Add(DarkT)
-        Panel2.Location = New Point(3, 72)
-        Panel2.Name = "Panel2"
-        Panel2.Size = New Size(365, 86)
-        Panel2.TabIndex = 17
+        Panel_11.BackColor = SystemColors.ControlLightLight
+        Panel_11.BorderStyle = BorderStyle.FixedSingle
+        Panel_11.Controls.Add(PictureBox2)
+        Panel_11.Controls.Add(Label2)
+        Panel_11.Controls.Add(Label4)
+        Panel_11.Controls.Add(LightT)
+        Panel_11.Controls.Add(Label3)
+        Panel_11.Controls.Add(DarkT)
+        Panel_11.Location = New Point(3, 72)
+        Panel_11.Name = "Panel_11"
+        Panel_11.Size = New Size(365, 86)
+        Panel_11.TabIndex = 17
         ' 
         ' PictureBox2
         ' 
@@ -296,7 +297,6 @@ Partial Class SettingsDialog
         BackColor = SystemColors.ControlLightLight
         ClientSize = New Size(384, 361)
         ControlBox = False
-        Controls.Add(OK_Button)
         Controls.Add(Panel1)
         Font = New Font("Arial", 11.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         FormBorderStyle = FormBorderStyle.FixedDialog
@@ -315,8 +315,8 @@ Partial Class SettingsDialog
         Panel1.PerformLayout()
         CType(PictureBox3, ComponentModel.ISupportInitialize).EndInit()
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
-        Panel2.ResumeLayout(False)
-        Panel2.PerformLayout()
+        Panel_11.ResumeLayout(False)
+        Panel_11.PerformLayout()
         CType(PictureBox2, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
 
@@ -337,7 +337,7 @@ Partial Class SettingsDialog
     Friend WithEvents Label3 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label5 As Label
-    Friend WithEvents Panel2 As Panel
+    Friend WithEvents Panel_11 As Panel
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents PictureBox3 As PictureBox
     Friend WithEvents Label8 As Label

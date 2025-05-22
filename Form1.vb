@@ -123,25 +123,32 @@ Public Class Form1
             openFileDialog.Title = "Dateien zum Archivieren auswählen"
             OpenArchiv.Enabled = False
             If openFileDialog.ShowDialog() = DialogResult.OK Then
-                FileList.Items.Clear() 'Vorherige Einträge löschen
-                For Each filename As String In openFileDialog.FileNames
-                    Dim item As New ListViewItem With {
+                Try
+                    For Each filename As String In openFileDialog.FileNames
+                        Dim item As New ListViewItem With {
                         .Text = Path.GetFileName(filename),
                         .Tag = filename,
                         .Checked = False
                     }
-                    Dim fileInfo As New FileInfo(filename)
-                    Dim fileSize As String = FormatFileSize(fileInfo.Length)
-                    Dim fileIcon As System.Drawing.Icon = System.Drawing.Icon.ExtractAssociatedIcon(filename)
-                    Dim iconIndex As Integer = FileListIconList.Images.Count
-                    FileListIconList.Images.Add(fileIcon)
-                    item.ImageIndex = iconIndex
-                    item.SubItems.Add(fileSize)
-                    FileList.Items.Add(item)
-                Next
+                        Dim fileInfo As New FileInfo(filename)
+                        Dim fileSize As String = FormatFileSize(fileInfo.Length)
+                        Dim fileIcon As System.Drawing.Icon = System.Drawing.Icon.ExtractAssociatedIcon(filename)
+                        Dim iconIndex As Integer = FileListIconList.Images.Count
+                        FileListIconList.Images.Add(fileIcon)
+                        item.ImageIndex = iconIndex
+                        item.SubItems.Add(fileSize)
+                        item.Checked = True
+                        item.Checked = FileList.SelectedItems.Count > 0
+                        FileList.Items.Add(item)
+                    Next
+                    UpdateTotalSizeLabel()
+                    CheckBox1_CheckedChanged(sender, e)
+                Catch
+
+                End Try
                 OpenArchiv.Enabled = False
                 ItemNo.Text = "Files: " & FileList.Items.Count.ToString()
-                UpdateTotalSizeLabel()
+
             End If
         End Using
     End Sub
@@ -177,16 +184,17 @@ Public Class Form1
                 ProgressBar1.Visible = True
                 StatusText.Visible = True
                 StatusText.Text = $"Komprimiere nach: {Path.GetFileName(archiveFilePath)}"
-                StartButton.Visible = False
-                SelectButton.Visible = False
-                OpenArchiv.Enabled = False 'Disable OpenArchiv
-                ZipFormatButton.Visible = False
-                RawFormatButton.Visible = False
-                OpenArchiv.Visible = False
+                'StartButton.Visible = False
+                'SelectButton.Visible = False
+                'OpenArchiv.Enabled = False 'Disable OpenArchiv
+                'ZipFormatButton.Visible = False
+                'RawFormatButton.Visible = False
+                'OpenArchiv.Visible = False
                 Button1.Visible = False
                 CheckBox1.Visible = False
-
-
+                Panel_0.Visible = False
+                Panel_2.Visible = False
+                MenuStrip1.Enabled = False
                 Dim parameters As New CompressionParameters With {
                     .ArchiveFilePath = archiveFilePath,
                     .FilePaths = selectedFilePaths.ToArray(),
@@ -244,22 +252,26 @@ Public Class Form1
                       If TypeOf e.UserState Is CompressionProgressInfo Then
 
                           ProgressBar1.Value = e.ProgressPercentage
-                          StatusText.Text = $"Komprimiere: {Path.GetFileName(progressInfo.CurrentFile)} ({e.ProgressPercentage}%)" & "Mode: " & modename
+                          'Label3.Text = $"{e.ProgressPercentage}%"
+                          StatusText.Text = $"Komprimiere: {Path.GetFileName(progressInfo.CurrentFile)}" & " Mode: " & modename
                       End If
                   End Sub)
     End Sub
     Private Sub BackgroundWorker_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles _backgroundWorker.RunWorkerCompleted
-        StartButton.Visible = True
-        SelectButton.Visible = True
-        ZipFormatButton.Visible = True
-        RawFormatButton.Visible = True
-        OpenArchiv.Visible = True
-        Button1.Visible = True
-        FileList.Visible = True
-        StatusText.Visible = False
-        ProgressBar1.Visible = False
-        CheckBox1.Visible = True
+        Me.Invoke(Sub()
 
+                      Panel_0.Visible = True
+                      Panel_2.Visible = True
+                      Button1.Visible = True
+                      CheckBox1.Visible = True
+                      StartButton.Enabled = True
+                      SelectButton.Enabled = True
+                      FileList.Visible = True
+                      OpenArchiv.Enabled = True
+                      ProgressBar1.Visible = False
+                      StatusText.Visible = False
+                      MenuStrip1.Enabled = True
+                  End Sub)
         Dim items As ListView.SelectedListViewItemCollection = FileList.SelectedItems
         If items.Count > 0 Then
             FileList.Items.Clear()
@@ -269,7 +281,7 @@ Public Class Form1
         ElseIf e.Cancelled Then
             MessageBox.Show("Komprimierung abgebrochen.", "Abgebrochen", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
-            MessageBox.Show("Komprimierung abgeschlossen.", "Erfolg", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show($"Komprimierung abgeschlossen.{e.UserState}", "Erfolg", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
         _isCancellationPending = False
     End Sub
@@ -313,6 +325,7 @@ Public Class Form1
             If Not selectedItem.Checked Then
                 selectedItem.Checked = True
                 selectedItem.Checked = FileList.SelectedItems.Count > 0
+                UpdateTotalSizeLabel()
             End If
         End If
     End Sub
@@ -444,7 +457,9 @@ Public Class Form1
                     Using zip As ZipArchive = ZipFile.Open(_zipFilePath, ZipArchiveMode.Read)
                         ItemNo.Text = "Dateien: " & zip.Entries.Count.ToString()
                         For Each zEntry As ZipArchiveEntry In zip.Entries
-                            Dim fileName As String = zEntry.FullName
+                            Dim fileInfo As New FileInfo(zipName)
+                            Dim fileName As String = zEntry.Name
+                            Dim fileSize As String = FormatFileSize(FileInfo.Length)
                             Dim entryFullPath As String = Path.Combine(zippath, fileName)
                             Dim item As New ListViewItem With {
                                 .Text = fileName,
@@ -466,8 +481,9 @@ Public Class Form1
                             FileListIconList.Images.Add(fileIcon)
                             item.ImageIndex = iconIndex
                             FileList.Items.Add(item)
-                            UpdateTotalSizeLabel()
+
                         Next
+
                     End Using
                 Catch ex As Exception
                     MessageBox.Show($"Fehler beim Öffnen des Archivs: {ex.Message}", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -477,6 +493,7 @@ Public Class Form1
                     If Not ZipFormatButton.Enabled Then ZipFormatButton.Enabled = True
                     If Not OpenArchiv.Enabled Then OpenArchiv.Enabled = True
                 End Try
+                UpdateTotalSizeLabel()
             End If
         End Using
     End Sub
@@ -508,19 +525,23 @@ Public Class Form1
         Dim worker As BackgroundWorker = DirectCast(sender, BackgroundWorker)
         Dim parameters As UnzipParameters = DirectCast(e.Argument, UnzipParameters)
 
-        ' UI-Änderungen müssen im UI-Thread erfolgen
-        StartButton.Visible = False
-        SelectButton.Visible = False
-        ZipFormatButton.Visible = False
-        RawFormatButton.Visible = False
-        OpenArchiv.Visible = False
-        FileList.Visible = False
-        OpenArchiv.Visible = False
-        UnZipButton.Visible = False
-        Button1.Visible = False
-        ProgressBar1.Visible = True
-        StatusText.Visible = True
-
+        Me.Invoke(Sub() ' UI-Änderungen müssen im UI-Thread erfolgen
+                      Panel_0.Visible = False
+                      Panel_2.Visible = False
+                      'StartButton.Visible = False
+                      'SelectButton.Visible = False
+                      'ZipFormatButton.Visible = False
+                      'RawFormatButton.Visible = False
+                      'OpenArchiv.Visible = False
+                      FileList.Visible = False
+                      'OpenArchiv.Visible = False
+                      'UnZipButton.Visible = False
+                      Button1.Visible = False
+                      ProgressBar1.Visible = True
+                      StatusText.Visible = True
+                      StatusText.Text = "Entpacke.."
+                      MenuStrip1.Enabled = False
+                  End Sub)
         Try
             Using archive As ZipArchive = ZipFile.Open(parameters.ZipFilePath, ZipArchiveMode.Read)
                 Dim totalEntries As Integer = archive.Entries.Count
@@ -532,6 +553,7 @@ Public Class Form1
                 Me.Invoke(Sub()
                               For Each item As ListViewItem In CType(parameters.SelectedItems, ListView.SelectedListViewItemCollection)
                                   selectedFileNames.Add(item.Text)
+
                               Next
                           End Sub)
                 selectedItemsCount = selectedFileNames.Count
@@ -582,19 +604,18 @@ Public Class Form1
 
     Private Sub UnzipWorker_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles _unzipWorker.RunWorkerCompleted
         Me.Invoke(Sub()
-                      StartButton.Visible = True
-                      SelectButton.Visible = True
-                      ZipFormatButton.Visible = True
-                      RawFormatButton.Visible = True
-                      OpenArchiv.Visible = True
-                      FileList.Visible = True
-                      OpenArchiv.Visible = True
-                      UnZipButton.Visible = False
+                      Panel_0.Visible = True
+                      Panel_2.Visible = True
                       Button1.Visible = True
+                      CheckBox1.Visible = True
+                      StartButton.Enabled = True
+                      SelectButton.Enabled = True
+                      OpenArchiv.Enabled = True
+                      FileList.Visible = True
                       ProgressBar1.Visible = False
                       StatusText.Visible = False
-
-
+                      UnZipButton.Visible = False
+                      MenuStrip1.Enabled = True
                       If e.Cancelled Then
                           StatusText.Text = "Entpacken abgebrochen."
                           MessageBox.Show("Entpacken abgebrochen.", "Abgebrochen", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -673,6 +694,8 @@ Public Class Form1
                 Using zip As ZipArchive = ZipFile.Open(zipFilePath, ZipArchiveMode.Read)
                     ItemNo.Text = "Dateien: " & zip.Entries.Count.ToString()
                     For Each zEntry As ZipArchiveEntry In zip.Entries
+                        Dim fileInfo As New FileInfo(zipFilePath)
+                        Dim fileSize As String = FormatFileSize(fileInfo.Length)
                         Dim fileNameInArchive As String = zEntry.FullName
                         Dim item As New ListViewItem With {
                         .Text = fileNameInArchive, ' Voller Pfad innerhalb des Archivs
@@ -703,6 +726,8 @@ Public Class Form1
             ' Es wurden Dateien und/oder Ordner gedroppt, die keine einzelne ZIP-Datei sind
             SetControlsForArchiveView(False) ' Steuerelemente für normale Dateiansicht anpassen
             For Each droppedPath As String In droppedPaths
+                Dim fileInfo As New FileInfo(droppedPath)
+                Dim fileSize As String = FormatFileSize(fileInfo.Length)
                 If Directory.Exists(droppedPath) Then
                     ' Es ist ein Verzeichnis
                     AddDirectoryContentToList(droppedPath)
@@ -815,7 +840,11 @@ Public Class Form1
         FileList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent)
     End Sub
 
-    Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RawFormatButton.CheckedChanged
+    Private Sub Panel_0_Paint(sender As Object, e As PaintEventArgs)
 
+    End Sub
+
+    Public Sub FAQToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FAQToolStripMenuItem.Click
+        FaqForm.Show()
     End Sub
 End Class

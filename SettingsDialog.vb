@@ -12,11 +12,11 @@ Imports System.IO.Compression
 
 Public Class SettingsDialog
     Private cold As ColorDialog
-    Private defFont As New Font("Arial", 10, Drawing.FontStyle.Regular)
+    Private defFont As New Font("Arial", 9.75, Drawing.FontStyle.Regular)
     Private defBackColor As Drawing.Color = SystemColors.ControlLightLight
-    Private defFontColor As Drawing.Color = SystemColors.WindowText
+    Private defFontColor As Drawing.Color = SystemColors.ControlText
     Private defControlColor As Drawing.Color = SystemColors.ControlLightLight
-    Private newFont As New Font("Bahnschrift SemiLight Condensed", 12, Drawing.FontStyle.Regular)
+    Private newFont As New Font("Bahnschrift SemiLight Condensed", 10.75, Drawing.FontStyle.Regular)
     Private cont As Control
     Private checked As Boolean
     Dim Color As Drawing.Color
@@ -46,8 +46,7 @@ Public Class SettingsDialog
             RadioButton2.Checked = True
         ElseIf My.Settings.CompressionMode = modeFast Then
             RadioButton1.Checked = True
-        ElseIf My.Settings.CompressionMode = modeUltra Then
-            RadioButton3.Checked = True
+        Else RadioButton3.Checked = True
         End If
     End Sub
 
@@ -125,6 +124,7 @@ Public Class SettingsDialog
             UpdateChildControlFonts(Form1, newFont)
             My.Settings.StyleF = Modern
             My.Settings.AppFont = newFont
+
         Else
             Font1.Checked = True
         End If
@@ -139,7 +139,7 @@ Public Class SettingsDialog
             DarkT.Checked = False
             My.Settings.AppColor = bc
             Form1.BackColor = bc
-            Panel2.BackColor = bc
+            Panel_11.BackColor = bc
             Label4.ForeColor = fc
             My.Settings.StringColor = fc
             Me.BackColor = bc
@@ -163,7 +163,7 @@ Public Class SettingsDialog
             LightT.Checked = False
             My.Settings.AppColor = bc
             Form1.BackColor = bc
-            Panel2.BackColor = bc
+            Panel_11.BackColor = bc
             Label4.ForeColor = fc
             My.Settings.StringColor = fc
             Me.BackColor = bc
@@ -172,6 +172,7 @@ Public Class SettingsDialog
             UpdateChildControlBackColors(Form1, cc)
             UpdateChildControlForeColors(Form1, fc)
             My.Settings.StyleC = "Dark"
+
         Else
             LightT.Checked = True
         End If

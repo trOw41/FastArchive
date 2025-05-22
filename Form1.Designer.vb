@@ -59,9 +59,15 @@ Partial Class Form1
         RawFormatButton = New RadioButton()
         ToolTip1 = New ToolTip(components)
         UnZipButton = New Button()
+        Label1 = New Label()
+        Panel_0 = New Panel()
+        Panel_2 = New Panel()
+        Label2 = New Label()
         CType(DataSet1, ComponentModel.ISupportInitialize).BeginInit()
         FileListContextMenuStrip.SuspendLayout()
         MenuStrip1.SuspendLayout()
+        Panel_0.SuspendLayout()
+        Panel_2.SuspendLayout()
         SuspendLayout()
         ' 
         ' DataSet1
@@ -71,6 +77,7 @@ Partial Class Form1
         ' ItemNo
         ' 
         resources.ApplyResources(ItemNo, "ItemNo")
+        ItemNo.BackColor = Color.Transparent
         ItemNo.FlatStyle = FlatStyle.Popup
         ItemNo.Name = "ItemNo"
         ToolTip1.SetToolTip(ItemNo, resources.GetString("ItemNo.ToolTip"))
@@ -114,12 +121,15 @@ Partial Class Form1
         ' SizeText
         ' 
         resources.ApplyResources(SizeText, "SizeText")
+        SizeText.BackColor = Color.Transparent
         SizeText.Name = "SizeText"
         ToolTip1.SetToolTip(SizeText, resources.GetString("SizeText.ToolTip"))
         ' 
         ' StatusText
         ' 
         resources.ApplyResources(StatusText, "StatusText")
+        StatusText.BackColor = Color.Transparent
+        StatusText.FlatStyle = FlatStyle.Flat
         StatusText.Name = "StatusText"
         ToolTip1.SetToolTip(StatusText, resources.GetString("StatusText.ToolTip"))
         ' 
@@ -180,14 +190,18 @@ Partial Class Form1
         ' ZipFormatButton
         ' 
         resources.ApplyResources(ZipFormatButton, "ZipFormatButton")
+        ZipFormatButton.BackColor = Color.Transparent
         ZipFormatButton.Name = "ZipFormatButton"
         ZipFormatButton.TabStop = True
         ToolTip1.SetToolTip(ZipFormatButton, resources.GetString("ZipFormatButton.ToolTip"))
-        ZipFormatButton.UseVisualStyleBackColor = True
+        ZipFormatButton.UseVisualStyleBackColor = False
         ' 
         ' Button1
         ' 
         resources.ApplyResources(Button1, "Button1")
+        Button1.FlatAppearance.BorderSize = 0
+        Button1.FlatAppearance.MouseDownBackColor = SystemColors.ButtonShadow
+        Button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(CByte(255), CByte(128), CByte(0))
         Button1.Name = "Button1"
         ToolTip1.SetToolTip(Button1, resources.GetString("Button1.ToolTip"))
         Button1.UseVisualStyleBackColor = True
@@ -269,10 +283,11 @@ Partial Class Form1
         ' RawFormatButton
         ' 
         resources.ApplyResources(RawFormatButton, "RawFormatButton")
+        RawFormatButton.BackColor = Color.Transparent
         RawFormatButton.Name = "RawFormatButton"
         RawFormatButton.TabStop = True
         ToolTip1.SetToolTip(RawFormatButton, resources.GetString("RawFormatButton.ToolTip"))
-        RawFormatButton.UseVisualStyleBackColor = True
+        RawFormatButton.UseVisualStyleBackColor = False
         ' 
         ' ToolTip1
         ' 
@@ -292,26 +307,62 @@ Partial Class Form1
         ToolTip1.SetToolTip(UnZipButton, resources.GetString("UnZipButton.ToolTip"))
         UnZipButton.UseVisualStyleBackColor = True
         ' 
+        ' Label1
+        ' 
+        resources.ApplyResources(Label1, "Label1")
+        Label1.BackColor = Color.Transparent
+        Label1.ForeColor = SystemColors.ControlText
+        Label1.Name = "Label1"
+        ToolTip1.SetToolTip(Label1, resources.GetString("Label1.ToolTip"))
+        ' 
+        ' Panel_0
+        ' 
+        resources.ApplyResources(Panel_0, "Panel_0")
+        Panel_0.BackColor = Color.Transparent
+        Panel_0.BorderStyle = BorderStyle.FixedSingle
+        Panel_0.Controls.Add(Label1)
+        Panel_0.Controls.Add(SelectButton)
+        Panel_0.Controls.Add(OpenArchiv)
+        Panel_0.Name = "Panel_0"
+        ToolTip1.SetToolTip(Panel_0, resources.GetString("Panel_0.ToolTip"))
+        ' 
+        ' Panel_2
+        ' 
+        resources.ApplyResources(Panel_2, "Panel_2")
+        Panel_2.BackColor = Color.Transparent
+        Panel_2.BorderStyle = BorderStyle.FixedSingle
+        Panel_2.Controls.Add(Label2)
+        Panel_2.Controls.Add(UnZipButton)
+        Panel_2.Controls.Add(RawFormatButton)
+        Panel_2.Controls.Add(StartButton)
+        Panel_2.Controls.Add(ZipFormatButton)
+        Panel_2.Name = "Panel_2"
+        ToolTip1.SetToolTip(Panel_2, resources.GetString("Panel_2.ToolTip"))
+        ' 
+        ' Label2
+        ' 
+        resources.ApplyResources(Label2, "Label2")
+        Label2.BackColor = Color.Transparent
+        Label2.ForeColor = SystemColors.ControlText
+        Label2.Name = "Label2"
+        ToolTip1.SetToolTip(Label2, resources.GetString("Label2.ToolTip"))
+        ' 
         ' Form1
         ' 
         resources.ApplyResources(Me, "$this")
         AllowDrop = True
         AutoScaleMode = AutoScaleMode.Dpi
         ContextMenuStrip = FileListContextMenuStrip
-        Controls.Add(UnZipButton)
-        Controls.Add(RawFormatButton)
         Controls.Add(CheckBox1)
         Controls.Add(Button1)
-        Controls.Add(ZipFormatButton)
-        Controls.Add(StartButton)
-        Controls.Add(SelectButton)
         Controls.Add(SizeText)
         Controls.Add(ItemNo)
         Controls.Add(MenuStrip1)
-        Controls.Add(OpenArchiv)
         Controls.Add(FileList)
-        Controls.Add(ProgressBar1)
         Controls.Add(StatusText)
+        Controls.Add(ProgressBar1)
+        Controls.Add(Panel_0)
+        Controls.Add(Panel_2)
         FormBorderStyle = FormBorderStyle.Fixed3D
         HelpButton = True
         KeyPreview = True
@@ -323,6 +374,10 @@ Partial Class Form1
         FileListContextMenuStrip.ResumeLayout(False)
         MenuStrip1.ResumeLayout(False)
         MenuStrip1.PerformLayout()
+        Panel_0.ResumeLayout(False)
+        Panel_0.PerformLayout()
+        Panel_2.ResumeLayout(False)
+        Panel_2.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
 
@@ -359,5 +414,9 @@ Partial Class Form1
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Public WithEvents UnZipButton As Button
     Public WithEvents ToolTip1 As ToolTip
+    Friend WithEvents Panel_0 As Panel
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Panel_2 As Panel
+    Friend WithEvents Label2 As Label
 End Class
 
