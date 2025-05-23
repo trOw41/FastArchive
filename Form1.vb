@@ -607,6 +607,7 @@ Public Class Form1
                       StatusText.Visible = False
                       UnZipButton.Visible = False
                       MenuStrip1.Enabled = True
+                      'Me.ResizeRedraw=true
                       If e.Cancelled Then
                           StatusText.Text = "Entpacken abgebrochen."
                           MessageBox.Show("Entpacken abgebrochen.", "Abgebrochen", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -836,6 +837,7 @@ Public Class Form1
     End Sub
 
     Private Sub FAQToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FAQToolStripMenuItem.Click
-        FragenKatalog.ActiveForm.Show()
+        FormFAQ.Show()
     End Sub
+
 End Class

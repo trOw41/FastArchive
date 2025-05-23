@@ -126,7 +126,7 @@
     <value>Arial, 8pt</value>
   </data>
   <data name="ItemNo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 27</value>
+    <value>12, 24</value>
   </data>
   <data name="ItemNo.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 23</value>
@@ -191,7 +191,7 @@
     <value>Arial, 8pt</value>
   </data>
   <data name="SizeText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>150, 27</value>
+    <value>150, 24</value>
   </data>
   <data name="SizeText.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 24</value>
@@ -385,6 +385,9 @@
   <data name="FAQToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+F</value>
   </data>
+  <data name="FAQToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
   <data name="OptionsToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAABGdBTUEAALGPC/xhBQAACktJREFUeF7t
@@ -434,6 +437,9 @@
         ItuXhM9QgFLTDOBA7C2UeAFD8TKtTf+K3EWOYW0zxVK+U8ImFjX3c5SkSahFi/4Bvlu1MIWyBNoAAAAA
         SUVORK5CYII=
 </value>
+  </data>
+  <data name="OptionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
   </data>
   <data name="HelpToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -546,7 +552,7 @@
     <value>Arial, 8.25pt</value>
   </data>
   <data name="Button1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>488, 35</value>
+    <value>488, 30</value>
   </data>
   <data name="Button1.Size" type="System.Drawing.Size, System.Drawing">
     <value>17, 16</value>
@@ -561,7 +567,7 @@
     <value>Arial, 9pt</value>
   </data>
   <data name="CheckBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>434, 33</value>
+    <value>434, 29</value>
   </data>
   <data name="CheckBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>46, 19</value>
