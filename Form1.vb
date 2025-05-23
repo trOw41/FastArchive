@@ -15,8 +15,7 @@ Public Class Form1
     Private _extractPath As String = ""
     Private WithEvents _unzipWorker As BackgroundWorker
     Private _compressionStopwatch As New Stopwatch() ' Stopwatch für Komprimierung
-    Private _unzipStopwatch As New Stopwatch()
-    Private progressInfo As Object
+
 
     Private Function EnsureAdminRightsAndCreateDirectory(directoryPath As String) As Boolean
         If Not IsUserAdministrator() Then
@@ -139,14 +138,14 @@ Public Class Form1
                         item.Checked = FileList.SelectedItems.Count > 0
                         FileList.Items.Add(item)
                     Next
-                    UpdateTotalSizeLabel()
+
                     CheckBox1_CheckedChanged(sender, e)
                 Catch
 
                 End Try
                 OpenArchiv.Enabled = False
                 ItemNo.Text = "Files: " & FileList.Items.Count.ToString()
-
+                UpdateTotalSizeLabel()
             End If
         End Using
     End Sub
@@ -177,23 +176,22 @@ Public Class Form1
                     MessageBox.Show("Bitte wählen Sie Dateien zum Archivieren aus.", "Hinweis", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Return
                 End If
-                FileList.Visible = False
-                ProgressBar1.Value = 0
-                ProgressBar1.Visible = True
-                StatusText.Visible = True
-                Label3.Visible = True
-                StatusText.Text = $"Komprimiere nach: {Path.GetFileName(archiveFilePath)}"
-                'StartButton.Visible = False
-                'SelectButton.Visible = False
-                'OpenArchiv.Enabled = False 'Disable OpenArchiv
-                'ZipFormatButton.Visible = False
-                'RawFormatButton.Visible = False
-                'OpenArchiv.Visible = False
-                Button1.Visible = False
-                CheckBox1.Visible = False
-                Panel_0.Visible = False
-                Panel_2.Visible = False
-                MenuStrip1.Enabled = False
+                Me.Invoke(Sub()
+
+
+                              FileList.Visible = False
+                              ProgressBar1.Value = 0
+                              ProgressBar1.Visible = True
+                              StatusText.Visible = True
+                              Label3.Visible = True
+                              StatusText.Text = $"Komprimiere nach: {Path.GetFileName(archiveFilePath)}"
+                              Button1.Visible = False
+                              CheckBox1.Visible = False
+                              Panel_0.Visible = False
+                              Panel_2.Visible = False
+                              MenuStrip1.Enabled = False
+                              Me.Size = New Drawing.Size(Me.Size.Width, Me.Size.Height - 250) ' Fenstergröße anpassen
+                          End Sub)
                 Dim parameters As New CompressionParameters With {
                     .ArchiveFilePath = archiveFilePath,
                     .FilePaths = selectedFilePaths.ToArray(),
@@ -202,6 +200,7 @@ Public Class Form1
 
                 _isCancellationPending = False
                 _backgroundWorker.RunWorkerAsync(parameters)
+                _compressionStopwatch.Reset()
             End If
         End Using
     End Sub
@@ -223,7 +222,7 @@ Public Class Form1
                         _backgroundWorker.ReportProgress(progress, New CompressionProgressInfo With {.ArchiveFilePath = parameters.ArchiveFilePath, .CurrentFile = parameters.FilePaths(i)})
                         Dim fileToAdd As String = parameters.FilePaths(i)
                         Dim entryName As String = Path.GetFileName(fileToAdd)
-                        _compressionStopwatch.Restart()
+
                         archive.CreateEntryFromFile(fileToAdd, entryName, My.Settings.CompressionMode)
 
                     Next
@@ -238,34 +237,37 @@ Public Class Form1
     End Sub
 
     Private Sub BackgroundWorker_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles _backgroundWorker.ProgressChanged
-        Dim progressInfo As CompressionProgressInfo = DirectCast(e.UserState, CompressionProgressInfo)
-        Me.Invoke(Sub()
-                      Dim mode As Integer = My.Settings.CompressionMode
-                      Dim modename As String = ""
-                      If mode = 0 Then
-                          modename = "Standard (optimal)"
-                      ElseIf mode = 1 Then
-                          modename = "Fast (schnell)"
-                      Else modename = "Ultra (langsamm)"
-                      End If
-                      If TypeOf e.UserState Is CompressionProgressInfo Then
+        Dim progressInfo As CompressionProgressInfo = TryCast(e.UserState, CompressionProgressInfo)
 
-                          ProgressBar1.Value = e.ProgressPercentage
+        Dim mode As Integer = My.Settings.CompressionMode
+        Dim modename As String = ""
+        If mode = 0 Then
+            modename = "Standard (optimal)"
+        ElseIf mode = 1 Then
+            modename = "Fast (schnell)"
+        Else modename = "Ultra (langsamm)"
+        End If
+        If TypeOf e.UserState Is CompressionProgressInfo Then
+
+            ProgressBar1.Value = e.ProgressPercentage
                           'Label3.Text = $"{e.ProgressPercentage}%"
                           StatusText.Text = $"Komprimiere: {Path.GetFileName(progressInfo.CurrentFile)} ({e.ProgressPercentage}%)"
                           Label3.Text = "Mode: " & modename
+
                           ' Geschätzte verbleibende Zeit berechnen und anzeigen
                           If e.ProgressPercentage > 0 Then
-                              Dim elapsedSeconds As Double = progressInfo.TotalSeconds
+                              Dim elapsedSeconds As Double = progressInfo.ElapsedTime.TotalSeconds
                               Dim totalEstimatedSeconds As Double = (elapsedSeconds / e.ProgressPercentage) * 100
                               Dim remainingSeconds As Double = totalEstimatedSeconds - elapsedSeconds
                               Label4.Text = $"Verbleibend: {FormatTimeSpan(TimeSpan.FromSeconds(remainingSeconds))}"
                           Else
                               Label4.Text = "Berechne Zeit..."
                           End If
-                      End If
-                  End Sub)
+
+        End If
+
     End Sub
+
     Private Sub BackgroundWorker_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles _backgroundWorker.RunWorkerCompleted
         Me.Invoke(Sub()
 
@@ -281,6 +283,8 @@ Public Class Form1
                       StatusText.Visible = False
                       MenuStrip1.Enabled = True
                       Label3.Visible = False
+                      Me.Size = New Drawing.Size(Me.Size.Width, Me.Size.Height + 250) ' Fenstergröße anpassen
+
                   End Sub)
         _compressionStopwatch.Stop()
         Dim items As ListView.SelectedListViewItemCollection = FileList.SelectedItems
@@ -297,10 +301,10 @@ Public Class Form1
         _isCancellationPending = False
     End Sub
 
-    Private Class CompressionProgressInfo
+    Public Class CompressionProgressInfo
         Public ArchiveFilePath As String
         Public CurrentFile As String
-        Friend TotalSeconds As Double
+        Public ElapsedTime As TimeSpan
     End Class
 
     Private Class CompressionParameters
@@ -337,7 +341,7 @@ Public Class Form1
             If Not selectedItem.Checked Then
                 selectedItem.Checked = True
                 selectedItem.Checked = FileList.SelectedItems.Count > 0
-                UpdateTotalSizeLabel()
+
             End If
         End If
     End Sub
@@ -517,26 +521,32 @@ Public Class Form1
         FolderBrowserDialog1.Description = "Wählen Sie den Zielordner für die Entpackung aus"
         FolderBrowserDialog1.ShowNewFolderButton = True
         If FolderBrowserDialog1.ShowDialog() = DialogResult.OK Then
-            If EnsureAdminRightsAndCreateDirectory(FolderBrowserDialog1.SelectedPath) = True Then
-                If FileList.SelectedItems.Count > 0 Then
-                    Dim selectedItem As ListView.SelectedListViewItemCollection = FileList.SelectedItems
-                    Dim extractPath As String = FolderBrowserDialog1.SelectedPath
-                    Dim unzipParams As New UnzipParameters With {
-                        .ZipFilePath = _zipFilePath,
-                        .ExtractPath = extractPath,
-                        .SelectedItems = selectedItem
-                    }
-                    _unzipStopwatch.Restart()
-                    _unzipWorker.RunWorkerAsync(unzipParams)
-                Else
-                    MessageBox.Show("Bitte wählen Sie mindestens eine Datei aus.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                End If
+            _extractPath = FolderBrowserDialog1.SelectedPath
+            Dim selectedItems = FileList.SelectedItems
+
+            If selectedItems.Count > 0 Then
+                Dim entriesToExtract As New List(Of String)()
+                For Each item As ListViewItem In selectedItems
+                    entriesToExtract.Add(item.Tag.ToString())
+                Next
+
+                '_unzipStopwatch.Restart() ' Stopwatch starten
+                _unzipWorker.RunWorkerAsync(New UnzipParameters With {
+                    .ZipFilePath = _zipFilePath,
+                    .ExtractPath = _extractPath,
+                    .SelectedItems = selectedItems
+                    })
             Else
-                MessageBox.Show("Administratorrechte sind erforderlich, um den Zielordner zu erstellen.", "Berechtigung erforderlich", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                MessageBox.Show("Bitte wählen Sie Dateien zum Entpacken aus", "Hinweis", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         End If
     End Sub
-
+    Private Class UnzipParameters
+        Public ZipFilePath As String
+        Public ExtractPath As String
+        Public EntriesToExtract As String()
+        Public SelectedItems As ListView.SelectedListViewItemCollection
+    End Class
     Private Sub UnzipWorker_DoWork(sender As Object, e As DoWorkEventArgs) Handles _unzipWorker.DoWork
         Dim worker As BackgroundWorker = DirectCast(sender, BackgroundWorker)
         Dim parameters As UnzipParameters = DirectCast(e.Argument, UnzipParameters)
@@ -544,19 +554,13 @@ Public Class Form1
         Me.Invoke(Sub() ' UI-Änderungen müssen im UI-Thread erfolgen
                       Panel_0.Visible = False
                       Panel_2.Visible = False
-                      'StartButton.Visible = False
-                      'SelectButton.Visible = False
-                      'ZipFormatButton.Visible = False
-                      'RawFormatButton.Visible = False
-                      'OpenArchiv.Visible = False
                       FileList.Visible = False
-                      'OpenArchiv.Visible = False
-                      'UnZipButton.Visible = False
                       Button1.Visible = False
                       ProgressBar1.Visible = True
                       StatusText.Visible = True
                       StatusText.Text = "Entpacke.."
                       MenuStrip1.Enabled = False
+                      Me.Size = New Drawing.Size(Me.Size.Width, Me.Size.Height - 250) ' Fenstergröße anpassen
                   End Sub)
         Try
             Using archive As ZipArchive = ZipFile.Open(parameters.ZipFilePath, ZipArchiveMode.Read)
@@ -565,66 +569,54 @@ Public Class Form1
                 Dim selectedItemsCount As Integer
 
                 ' Kopiere die ListViewItems in eine eigene Liste, um Threading-Probleme zu vermeiden
-                Dim selectedFileNames As New List(Of String)()
+                Dim selectedFileNames As New List(Of String)
                 Me.Invoke(Sub()
-                              For Each item As ListViewItem In CType(parameters.SelectedItems, ListView.SelectedListViewItemCollection)
-                                  selectedFileNames.Add(item.Text)
+                              For Each item As ListViewItem In parameters.SelectedItems
+                                  selectedFileNames.Add(item.Tag.ToString())
 
                               Next
                           End Sub)
                 selectedItemsCount = selectedFileNames.Count
 
-                For Each entryName As String In selectedFileNames
-                    If worker.CancellationPending OrElse _isCancellationPending Then
-                        e.Cancel = True
-                        Exit For
-                    End If
+                              For Each entryName As String In selectedFileNames
+                                  If worker.CancellationPending OrElse _isCancellationPending Then
+                                      e.Cancel = True
+                                      Exit For
+                                  End If
 
-                    Dim entry As ZipArchiveEntry = archive.GetEntry(entryName)
+                                  Dim entry As ZipArchiveEntry = archive.GetEntry(entryName)
 
-                    If entry IsNot Nothing Then
-                        Dim destinationPath As String = Path.Combine(parameters.ExtractPath, entry.FullName)
-                        Dim directoryPath As String = Path.GetDirectoryName(destinationPath)
+                                  If entry IsNot Nothing Then
+                                      Dim destinationPath As String = Path.Combine(parameters.ExtractPath, entry.FullName)
+                                      Dim directoryPath As String = Path.GetDirectoryName(destinationPath)
 
-                        If Not Directory.Exists(directoryPath) Then
-                            Directory.CreateDirectory(directoryPath)
-                        End If
+                                      If Not Directory.Exists(directoryPath) Then
+                                          Directory.CreateDirectory(directoryPath)
+                                      End If
 
-                        entry.ExtractToFile(destinationPath, True)
-                        extractedEntriesCount += 1
-                        Dim progressPercentage As Integer = CInt((extractedEntriesCount / CDbl(selectedItemsCount)) * 100)
+                                      entry.ExtractToFile(destinationPath, True)
+                                      extractedEntriesCount += 1
+                                      Dim progressPercentage As Integer = ((extractedEntriesCount / CDbl(selectedItemsCount)) * 100)
 
-                        worker.ReportProgress(progressPercentage, entryName)
-                    Else
-                        worker.ReportProgress(0, $"Datei nicht gefunden: {entryName}")
-                    End If
-                Next
-                e.Result = parameters.ExtractPath
+                                      worker.ReportProgress(progressPercentage, entryName)
+                                  Else
+                                      worker.ReportProgress(0, $"Datei nicht gefunden: {entryName}")
+                                  End If
+                              Next
+                              e.Result = parameters.ExtractPath
             End Using
         Catch ex As Exception
             e.Cancel = True
             Throw
         End Try
+
     End Sub
 
     Private Sub UnzipWorker_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles _unzipWorker.ProgressChanged
         ProgressBar1.Value = e.ProgressPercentage
         StatusText.Text = $"Entpacke: {e.UserState} ({e.ProgressPercentage}%)"
-        If e.ProgressPercentage > 0 Then
-            Dim elapsedSeconds As Double = progressInfo.ElapsedTime.TotalSeconds
-            Dim totalEstimatedSeconds As Double = (elapsedSeconds / e.ProgressPercentage) * 100
-            Dim remainingSeconds As Double = totalEstimatedSeconds - elapsedSeconds
-            Label4.Text = $"Verbleibend: {FormatTimeSpan(TimeSpan.FromSeconds(remainingSeconds))}"
-        Else
-            Label4.Text = "Berechne Zeit..."
-        End If
     End Sub
 
-    Private Class UnzipParameters
-        Public ZipFilePath As String
-        Public ExtractPath As String
-        Friend SelectedItems As Object
-    End Class
 
     Private Sub UnzipWorker_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles _unzipWorker.RunWorkerCompleted
         Me.Invoke(Sub()
@@ -640,19 +632,21 @@ Public Class Form1
                       StatusText.Visible = False
                       UnZipButton.Visible = False
                       MenuStrip1.Enabled = True
-                      'Me.ResizeRedraw=true
-                      If e.Cancelled Then
-                          StatusText.Text = "Entpacken abgebrochen."
-                          MessageBox.Show("Entpacken abgebrochen.", "Abgebrochen", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                      ElseIf e.Error IsNot Nothing Then
-                          'StatusText.Text = "Fehler beim Entpacken."
-                          MessageBox.Show($"Fehler beim Entpacken: {e.Error.Message}", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                      Else
-                          'StatusText.Text = "Entpacken abgeschlossen!"
-                          MessageBox.Show($"Archiv erfolgreich entpackt nach: {e.Result}", "Erfolg")
-                      End If
-                      _isCancellationPending = False
+                      Me.Size = New Drawing.Size(Me.Size.Width, Me.Size.Height + 250) ' Fenstergröße anpassen
                   End Sub)
+        'Me.ResizeRedraw=true
+        If e.Cancelled Then
+            StatusText.Text = "Entpacken abgebrochen."
+            MessageBox.Show("Entpacken abgebrochen.", "Abgebrochen", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf e.Error IsNot Nothing Then
+            'StatusText.Text = "Fehler beim Entpacken."
+            MessageBox.Show($"Fehler beim Entpacken: {e.Error.Message}", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Else
+            'StatusText.Text = "Entpacken abgeschlossen!"
+            MessageBox.Show($"Archiv erfolgreich entpackt nach: {e.Result}", "Erfolg")
+        End If
+        _isCancellationPending = False
+
     End Sub
     Private Sub OptionsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OptionsToolStripMenuItem.Click
         SettingsDialog.ShowDialog()

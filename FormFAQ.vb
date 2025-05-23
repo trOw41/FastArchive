@@ -4,7 +4,7 @@
     Private Sub FaqForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         InitializeFaqContent() ' FAQ-Inhalte initialisieren
         PopulateIndexBox()     ' IndexBox füllen
-
+        IndexBox.SelectedIndex = 0 ' Keine Auswahl in der IndexBox
         ' Optional: Ersten FAQ-Eintrag beim Laden anzeigen
         If IndexView.Nodes.Count > 1 Then
             IndexView.SelectedNode = IndexView.Nodes(1) ' Wählt "1. Was ist FastArchiver?"
