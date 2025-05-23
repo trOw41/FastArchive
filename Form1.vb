@@ -1,5 +1,11 @@
 ﻿Imports System.ComponentModel
-
+Imports System.Diagnostics ' Hinzugefügt für Stopwatch
+Imports System.IO
+Imports System.IO.Compression
+Imports System.Threading
+Imports System.Threading.Tasks ' For Task.Run
+Imports System.Drawing
+Imports System.Windows.Forms
 Public Class Form1
 
     Private _isCancellationPending As Boolean = False
@@ -8,8 +14,9 @@ Public Class Form1
     Private _zipFilePath As String = ""
     Private _extractPath As String = ""
     Private WithEvents _unzipWorker As BackgroundWorker
-
-
+    Private _compressionStopwatch As New Stopwatch() ' Stopwatch für Komprimierung
+    Private _unzipStopwatch As New Stopwatch()
+    Private progressInfo As Object
 
     Private Function EnsureAdminRightsAndCreateDirectory(directoryPath As String) As Boolean
         If Not IsUserAdministrator() Then
@@ -174,6 +181,7 @@ Public Class Form1
                 ProgressBar1.Value = 0
                 ProgressBar1.Visible = True
                 StatusText.Visible = True
+                Label3.Visible = True
                 StatusText.Text = $"Komprimiere nach: {Path.GetFileName(archiveFilePath)}"
                 'StartButton.Visible = False
                 'SelectButton.Visible = False
@@ -215,7 +223,7 @@ Public Class Form1
                         _backgroundWorker.ReportProgress(progress, New CompressionProgressInfo With {.ArchiveFilePath = parameters.ArchiveFilePath, .CurrentFile = parameters.FilePaths(i)})
                         Dim fileToAdd As String = parameters.FilePaths(i)
                         Dim entryName As String = Path.GetFileName(fileToAdd)
-
+                        _compressionStopwatch.Restart()
                         archive.CreateEntryFromFile(fileToAdd, entryName, My.Settings.CompressionMode)
 
                     Next
@@ -235,16 +243,26 @@ Public Class Form1
                       Dim mode As Integer = My.Settings.CompressionMode
                       Dim modename As String = ""
                       If mode = 0 Then
-                          modename = "Standard"
+                          modename = "Standard (optimal)"
                       ElseIf mode = 1 Then
-                          modename = "Schnellste"
+                          modename = "Fast (schnell)"
                       Else modename = "Ultra (langsamm)"
                       End If
                       If TypeOf e.UserState Is CompressionProgressInfo Then
 
                           ProgressBar1.Value = e.ProgressPercentage
                           'Label3.Text = $"{e.ProgressPercentage}%"
-                          StatusText.Text = $"Komprimiere: {Path.GetFileName(progressInfo.CurrentFile)}" & " Mode: " & modename
+                          StatusText.Text = $"Komprimiere: {Path.GetFileName(progressInfo.CurrentFile)} ({e.ProgressPercentage}%)"
+                          Label3.Text = "Mode: " & modename
+                          ' Geschätzte verbleibende Zeit berechnen und anzeigen
+                          If e.ProgressPercentage > 0 Then
+                              Dim elapsedSeconds As Double = progressInfo.TotalSeconds
+                              Dim totalEstimatedSeconds As Double = (elapsedSeconds / e.ProgressPercentage) * 100
+                              Dim remainingSeconds As Double = totalEstimatedSeconds - elapsedSeconds
+                              Label4.Text = $"Verbleibend: {FormatTimeSpan(TimeSpan.FromSeconds(remainingSeconds))}"
+                          Else
+                              Label4.Text = "Berechne Zeit..."
+                          End If
                       End If
                   End Sub)
     End Sub
@@ -262,7 +280,9 @@ Public Class Form1
                       ProgressBar1.Visible = False
                       StatusText.Visible = False
                       MenuStrip1.Enabled = True
+                      Label3.Visible = False
                   End Sub)
+        _compressionStopwatch.Stop()
         Dim items As ListView.SelectedListViewItemCollection = FileList.SelectedItems
         If items.Count > 0 Then
             FileList.Items.Clear()
@@ -280,6 +300,7 @@ Public Class Form1
     Private Class CompressionProgressInfo
         Public ArchiveFilePath As String
         Public CurrentFile As String
+        Friend TotalSeconds As Double
     End Class
 
     Private Class CompressionParameters
@@ -381,8 +402,8 @@ Public Class Form1
     Private Sub Form1_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Me.BackColor = My.Settings.AppColor
         Me.ForeColor = My.Settings.StringColor
-        SetControlColor(sender, My.Settings.ControlColor)
-        SetFormFont(My.Settings.AppFont)
+        Me.ForeColor = My.Settings.StringColor
+        Me.Font = My.Settings.AppFont
         UpdateChildControlFonts(Me, My.Settings.AppFont)
         FileList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent)
         FileList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize)
@@ -427,64 +448,67 @@ Public Class Form1
         Using openFileDialog As New OpenFileDialog()
             openFileDialog.Filter = "ZIP-Dateien (*.zip)|*.zip|Alle Dateien (*.*)|*.*"
             openFileDialog.Title = "ZIP-Datei zum Öffnen auswählen"
+
+            ' Spaltenkonfiguration sollte vor dem Löschen der Items erfolgen, falls Items vorhanden waren
             FileList.Items.Clear()
             FileList.Columns.Clear()
-            FileList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent)
-            FileList.AutoArrange = True
-            FileList.View = View.Details
-            FileList.Columns.Add("Datei:", 250)
-            FileList.Columns.Add("Größe(in Archiv):", 130)
+            FileList.View = View.Details ' Wichtig: View muss Details sein, bevor Spalten hinzugefügt werden
+            FileList.Columns.Add("Datei:", 250) ' Breite angepasst
+            FileList.Columns.Add("Größe (im Archiv):", 130) ' Breite angepasst und Text klarer
+            ' AutoResizeColumns und AutoArrange sollten NACH dem Hinzufügen der Items erfolgen
+            ' FileList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent)
+            ' FileList.AutoArrange = True ' Nicht für View.Details relevant
+
             If openFileDialog.ShowDialog() = DialogResult.OK Then
                 _zipFilePath = openFileDialog.FileName
-                Dim zipName As String = Path.GetFileName(_zipFilePath)
-                Dim zippath As String = Path.GetDirectoryName(_zipFilePath)
+                ' Dim zipName As String = Path.GetFileName(_zipFilePath) ' Nicht direkt benötigt
+                ' Dim zippath As String = Path.GetDirectoryName(_zipFilePath) ' Nicht direkt für Icons benötigt
+
                 UnZipButton.Visible = True
                 StartButton.Enabled = False
                 SelectButton.Enabled = False
                 ZipFormatButton.Enabled = False
-                openFileDialog.Dispose()
+                ' openFileDialog.Dispose() ' Wird automatisch durch 'Using' disposed
                 OpenArchiv.Enabled = False
+
                 Try
                     Using zip As ZipArchive = ZipFile.Open(_zipFilePath, ZipArchiveMode.Read)
                         ItemNo.Text = "Dateien: " & zip.Entries.Count.ToString()
+                        FileListIconList.Images.Clear() ' Icons vor dem Hinzufügen neuer Einträge leeren
+
                         For Each zEntry As ZipArchiveEntry In zip.Entries
-                            Dim fileInfo As New FileInfo(zipName)
-                            Dim fileName As String = zEntry.Name
-                            Dim fileSize As String = FormatFileSize(FileInfo.Length)
-                            Dim entryFullPath As String = Path.Combine(zippath, fileName)
+                            ' Dim fileInfo As New FileInfo(zipName) ' FALSCH: FileInfo auf ZIP-Namen
+                            ' Dim fileName As String = zEntry.Name ' FALSCH: Nur Name, nicht voller Pfad im Archiv
+                            ' Dim fileSize As String = FormatFileSize(FileInfo.Length) ' FALSCH: Statischer Zugriff
+
                             Dim item As New ListViewItem With {
-                                .Text = fileName,
-                                .Tag = entryFullPath,
+                                .Text = zEntry.FullName, ' Korrekt: Voller Pfad im Archiv
+                                .Tag = zEntry.FullName,  ' Korrekt: Voller Pfad im Archiv für späteres Entpacken
                                 .Checked = False
                             }
-                            item.SubItems.Add(FormatFileSize(zEntry.CompressedLength))
-                            Dim fileIcon As Icon = Nothing
-                            Try
-                                If File.Exists(entryFullPath) Then
-                                    fileIcon = System.Drawing.Icon.ExtractAssociatedIcon(entryFullPath)
-                                Else
-                                    fileIcon = SystemIcons.WinLogo
-                                End If
-                            Catch ex As Exception
-                                fileIcon = SystemIcons.WinLogo
-                            End Try
+                            item.SubItems.Add(FormatFileSize(zEntry.CompressedLength)) ' Korrekt: Komprimierte Größe des Eintrags
+
+                            Dim fileIcon As Icon = GetFileIcon(zEntry.FullName) ' Korrekt: Icon für ZIP-Eintrag
                             Dim iconIndex As Integer = FileListIconList.Images.Count
                             FileListIconList.Images.Add(fileIcon)
                             item.ImageIndex = iconIndex
                             FileList.Items.Add(item)
-
                         Next
-
                     End Using
+                    UpdateTotalSizeLabel()
+                    ' AutoResizeColumns NACH dem Hinzufügen der Items
+                    FileList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize)
+                    FileList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent)
+
                 Catch ex As Exception
                     MessageBox.Show($"Fehler beim Öffnen des Archivs: {ex.Message}", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    ' UI-Elemente im Fehlerfall zurücksetzen
                     If UnZipButton.Visible Then UnZipButton.Visible = False
                     If Not StartButton.Enabled Then StartButton.Enabled = True
                     If Not SelectButton.Enabled Then SelectButton.Enabled = True
                     If Not ZipFormatButton.Enabled Then ZipFormatButton.Enabled = True
                     If Not OpenArchiv.Enabled Then OpenArchiv.Enabled = True
                 End Try
-                UpdateTotalSizeLabel()
             End If
         End Using
     End Sub
@@ -502,6 +526,7 @@ Public Class Form1
                         .ExtractPath = extractPath,
                         .SelectedItems = selectedItem
                     }
+                    _unzipStopwatch.Restart()
                     _unzipWorker.RunWorkerAsync(unzipParams)
                 Else
                     MessageBox.Show("Bitte wählen Sie mindestens eine Datei aus.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -585,6 +610,14 @@ Public Class Form1
     Private Sub UnzipWorker_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles _unzipWorker.ProgressChanged
         ProgressBar1.Value = e.ProgressPercentage
         StatusText.Text = $"Entpacke: {e.UserState} ({e.ProgressPercentage}%)"
+        If e.ProgressPercentage > 0 Then
+            Dim elapsedSeconds As Double = progressInfo.ElapsedTime.TotalSeconds
+            Dim totalEstimatedSeconds As Double = (elapsedSeconds / e.ProgressPercentage) * 100
+            Dim remainingSeconds As Double = totalEstimatedSeconds - elapsedSeconds
+            Label4.Text = $"Verbleibend: {FormatTimeSpan(TimeSpan.FromSeconds(remainingSeconds))}"
+        Else
+            Label4.Text = "Berechne Zeit..."
+        End If
     End Sub
 
     Private Class UnzipParameters
@@ -840,4 +873,14 @@ Public Class Form1
         FormFAQ.Show()
     End Sub
 
+
+    Private Function FormatTimeSpan(timeSpan As TimeSpan) As String
+        If timeSpan.TotalSeconds < 60 Then
+            Return $"{Math.Round(timeSpan.TotalSeconds)} Sek."
+        ElseIf timeSpan.TotalMinutes < 60 Then
+            Return $"{Math.Round(timeSpan.TotalMinutes)} Min. {timeSpan.Seconds} Sek."
+        Else
+            Return $"{Math.Round(timeSpan.TotalHours)} Std. {timeSpan.Minutes} Min."
+        End If
+    End Function
 End Class

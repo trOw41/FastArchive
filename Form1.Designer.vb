@@ -63,6 +63,8 @@ Partial Class Form1
         Panel_0 = New Panel()
         Panel_2 = New Panel()
         Label2 = New Label()
+        Label3 = New Label()
+        Label4 = New Label()
         CType(DataSet1, ComponentModel.ISupportInitialize).BeginInit()
         FileListContextMenuStrip.SuspendLayout()
         MenuStrip1.SuspendLayout()
@@ -319,7 +321,6 @@ Partial Class Form1
         ' 
         resources.ApplyResources(Panel_0, "Panel_0")
         Panel_0.BackColor = Color.Transparent
-        Panel_0.BorderStyle = BorderStyle.FixedSingle
         Panel_0.Controls.Add(Label1)
         Panel_0.Controls.Add(SelectButton)
         Panel_0.Controls.Add(OpenArchiv)
@@ -330,7 +331,6 @@ Partial Class Form1
         ' 
         resources.ApplyResources(Panel_2, "Panel_2")
         Panel_2.BackColor = Color.Transparent
-        Panel_2.BorderStyle = BorderStyle.FixedSingle
         Panel_2.Controls.Add(Label2)
         Panel_2.Controls.Add(UnZipButton)
         Panel_2.Controls.Add(RawFormatButton)
@@ -347,6 +347,22 @@ Partial Class Form1
         Label2.Name = "Label2"
         ToolTip1.SetToolTip(Label2, resources.GetString("Label2.ToolTip"))
         ' 
+        ' Label3
+        ' 
+        resources.ApplyResources(Label3, "Label3")
+        Label3.BackColor = Color.Transparent
+        Label3.FlatStyle = FlatStyle.Flat
+        Label3.Name = "Label3"
+        ToolTip1.SetToolTip(Label3, resources.GetString("Label3.ToolTip"))
+        ' 
+        ' Label4
+        ' 
+        resources.ApplyResources(Label4, "Label4")
+        Label4.BackColor = Color.Transparent
+        Label4.FlatStyle = FlatStyle.Flat
+        Label4.Name = "Label4"
+        ToolTip1.SetToolTip(Label4, resources.GetString("Label4.ToolTip"))
+        ' 
         ' Form1
         ' 
         resources.ApplyResources(Me, "$this")
@@ -359,6 +375,8 @@ Partial Class Form1
         Controls.Add(ItemNo)
         Controls.Add(MenuStrip1)
         Controls.Add(FileList)
+        Controls.Add(Label4)
+        Controls.Add(Label3)
         Controls.Add(StatusText)
         Controls.Add(ProgressBar1)
         Controls.Add(Panel_0)
@@ -418,5 +436,7 @@ Partial Class Form1
     Friend WithEvents Label1 As Label
     Friend WithEvents Panel_2 As Panel
     Friend WithEvents Label2 As Label
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Label3 As Label
 End Class
 
