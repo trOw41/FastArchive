@@ -1,27 +1,9 @@
-﻿Partial Class FaqForm
+﻿Public Class FragenKatalog
     Inherits System.Windows.Forms.Form
-    ' Private components As System.ComponentModel.IContainer
-    'Das Formular überschreibt den Löschvorgang, um die Komponentenliste zu bereinigen.
-    <System.Diagnostics.DebuggerNonUserCode()>
-    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
-        Try
-            If disposing AndAlso components IsNot Nothing Then
-                components.Dispose()
-            End If
-        Finally
-            MyBase.Dispose(disposing)
-        End Try
-    End Sub
 
-    'Wird vom Windows Form-Designer benötigt.
-
-
-    'Hinweis: Die folgende Prozedur ist für den Windows Form-Designer erforderlich.
-    'Das Bearbeiten ist mit dem Windows Form-Designer möglich.  
-    'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FaqForm))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FragenKatalog))
 
         ' TreeNodes für IndexView
         Dim TreeNode1 As TreeNode = New TreeNode("Inhalt:")
@@ -38,7 +20,7 @@
         Dim TreeNode12 As TreeNode = New TreeNode("9. Ich erhalte eine ""Zugriff verweigert""-Fehlermeldung beim Entpacken. Was kann ich tun?")
         Dim TreeNode13 As TreeNode = New TreeNode("10. Wie leere ich die gesamte Dateiliste?")
 
-        MenuStrip1 = New MenuStrip()
+        ' MenuStrip1 = New MenuStrip()
         DateiToolStripMenuItem = New ToolStripMenuItem()
         SchließenToolStripMenuItem = New ToolStripMenuItem()
         IndexBox = New ToolStripComboBox()
@@ -91,39 +73,7 @@
         '
         IndexView.Location = New Point(0, 30)
         IndexView.Name = "IndexView"
-        ' Node Properties und Hinzufügen der Nodes
-        TreeNode1.ForeColor = Color.SteelBlue
-        TreeNode1.Name = "index"
-        TreeNode1.Text = "Inhalt:"
-        TreeNode2.Name = "i1"
-        TreeNode2.Text = "1. Was ist FastArchiver?"
-        TreeNode3.Name = "i2-1"
-        TreeNode3.Text = "Drag & Drop.."
-        TreeNode3.ToolTipText = "Drag & Drop"
-        TreeNode4.Name = "i2-2"
-        TreeNode4.Text = "Dateien auswählen.."
-        TreeNode5.Name = "i2"
-        TreeNode5.Text = "2. Wie füge ich Dateien oder Ordner zur Liste hinzu?"
-        TreeNode6.Name = "i3"
-        TreeNode6.Text = "3. Wie erstelle ich ein ZIP-Archiv?"
-        TreeNode7.Name = "i4" ' Neuer Node
-        TreeNode7.Text = "4. Wie öffne und sehe ich den Inhalt eines ZIP-Archivs?"
-        TreeNode8.Name = "i5" ' Neuer Node
-        TreeNode8.Text = "5. Wie entpacke ich Dateien aus einem ZIP-Archiv?"
-        TreeNode9.Name = "i6" ' Neuer Node
-        TreeNode9.Text = "6. Wie entferne ich Dateien aus der Liste?"
-        TreeNode10.Name = "i7" ' Neuer Node
-        TreeNode10.Text = "7. Wie ändere ich die Einstellungen (Farbe, Schriftart)?"
-        TreeNode11.Name = "i8" ' Neuer Node
-        TreeNode11.Text = "8. Warum benötigt die App Administratorrechte?"
-        TreeNode12.Name = "i9" ' Neuer Node
-        TreeNode12.Text = "9. Ich erhalte eine ""Zugriff verweigert""-Fehlermeldung beim Entpacken. Was kann ich tun?"
-        TreeNode13.Name = "i10" ' Neuer Node
-        TreeNode13.Text = "10. Wie leere ich die gesamte Dateiliste?"
 
-        IndexView.Nodes.AddRange(New TreeNode() {TreeNode1, TreeNode2, TreeNode5, TreeNode6, TreeNode7, TreeNode8, TreeNode9, TreeNode10, TreeNode11, TreeNode12, TreeNode13})
-        IndexView.Size = New Size(189, 512)
-        IndexView.TabIndex = 1
         ' Ereignishandler für IndexView hinzufügen
         AddHandler IndexView.AfterSelect, AddressOf Me.IndexView_AfterSelect
         '
@@ -152,22 +102,7 @@
         MenuStrip1.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
-    End Sub
 
-    ' Dictionary zur Speicherung der FAQ-Inhalte
-    Private faqContent As Dictionary(Of String, String)
-
-    Private Sub FaqForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        InitializeFaqContent() ' FAQ-Inhalte initialisieren
-        PopulateIndexBox()     ' IndexBox füllen
-
-        ' Optional: Ersten FAQ-Eintrag beim Laden anzeigen
-        If IndexView.Nodes.Count > 1 Then
-            IndexView.SelectedNode = IndexView.Nodes(1) ' Wählt "1. Was ist FastArchiver?"
-        End If
-    End Sub
-
-    Private Sub InitializeFaqContent()
         faqContent = New Dictionary(Of String, String)()
 
         faqContent.Add("i1", "FastArchiver ist eine Anwendung, die Ihnen hilft, Dateien und Ordner zu komprimieren (als ZIP-Archive) und Inhalte aus bestehenden ZIP-Archiven zu entpacken. Sie bietet eine einfache Drag & Drop-Funktionalität und eine übersichtliche Dateiverwaltung.")
@@ -204,47 +139,10 @@
         faqContent.Add("i10", "Klicken Sie auf den Button ""Leeren"" (oder ähnlich), um alle Dateien aus der Liste zu entfernen und die Anwendung für eine neue Aufgabe vorzubereiten.")
     End Sub
 
-    Private Sub PopulateIndexBox()
-        IndexBox.Items.Clear()
-        For Each node As TreeNode In IndexView.Nodes
-            If node.Name <> "index" Then ' Den Wurzelknoten "Inhalt:" ausschließen
-                IndexBox.Items.Add(node.Text)
-            End If
-        Next
-    End Sub
-
-    Private Sub IndexView_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles IndexView.AfterSelect
-        If e.Node IsNot Nothing Then
-            If faqContent.ContainsKey(e.Node.Name) Then
-                FaqText.Text = faqContent(e.Node.Name)
-            Else
-                FaqText.Text = "Wählen Sie einen Eintrag aus dem Inhaltsverzeichnis."
-            End If
-        Else
-            FaqText.Text = "Wählen Sie einen Eintrag aus dem Inhaltsverzeichnis."
-        End If
-    End Sub
-
-    Private Sub IndexBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles IndexBox.SelectedIndexChanged
-        If IndexBox.SelectedItem IsNot Nothing Then
-            Dim selectedText As String = IndexBox.SelectedItem.ToString()
-            For Each node As TreeNode In IndexView.Nodes
-                If node.Text = selectedText Then
-                    IndexView.SelectedNode = node
-                    Exit For
-                ElseIf node.Nodes.Count > 0 Then ' Auch in den Kindknoten suchen
-                    For Each childNode As TreeNode In node.Nodes
-                        If childNode.Text = selectedText Then
-                            IndexView.SelectedNode = childNode
-                            Exit For
-                        End If
-                    Next
-                End If
-            Next
-        End If
-    End Sub
-
-    Private Sub SchließenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SchließenToolStripMenuItem.Click
-        Me.Close()
-    End Sub
+    Friend WithEvents MenuStrip1 As MenuStrip
+    Friend WithEvents DateiToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SchließenToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripComboBox1 As ToolStripComboBox
+    Friend WithEvents IndexBox As ToolStripComboBox
+    Friend WithEvents IndexView As TreeView
 End Class

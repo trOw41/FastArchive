@@ -1,13 +1,4 @@
 ﻿Imports System.ComponentModel
-Imports System.Diagnostics
-Imports System.Diagnostics.Eventing.Reader
-Imports System.Dynamic
-Imports System.IO.Compression
-Imports System.Threading
-Imports Microsoft.VisualBasic.Logging
-Imports Windows.Management.Deployment.Preview
-Imports Windows.Storage
-Imports System.Drawing
 
 Public Class Form1
 
@@ -795,7 +786,7 @@ Public Class Form1
 
     ' Hilfsmethode, um Icons für ZIP-Einträge zu bekommen (da sie nicht auf dem Dateisystem existieren)
     Private Function GetFileIcon(entryFullName As String) As Icon
-        If entryFullName.EndsWith("/") OrElse Not entryFullName.Contains(".") Then
+        If Not (Not entryFullName.EndsWith("/"c) AndAlso entryFullName.Contains("."c)) Then
             Return SystemIcons.Application ' Generisches Ordner-Icon für Verzeichnisse im ZIP
         Else
             ' Versuche, ein Icon basierend auf der Dateierweiterung zu bekommen
@@ -804,7 +795,7 @@ Public Class Form1
                 Try
                     ' Erstelle eine temporäre Datei, um das Icon zu extrahieren
                     Dim tempFile As String = Path.Combine(Path.GetTempPath(), "temp" & extension)
-                    File.WriteAllBytes(tempFile, New Byte() {}) ' Leere temporäre Datei erstellen
+                    File.WriteAllBytes(tempFile, Array.Empty(Of Byte)()) ' Leere temporäre Datei erstellen
                     Dim icon As Icon = Icon.ExtractAssociatedIcon(tempFile)
                     File.Delete(tempFile) ' Temporäre Datei löschen
                     Return icon
@@ -844,7 +835,7 @@ Public Class Form1
 
     End Sub
 
-    Public Sub FAQToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FAQToolStripMenuItem.Click
-        FaqForm.Show()
+    Private Sub FAQToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FAQToolStripMenuItem.Click
+        FragenKatalog.ActiveForm.Show()
     End Sub
 End Class
