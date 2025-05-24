@@ -56,7 +56,7 @@ Partial Class Form1
         FolderBrowserDialog1 = New FolderBrowserDialog()
         NotifyIcon1 = New NotifyIcon(components)
         Process1 = New Process()
-        RawFormatButton = New RadioButton()
+        RARFormatButton = New RadioButton()
         ToolTip1 = New ToolTip(components)
         UnZipButton = New Button()
         Label1 = New Label()
@@ -282,14 +282,14 @@ Partial Class Form1
         Process1.StartInfo.UserName = ""
         Process1.SynchronizingObject = Me
         ' 
-        ' RawFormatButton
+        ' RARFormatButton
         ' 
-        resources.ApplyResources(RawFormatButton, "RawFormatButton")
-        RawFormatButton.BackColor = Color.Transparent
-        RawFormatButton.Name = "RawFormatButton"
-        RawFormatButton.TabStop = True
-        ToolTip1.SetToolTip(RawFormatButton, resources.GetString("RawFormatButton.ToolTip"))
-        RawFormatButton.UseVisualStyleBackColor = False
+        resources.ApplyResources(RARFormatButton, "RARFormatButton")
+        RARFormatButton.BackColor = Color.Transparent
+        RARFormatButton.Name = "RARFormatButton"
+        RARFormatButton.TabStop = True
+        ToolTip1.SetToolTip(RARFormatButton, resources.GetString("RARFormatButton.ToolTip"))
+        RARFormatButton.UseVisualStyleBackColor = False
         ' 
         ' ToolTip1
         ' 
@@ -333,7 +333,7 @@ Partial Class Form1
         Panel_2.BackColor = Color.Transparent
         Panel_2.Controls.Add(Label2)
         Panel_2.Controls.Add(UnZipButton)
-        Panel_2.Controls.Add(RawFormatButton)
+        Panel_2.Controls.Add(RARFormatButton)
         Panel_2.Controls.Add(StartButton)
         Panel_2.Controls.Add(ZipFormatButton)
         Panel_2.Name = "Panel_2"
@@ -368,6 +368,7 @@ Partial Class Form1
         resources.ApplyResources(Me, "$this")
         AllowDrop = True
         AutoScaleMode = AutoScaleMode.Dpi
+        BackColor = SystemColors.ControlLightLight
         ContextMenuStrip = FileListContextMenuStrip
         Controls.Add(CheckBox1)
         Controls.Add(Button1)
@@ -426,7 +427,7 @@ Partial Class Form1
     Friend WithEvents NotifyIcon1 As NotifyIcon
     Friend WithEvents Process1 As Process
     Friend WithEvents OptionsToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents RawFormatButton As RadioButton
+    Friend WithEvents RARFormatButton As RadioButton
     Friend WithEvents FileListIconList As ImageList
     Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
