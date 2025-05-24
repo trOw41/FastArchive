@@ -61,42 +61,12 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        '''  Sucht eine lokalisierte Ressource vom Typ System.Byte[].
         '''</summary>
-        Friend ReadOnly Property _009_pie_chart() As System.Drawing.Bitmap
+        Friend ReadOnly Property icons8_mappe_144() As Byte()
             Get
-                Dim obj As Object = ResourceManager.GetObject("009-pie-chart", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property _013_setting() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("013-setting", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property icons8_geschäftsbericht_96() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("icons8-geschäftsbericht-96", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property information_348() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("information-348", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
+                Dim obj As Object = ResourceManager.GetObject("icons8-mappe-144", resourceCulture)
+                Return CType(obj,Byte())
             End Get
         End Property
     End Module

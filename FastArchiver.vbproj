@@ -9,7 +9,6 @@
     <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
     <NuGetAuditMode>all</NuGetAuditMode>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <ImportedNamespaces>System.Data=False,System.Drawing=False,System.IO=False,System.IO.Compression=False,System.Windows.Forms=False,Windows.System.Threading=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,FastArchiver=True</ImportedNamespaces>
     <NuGetAudit>False</NuGetAudit>
     <ApplicationIcon>icons8-zip-96.ico</ApplicationIcon>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
@@ -34,7 +33,6 @@
   <ItemGroup>
     <None Remove="FastArchiver%28SourceCode%29.zip" />
     <None Remove="LICENSE.txt" />
-    <None Remove="Resources\LICENSE.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -55,12 +53,6 @@
 
   <ItemGroup>
     <PackageReference Include="Syncfusion.Xamarin.SfProgressBar" Version="29.2.4" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Resources\LICENSE.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -98,9 +90,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
-    </None>
-    <None Update="Resources\FastArchive_EULA_en.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

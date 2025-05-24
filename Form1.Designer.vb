@@ -98,6 +98,7 @@ Partial Class Form1
         FileList.LargeImageList = FileListIconList
         FileList.Name = "FileList"
         FileList.ShowItemToolTips = True
+        FileList.SmallImageList = FileListIconList
         ToolTip1.SetToolTip(FileList, resources.GetString("FileList.ToolTip"))
         FileList.UseCompatibleStateImageBehavior = False
         ' 

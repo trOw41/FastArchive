@@ -23,19 +23,19 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Public Sub New()
-            MyBase.New(Global.Microsoft.VisualBasic.ApplicationServices.AuthenticationMode.Windows)
-            Me.IsSingleInstance = true
+            MyBase.New(Global.Microsoft.VisualBasic.ApplicationServices.AuthenticationMode.ApplicationDefined)
+            Me.IsSingleInstance = false
             Me.EnableVisualStyles = true
             Me.SaveMySettingsOnExit = true
             Me.ShutDownStyle = Global.Microsoft.VisualBasic.ApplicationServices.ShutdownMode.AfterMainFormCloses
             Me.HighDpiMode = HighDpiMode.PerMonitorV2
         End Sub
-
-        <Global.System.Diagnostics.DebuggerStepThroughAttribute()>
+        
+        <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
             Me.MainForm = Form1
         End Sub
-
+        
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Function OnInitialize(ByVal commandLineArgs As System.Collections.ObjectModel.ReadOnlyCollection(Of String)) As Boolean
             Me.MinimumSplashScreenDisplayTime = 0
