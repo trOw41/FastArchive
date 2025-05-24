@@ -6,16 +6,42 @@ Imports System.Threading
 Imports System.Threading.Tasks ' For Task.Run
 Imports System.Drawing
 Imports System.Windows.Forms
+
 Public Class Form1
 
     Private _isCancellationPending As Boolean = False
     Private WithEvents _backgroundWorker As BackgroundWorker ' Korrekt deklariert mit WithEvents
-    Private AppName As String = "FastArchive"
+    Private AppName As String = "FastArchiver"
     Private _zipFilePath As String = ""
     Private _extractPath As String = ""
     Private WithEvents _unzipWorker As BackgroundWorker
     Private _compressionStopwatch As New Stopwatch() ' Stopwatch für Komprimierung
 
+    ' NEUE DEKLARATIONEN FÜR DEN MODUS DER LISTVIEW
+    Public Enum FileListMode
+        DiskFiles    ' Dateien von der Festplatte
+        ArchiveEntries ' Einträge aus einem geöffneten Archiv
+    End Enum
+    Private _currentFileListMode As FileListMode
+
+    Private Class ZipEntryListItemInfo
+        Public FullName As String
+        Public CompressedLength As Long
+        Public UncompressedLength As Long
+    End Class
+    ' ENDE NEUE DEKLARATIONEN
+
+    Public Sub New()
+        InitializeComponent() 'Stelle sicher, dass die Komponente initialisiert wird
+        _backgroundWorker = New BackgroundWorker With {
+            .WorkerReportsProgress = True,
+            .WorkerSupportsCancellation = True
+        }
+        _unzipWorker = New BackgroundWorker With {
+            .WorkerReportsProgress = True,
+            .WorkerSupportsCancellation = True
+        }
+    End Sub
 
     Private Function EnsureAdminRightsAndCreateDirectory(directoryPath As String) As Boolean
         If Not IsUserAdministrator() Then
@@ -115,37 +141,72 @@ Public Class Form1
     End Sub
 
     Private Sub SelectButton_Click(sender As System.Object, e As System.EventArgs) Handles SelectButton.Click
+        Me.Invoke(Sub()
+                      OpenArchiv.Enabled = False
+                  End Sub)
         Using openFileDialog As New OpenFileDialog()
             openFileDialog.Multiselect = True
             openFileDialog.Title = "Dateien zum Archivieren auswählen"
             OpenArchiv.Enabled = False
             If openFileDialog.ShowDialog() = DialogResult.OK Then
-                Try
-                    For Each filename As String In openFileDialog.FileNames
-                        Dim item As New ListViewItem With {
-                        .Text = Path.GetFileName(filename),
-                        .Tag = filename,
-                        .Checked = False
-                    }
-                        Dim fileInfo As New FileInfo(filename)
+                Dim droppedPaths As String() = openFileDialog.FileNames
+                If droppedPaths.Length = 1 AndAlso droppedPaths(0).ToLower().EndsWith(".zip") Then
+                    Dim zipFilePath As String = droppedPaths(0)
+                    _zipFilePath = zipFilePath ' Speichere den Pfad für den Unzip-Vorgang
+                    UnZipButton.Visible = True ' Unzip-Button sichtbar machen
+                    StartButton.Visible = False
+                    Panel_0.Visible = False
+                    Try
+                        Using zip As ZipArchive = ZipFile.Open(zipFilePath, ZipArchiveMode.Read)
+                            ItemNo.Text = "Datei: " & zip.Entries.Count.ToString()
+                            For Each zEntry As ZipArchiveEntry In zip.Entries
+                                Dim fileInfo As New FileInfo(zipFilePath)
+                                Dim fileSize As String = FormatFileSize(fileInfo.Length)
+                                Dim fileNameInArchive As String = zEntry.FullName
+                                Dim item As New ListViewItem With {
+                                .Text = fileNameInArchive, ' Voller Pfad innerhalb des Archivs
+                                .Tag = zEntry.FullName, ' Speichere den vollen Pfad des Eintrags IM ZIP
+                                .Checked = False
+                            }
+                                item.SubItems.Add(FormatFileSize(zEntry.CompressedLength))
+
+                                Dim fileIcon As Icon = GetFileIcon(fileNameInArchive)
+                                Dim iconIndex As Integer = FileListIconList.Images.Count
+                                FileListIconList.Images.Add(fileIcon)
+                                item.ImageIndex = iconIndex
+                                FileList.Items.Add(item)
+                            Next
+                            ' FileList.AutoArrange = True
+                            FileList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize)
+                            FileList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent)
+                        End Using
+                        _currentFileListMode = FileListMode.DiskFiles
+                        UpdateTotalSizeLabel()
+                    Catch ex As Exception
+                        MessageBox.Show($"Fehler beim Öffnen des Archivs: {ex.Message}{Environment.NewLine}{ex.GetType().Name}: {ex.StackTrace}", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+                    End Try
+                Else
+                    ' Es wurden Dateien und/oder Ordner gedroppt, die keine einzelne ZIP-Datei sind
+
+                    For Each droppedPath As String In droppedPaths
+                        Dim fileInfo As New FileInfo(droppedPath)
                         Dim fileSize As String = FormatFileSize(fileInfo.Length)
-                        Dim fileIcon As System.Drawing.Icon = System.Drawing.Icon.ExtractAssociatedIcon(filename)
-                        Dim iconIndex As Integer = FileListIconList.Images.Count
-                        FileListIconList.Images.Add(fileIcon)
-                        item.ImageIndex = iconIndex
-                        item.SubItems.Add(fileSize)
-                        item.Checked = True
-                        item.Checked = FileList.SelectedItems.Count > 0
-                        FileList.Items.Add(item)
+                        If Directory.Exists(droppedPath) Then
+                            ' Es ist ein Verzeichnis
+                            AddDirectoryContentToList(droppedPath)
+                        ElseIf File.Exists(droppedPath) Then
+                            ' Es ist eine einzelne Datei
+                            AddFileToListView(droppedPath)
+                        End If
                     Next
-
-                    CheckBox1_CheckedChanged(sender, e)
-                Catch
-
-                End Try
-                OpenArchiv.Enabled = False
-                ItemNo.Text = "Files: " & FileList.Items.Count.ToString()
-                UpdateTotalSizeLabel()
+                    ItemNo.Text = "Files: " & FileList.Items.Count.ToString()
+                    _currentFileListMode = FileListMode.DiskFiles
+                    UpdateTotalSizeLabel()
+                    'FileList.AutoArrange = True
+                    FileList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize)
+                    FileList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent)
+                End If
             End If
         End Using
     End Sub
@@ -157,10 +218,10 @@ Public Class Form1
         End If
         OpenArchiv.Enabled = True
         Using saveFileDialog As New SaveFileDialog With {
-            .Filter = If(ZipFormatButton.Checked, "ZIP-Datei (*.zip)|*.zip", "Alle Dateien (*.*)|*.*"),
+            .Filter = If(ZipFormatButton.Checked, "ZIP-Datei (*.zip)|*.zip", "Alle Dateien (*.*)|*.*" Or If(RARFormatButton.Checked, "RAR-Datei (*.rar)|*.rar", "Alle Dateien (*.*)|*.*")),
             .Title = "Archiv speichern unter",
             .DefaultExt = If(ZipFormatButton.Checked, "zip", "")
-        }
+            }
 
             If saveFileDialog.ShowDialog() = DialogResult.OK Then
                 Dim archiveFilePath As String = saveFileDialog.FileName
@@ -192,13 +253,14 @@ Public Class Form1
                               MenuStrip1.Enabled = False
                               Me.Size = New Drawing.Size(Me.Size.Width, Me.Size.Height - 250) ' Fenstergröße anpassen
                           End Sub)
+
+                _isCancellationPending = False
                 Dim parameters As New CompressionParameters With {
                     .ArchiveFilePath = archiveFilePath,
                     .FilePaths = selectedFilePaths.ToArray(),
-                    .IsZip = ZipFormatButton.Checked
-                }
-
-                _isCancellationPending = False
+                    .IsZip = ZipFormatButton.Checked,
+                    .IsRar = RARFormatButton.Checked
+                    }
                 _backgroundWorker.RunWorkerAsync(parameters)
                 _compressionStopwatch.Reset()
             End If
@@ -229,6 +291,7 @@ Public Class Form1
                     e.Result = parameters
                 End Using
             End Using
+
         Catch ex As Exception
             e.Result = Nothing
             e.Cancel = True
@@ -250,19 +313,19 @@ Public Class Form1
         If TypeOf e.UserState Is CompressionProgressInfo Then
 
             ProgressBar1.Value = e.ProgressPercentage
-                          'Label3.Text = $"{e.ProgressPercentage}%"
-                          StatusText.Text = $"Komprimiere: {Path.GetFileName(progressInfo.CurrentFile)} ({e.ProgressPercentage}%)"
-                          Label3.Text = "Mode: " & modename
+            'Label3.Text = $"{e.ProgressPercentage}%"
+            StatusText.Text = $"Komprimiere: {Path.GetFileName(progressInfo.CurrentFile)} ({e.ProgressPercentage}%)"
+            Label3.Text = "Mode: " & modename
 
-                          ' Geschätzte verbleibende Zeit berechnen und anzeigen
-                          If e.ProgressPercentage > 0 Then
-                              Dim elapsedSeconds As Double = progressInfo.ElapsedTime.TotalSeconds
-                              Dim totalEstimatedSeconds As Double = (elapsedSeconds / e.ProgressPercentage) * 100
-                              Dim remainingSeconds As Double = totalEstimatedSeconds - elapsedSeconds
-                              Label4.Text = $"Verbleibend: {FormatTimeSpan(TimeSpan.FromSeconds(remainingSeconds))}"
-                          Else
-                              Label4.Text = "Berechne Zeit..."
-                          End If
+            ' Geschätzte verbleibende Zeit berechnen und anzeigen
+            If e.ProgressPercentage > 0 Then
+                Dim elapsedSeconds As Double = progressInfo.ElapsedTime.TotalSeconds
+                Dim totalEstimatedSeconds As Double = (elapsedSeconds / e.ProgressPercentage) * 100
+                Dim remainingSeconds As Double = totalEstimatedSeconds - elapsedSeconds
+                Label4.Text = $"Verbleibend: {FormatTimeSpan(TimeSpan.FromSeconds(remainingSeconds))}"
+            Else
+                Label4.Text = "Berechne Zeit..."
+            End If
 
         End If
 
@@ -311,18 +374,42 @@ Public Class Form1
         Public ArchiveFilePath As String
         Public FilePaths As String()
         Public IsZip As Boolean
+        Public IsRar As Boolean
     End Class
 
     Private Function CalculateTotalSize() As Long
         Dim totalSize As Long = 0
         For Each item As ListViewItem In FileList.Items
             If item.Checked Then
-                Try
-                    Dim fileInfo As New FileInfo(item.Tag.ToString())
-                    totalSize += fileInfo.Length
-                Catch ex As Exception
-                    MessageBox.Show($"Fehler beim Zugriff auf Datei: {item.Tag}. Sie wird bei der Größenberechnung ignoriert.", "Datei Fehler", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                End Try
+                If _currentFileListMode = FileListMode.DiskFiles Then
+                    Try
+                        Dim filePath As String = item.Tag.ToString()
+                        ' Prüfen, ob es sich um eine Datei handelt (Ordner können auch im Tag sein, aber keine Länge haben)
+                        If File.Exists(filePath) Then
+                            Dim fileInfo As New FileInfo(filePath)
+                            totalSize += fileInfo.Length
+                        ElseIf Directory.Exists(filePath) Then
+                            ' Optional: Hier könnte eine rekursive Berechnung der Ordnergröße erfolgen
+                            ' Für dieses Beispiel ignorieren wir die Größe von ausgewählten Ordnern
+                        End If
+                    Catch ex As Exception
+                        ' Nur Fehlermeldung anzeigen, wenn es sich um einen erwarteten Dateifehler handelt
+                        MessageBox.Show($"Fehler beim Zugriff auf Datei: {item.Tag}. Sie wird bei der Größenberechnung ignoriert.", "Datei Fehler", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    End Try
+                ElseIf _currentFileListMode = FileListMode.ArchiveEntries Then
+                    Try
+                        ' Item.Tag enthält jetzt ein ZipEntryListItemInfo-Objekt
+                        Dim itemInfo As ZipEntryListItemInfo = DirectCast(item.Tag, ZipEntryListItemInfo)
+                        totalSize += itemInfo.CompressedLength ' Verwende die gespeicherte komprimierte Länge
+                    Catch ex As InvalidCastException
+                        ' Dieser Fehler sollte nicht auftreten, wenn _currentFileListMode korrekt gesetzt ist.
+                        ' Aber zur Sicherheit abgefangen, ohne störende MessageBox für den Nutzer.
+                        Debug.WriteLine($"Fehler beim Casten in CalculateTotalSize für Archiv-Eintrag: {item.Tag} - {ex.Message}")
+                    Catch ex As Exception
+                        ' Andere unerwartete Fehler, ohne störende MessageBox für den Nutzer.
+                        Debug.WriteLine($"Unerwarteter Fehler in CalculateTotalSize für Archiv-Eintrag: {item.Tag} - {ex.Message}")
+                    End Try
+                End If
             End If
         Next
         Return totalSize
@@ -351,15 +438,18 @@ Public Class Form1
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         FileList.Items.Clear()
-        ItemNo.Text = "Einträge:"
-        SizeText.Text = "Archiv Größe:"
+        _currentFileListMode = FileListMode.DiskFiles
+        ItemNo.Text = "Datei:"
+        SizeText.Text = "Größe:"
         CheckBox1.Checked = False
-        If UnZipButton.Visible Then
+        OpenArchiv.Enabled = True
+        If UnZipButton.Visible = True Then
             UnZipButton.Visible = False
-            StartButton.Enabled = True
-            SelectButton.Enabled = True
+            Panel_0.Visible = True
+            StartButton.Visible = True
             ZipFormatButton.Enabled = True
-            OpenArchiv.Enabled = True
+            RARFormatButton.Enabled = True
+            StartButton.Enabled = True
         End If
 
     End Sub
@@ -374,16 +464,20 @@ Public Class Form1
         UpdateTotalSizeLabel()
     End Sub
 
-    Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+    Public Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+
+
         Dim res As DialogResult = MessageBox.Show(Me, "Möchten Sie die Anwendung wirklich schließen?", "Beenden", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
         If res = DialogResult.OK Then
+
         Else
             e.Cancel = True
         End If
+
     End Sub
 
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
-        Me.Close()
+        Me.Form1_FormClosing(sender, e)
     End Sub
 
     Private Sub InfoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InfoToolStripMenuItem.Click
@@ -435,89 +529,74 @@ Public Class Form1
         ToolTip1.ShowAlways = True
         _backgroundWorker.WorkerReportsProgress = True
         _backgroundWorker.WorkerSupportsCancellation = True
+        _currentFileListMode = FileListMode.DiskFiles
+    End Sub
 
-    End Sub
-    Public Sub New()
-        InitializeComponent() 'Stelle sicher, dass die Komponente initialisiert wird
-        _backgroundWorker = New BackgroundWorker With {
-            .WorkerReportsProgress = True,
-            .WorkerSupportsCancellation = True
-        }
-        _unzipWorker = New BackgroundWorker With {
-            .WorkerReportsProgress = True,
-            .WorkerSupportsCancellation = True
-        }
-    End Sub
     Private Sub OpenArchiv_Click(sender As Object, e As EventArgs) Handles OpenArchiv.Click
         Using openFileDialog As New OpenFileDialog()
             openFileDialog.Filter = "ZIP-Dateien (*.zip)|*.zip|Alle Dateien (*.*)|*.*"
             openFileDialog.Title = "ZIP-Datei zum Öffnen auswählen"
 
-            ' Spaltenkonfiguration sollte vor dem Löschen der Items erfolgen, falls Items vorhanden waren
-            FileList.Items.Clear()
-            FileList.Columns.Clear()
-            FileList.View = View.Details ' Wichtig: View muss Details sein, bevor Spalten hinzugefügt werden
-            FileList.Columns.Add("Datei:", 250) ' Breite angepasst
-            FileList.Columns.Add("Größe (im Archiv):", 130) ' Breite angepasst und Text klarer
-            ' AutoResizeColumns und AutoArrange sollten NACH dem Hinzufügen der Items erfolgen
-            ' FileList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent)
-            ' FileList.AutoArrange = True ' Nicht für View.Details relevant
-
             If openFileDialog.ShowDialog() = DialogResult.OK Then
                 _zipFilePath = openFileDialog.FileName
-                ' Dim zipName As String = Path.GetFileName(_zipFilePath) ' Nicht direkt benötigt
-                ' Dim zippath As String = Path.GetDirectoryName(_zipFilePath) ' Nicht direkt für Icons benötigt
+                _currentFileListMode = FileListMode.ArchiveEntries ' MODUS SETZEN
+
+                SetControlsForArchiveView(True) ' Konfiguriere ListView für Archiv-Ansicht
 
                 UnZipButton.Visible = True
                 StartButton.Enabled = False
                 SelectButton.Enabled = False
                 ZipFormatButton.Enabled = False
-                ' openFileDialog.Dispose() ' Wird automatisch durch 'Using' disposed
                 OpenArchiv.Enabled = False
+
+                FileList.Items.Clear() ' Vorherige Einträge löschen
+                FileListIconList.Images.Clear() ' Icons leeren
 
                 Try
                     Using zip As ZipArchive = ZipFile.Open(_zipFilePath, ZipArchiveMode.Read)
-                        ItemNo.Text = "Dateien: " & zip.Entries.Count.ToString()
-                        FileListIconList.Images.Clear() ' Icons vor dem Hinzufügen neuer Einträge leeren
+                        ItemNo.Text = "Datei: " & zip.Entries.Count.ToString()
 
                         For Each zEntry As ZipArchiveEntry In zip.Entries
-                            ' Dim fileInfo As New FileInfo(zipName) ' FALSCH: FileInfo auf ZIP-Namen
-                            ' Dim fileName As String = zEntry.Name ' FALSCH: Nur Name, nicht voller Pfad im Archiv
-                            ' Dim fileSize As String = FormatFileSize(FileInfo.Length) ' FALSCH: Statischer Zugriff
+                            Dim itemInfo As New ZipEntryListItemInfo With { ' NEU: Informationen im Tag speichern
+                                .FullName = zEntry.FullName,
+                                .CompressedLength = zEntry.CompressedLength,
+                                .UncompressedLength = zEntry.Length
+                            }
 
                             Dim item As New ListViewItem With {
-                                .Text = zEntry.FullName, ' Korrekt: Voller Pfad im Archiv
-                                .Tag = zEntry.FullName,  ' Korrekt: Voller Pfad im Archiv für späteres Entpacken
+                                .Text = zEntry.FullName,
+                                .Tag = itemInfo, ' NEU: ZipEntryListItemInfo-Objekt im Tag speichern
                                 .Checked = False
                             }
-                            item.SubItems.Add(FormatFileSize(zEntry.CompressedLength)) ' Korrekt: Komprimierte Größe des Eintrags
+                            item.SubItems.Add(FormatFileSize(zEntry.CompressedLength))
 
-                            Dim fileIcon As Icon = GetFileIcon(zEntry.FullName) ' Korrekt: Icon für ZIP-Eintrag
+                            Dim fileIcon As Icon = GetFileIcon(zEntry.FullName)
                             Dim iconIndex As Integer = FileListIconList.Images.Count
                             FileListIconList.Images.Add(fileIcon)
                             item.ImageIndex = iconIndex
                             FileList.Items.Add(item)
                         Next
                     End Using
-                    UpdateTotalSizeLabel()
-                    ' AutoResizeColumns NACH dem Hinzufügen der Items
-                    FileList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize)
+                    UpdateTotalSizeLabel() ' Größe nach dem Befüllen aktualisieren
                     FileList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent)
-
+                    FileList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize)
                 Catch ex As Exception
                     MessageBox.Show($"Fehler beim Öffnen des Archivs: {ex.Message}", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     ' UI-Elemente im Fehlerfall zurücksetzen
-                    If UnZipButton.Visible Then UnZipButton.Visible = False
-                    If Not StartButton.Enabled Then StartButton.Enabled = True
-                    If Not SelectButton.Enabled Then SelectButton.Enabled = True
-                    If Not ZipFormatButton.Enabled Then ZipFormatButton.Enabled = True
-                    If Not OpenArchiv.Enabled Then OpenArchiv.Enabled = True
+                    SetControlsForArchiveView(False) ' Zurück zur DiskFiles-Ansicht
+                    UnZipButton.Visible = False
+                    StartButton.Enabled = True
+                    SelectButton.Enabled = True
+                    ZipFormatButton.Enabled = True
+                    OpenArchiv.Enabled = True
+                    _currentFileListMode = FileListMode.DiskFiles ' Modus zurücksetzen
                 End Try
             End If
         End Using
     End Sub
 
-    Private Sub UnZipButton_Click(sender As Object, e As EventArgs) Handles UnZipButton.Click
+    Private Sub UnZipButton_Click(sender As System.Object, e As System.EventArgs) Handles UnZipButton.Click
+
         FolderBrowserDialog1.Description = "Wählen Sie den Zielordner für die Entpackung aus"
         FolderBrowserDialog1.ShowNewFolderButton = True
         If FolderBrowserDialog1.ShowDialog() = DialogResult.OK Then
@@ -530,7 +609,7 @@ Public Class Form1
                     entriesToExtract.Add(item.Tag.ToString())
                 Next
 
-                '_unzipStopwatch.Restart() ' Stopwatch starten
+                _compressionStopwatch.Restart() ' Stopwatch starten
                 _unzipWorker.RunWorkerAsync(New UnzipParameters With {
                     .ZipFilePath = _zipFilePath,
                     .ExtractPath = _extractPath,
@@ -546,6 +625,11 @@ Public Class Form1
         Public ExtractPath As String
         Public EntriesToExtract As String()
         Public SelectedItems As ListView.SelectedListViewItemCollection
+    End Class
+    Private Class UnzipProgressInfo ' Neue Klasse für Unzip-Fortschrittsinformationen
+        Public EntryName As String
+        Public ExtractPath As String
+        Public ElapsedTime As TimeSpan
     End Class
     Private Sub UnzipWorker_DoWork(sender As Object, e As DoWorkEventArgs) Handles _unzipWorker.DoWork
         Dim worker As BackgroundWorker = DirectCast(sender, BackgroundWorker)
@@ -578,32 +662,32 @@ Public Class Form1
                           End Sub)
                 selectedItemsCount = selectedFileNames.Count
 
-                              For Each entryName As String In selectedFileNames
-                                  If worker.CancellationPending OrElse _isCancellationPending Then
-                                      e.Cancel = True
-                                      Exit For
-                                  End If
+                For Each entryName As String In selectedFileNames
+                    If worker.CancellationPending OrElse _isCancellationPending Then
+                        e.Cancel = True
+                        Exit For
+                    End If
 
-                                  Dim entry As ZipArchiveEntry = archive.GetEntry(entryName)
+                    Dim entry As ZipArchiveEntry = archive.GetEntry(entryName)
 
-                                  If entry IsNot Nothing Then
-                                      Dim destinationPath As String = Path.Combine(parameters.ExtractPath, entry.FullName)
-                                      Dim directoryPath As String = Path.GetDirectoryName(destinationPath)
+                    If entry IsNot Nothing Then
+                        Dim destinationPath As String = Path.Combine(parameters.ExtractPath, entry.FullName)
+                        Dim directoryPath As String = Path.GetDirectoryName(destinationPath)
 
-                                      If Not Directory.Exists(directoryPath) Then
-                                          Directory.CreateDirectory(directoryPath)
-                                      End If
+                        If Not Directory.Exists(directoryPath) Then
+                            Directory.CreateDirectory(directoryPath)
+                        End If
 
-                                      entry.ExtractToFile(destinationPath, True)
-                                      extractedEntriesCount += 1
-                                      Dim progressPercentage As Integer = ((extractedEntriesCount / CDbl(selectedItemsCount)) * 100)
+                        entry.ExtractToFile(destinationPath, True)
+                        extractedEntriesCount += 1
+                        Dim progressPercentage As Integer = ((extractedEntriesCount / CDbl(selectedItemsCount)) * 100)
 
-                                      worker.ReportProgress(progressPercentage, entryName)
-                                  Else
-                                      worker.ReportProgress(0, $"Datei nicht gefunden: {entryName}")
-                                  End If
-                              Next
-                              e.Result = parameters.ExtractPath
+                        worker.ReportProgress(progressPercentage, entryName)
+                    Else
+                        worker.ReportProgress(0, $"Datei nicht gefunden: {entryName}")
+                    End If
+                Next
+                e.Result = parameters.ExtractPath
             End Using
         Catch ex As Exception
             e.Cancel = True
@@ -613,8 +697,17 @@ Public Class Form1
     End Sub
 
     Private Sub UnzipWorker_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles _unzipWorker.ProgressChanged
+        Dim progressInfo As CompressionProgressInfo = TryCast(e.UserState, CompressionProgressInfo)
         ProgressBar1.Value = e.ProgressPercentage
         StatusText.Text = $"Entpacke: {e.UserState} ({e.ProgressPercentage}%)"
+        If e.ProgressPercentage > 0 Then
+            Dim elapsedSeconds As Double = progressInfo.ElapsedTime.TotalSeconds
+            Dim totalEstimatedSeconds As Double = (elapsedSeconds / e.ProgressPercentage) * 100
+            Dim remainingSeconds As Double = totalEstimatedSeconds - elapsedSeconds
+            Label4.Text = $"Verbleibend: {FormatTimeSpan(TimeSpan.FromSeconds(remainingSeconds))}"
+        Else
+            Label4.Text = "Berechne Zeit..."
+        End If
     End Sub
 
 
@@ -696,68 +789,79 @@ Public Class Form1
         Dim droppedPaths As String() = CType(e.Data.GetData(DataFormats.FileDrop), String())
 
         If droppedPaths Is Nothing OrElse droppedPaths.Length = 0 Then
-            Return ' Keine Dateien oder Ordner gedroppt
+            Return
         End If
 
-        FileList.Items.Clear() ' Vorherige Einträge löschen
-        FileListIconList.Images.Clear() ' Vorherige Icons löschen
+        FileList.Items.Clear()
+        FileListIconList.Images.Clear()
 
-        ' Prüfen, ob nur eine einzelne ZIP-Datei gezogen wurde
         If droppedPaths.Length = 1 AndAlso droppedPaths(0).ToLower().EndsWith(".zip") Then
             Dim zipFilePath As String = droppedPaths(0)
-            _zipFilePath = zipFilePath ' Speichere den Pfad für den Unzip-Vorgang
-            UnZipButton.Visible = True ' Unzip-Button sichtbar machen
-            SetControlsForArchiveView(True) ' Steuerelemente für Archivansicht anpassen
+            _zipFilePath = zipFilePath
+            _currentFileListMode = FileListMode.ArchiveEntries ' MODUS SETZEN
+            SetControlsForArchiveView(True) ' Konfiguriere ListView für Archiv-Ansicht
+
+            UnZipButton.Visible = True
+            StartButton.Enabled = False
+            SelectButton.Enabled = False
+            ZipFormatButton.Enabled = False
+            OpenArchiv.Enabled = False ' Deaktiviere OpenArchiv, da bereits eins geladen wird.
 
             Try
                 Using zip As ZipArchive = ZipFile.Open(zipFilePath, ZipArchiveMode.Read)
-                    ItemNo.Text = "Dateien: " & zip.Entries.Count.ToString()
+                    ItemNo.Text = "Datei: " & zip.Entries.Count.ToString()
                     For Each zEntry As ZipArchiveEntry In zip.Entries
-                        Dim fileInfo As New FileInfo(zipFilePath)
-                        Dim fileSize As String = FormatFileSize(fileInfo.Length)
-                        Dim fileNameInArchive As String = zEntry.FullName
+                        Dim itemInfo As New ZipEntryListItemInfo With { ' NEU: Informationen im Tag speichern
+                            .FullName = zEntry.FullName,
+                            .CompressedLength = zEntry.CompressedLength,
+                            .UncompressedLength = zEntry.Length
+                        }
+
                         Dim item As New ListViewItem With {
-                        .Text = fileNameInArchive, ' Voller Pfad innerhalb des Archivs
-                        .Tag = zEntry.FullName, ' Speichere den vollen Pfad des Eintrags IM ZIP
-                        .Checked = False
-                    }
+                            .Text = zEntry.FullName,
+                            .Tag = itemInfo, ' NEU: ZipEntryListItemInfo-Objekt im Tag speichern
+                            .Checked = False
+                        }
                         item.SubItems.Add(FormatFileSize(zEntry.CompressedLength))
 
-                        ' Versuche, ein generisches Icon für den Dateityp zu bekommen
-                        ' Da die Datei nicht auf dem Dateisystem existiert, können wir nicht ExtractAssociatedIcon verwenden.
-                        ' Wir könnten hier eine Logik einfügen, um Icons basierend auf Dateierweiterungen zu laden.
-                        Dim fileIcon As Icon = GetFileIcon(fileNameInArchive)
+                        Dim fileIcon As Icon = GetFileIcon(zEntry.FullName)
                         Dim iconIndex As Integer = FileListIconList.Images.Count
                         FileListIconList.Images.Add(fileIcon)
                         item.ImageIndex = iconIndex
                         FileList.Items.Add(item)
                     Next
-                    ' FileList.AutoArrange = True
-                    FileList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize)
-                    FileList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent)
                 End Using
                 UpdateTotalSizeLabel()
+                FileList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize)
+                FileList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent)
             Catch ex As Exception
                 MessageBox.Show($"Fehler beim Öffnen des Archivs: {ex.Message}{Environment.NewLine}{ex.GetType().Name}: {ex.StackTrace}", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                SetControlsForArchiveView(False) ' Steuerelemente zurücksetzen im Fehlerfall
+                SetControlsForArchiveView(False) ' Zurück zur DiskFiles-Ansicht
+                UnZipButton.Visible = False
+                StartButton.Enabled = True
+                SelectButton.Enabled = True
+                ZipFormatButton.Enabled = True
+                OpenArchiv.Enabled = True
+                _currentFileListMode = FileListMode.DiskFiles ' Modus zurücksetzen
             End Try
         Else
-            ' Es wurden Dateien und/oder Ordner gedroppt, die keine einzelne ZIP-Datei sind
-            SetControlsForArchiveView(False) ' Steuerelemente für normale Dateiansicht anpassen
+            _currentFileListMode = FileListMode.DiskFiles ' MODUS SETZEN (für DiskFiles)
+            SetControlsForArchiveView(False) ' Konfiguriere ListView für DiskFiles-Ansicht
+            UnZipButton.Visible = False ' In diesem Modus ist Entpacken nicht relevant
+            StartButton.Enabled = True
+            SelectButton.Enabled = True
+            ZipFormatButton.Enabled = True
+            OpenArchiv.Enabled = True
+
             For Each droppedPath As String In droppedPaths
-                Dim fileInfo As New FileInfo(droppedPath)
-                Dim fileSize As String = FormatFileSize(fileInfo.Length)
                 If Directory.Exists(droppedPath) Then
-                    ' Es ist ein Verzeichnis
                     AddDirectoryContentToList(droppedPath)
                 ElseIf File.Exists(droppedPath) Then
-                    ' Es ist eine einzelne Datei
                     AddFileToListView(droppedPath)
                 End If
             Next
             ItemNo.Text = "Files: " & FileList.Items.Count.ToString()
             UpdateTotalSizeLabel()
-            FileList.AutoArrange = True
             FileList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize)
             FileList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent)
         End If
@@ -839,18 +943,20 @@ Public Class Form1
     ' Hilfsmethode zur Anpassung der Steuerelemente je nach Ansicht (Archiv oder normale Dateien)
     Private Sub SetControlsForArchiveView(isArchiveView As Boolean)
         StartButton.Enabled = Not isArchiveView
-        SelectButton.Enabled = Not isArchiveView
+        'SelectButton.Enabled = Not isArchiveView
         ZipFormatButton.Enabled = Not isArchiveView
-        Button1.Visible = Not isArchiveView
+        RARFormatButton.Enabled = Not isArchiveView
+        Button1.Visible = isArchiveView
         'CheckBox1.Visible = Not isArchiveView
-        OpenArchiv.Enabled = Not isArchiveView ' Wenn es eine Archivansicht ist, ist OpenArchiv nicht aktiv, da es schon offen ist
+        'OpenArchiv.Enabled = Not isArchiveView ' Wenn es eine Archivansicht ist, ist OpenArchiv nicht aktiv, da es schon offen ist
+        Panel_0.Visible = Not isArchiveView
         UnZipButton.Visible = isArchiveView ' Unzip-Button nur in Archivansicht sichtbar
 
         ' Spalten für Archivansicht anpassen
         FileList.Columns.Clear()
         If isArchiveView Then
-            FileList.Columns.Add("Datei (im Archiv):", 250)
-            FileList.Columns.Add("Größe (komprimiert):", 200)
+            FileList.Columns.Add("Datei:", 250)
+            FileList.Columns.Add("Größe:", 200)
         Else
             FileList.Columns.Add("Datei:", 250)
             FileList.Columns.Add("Größe:", 200)
@@ -877,4 +983,8 @@ Public Class Form1
             Return $"{Math.Round(timeSpan.TotalHours)} Std. {timeSpan.Minutes} Min."
         End If
     End Function
+
+    Private Sub RARFormatButton_CheckedChanged(sender As Object, e As EventArgs) Handles RARFormatButton.CheckedChanged
+        My.Settings.CompressFormat = RARFormatButton.Checked
+    End Sub
 End Class

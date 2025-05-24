@@ -156,8 +156,8 @@ Public Class SettingsDialog
     End Sub
 
     Private Sub DarkTheme_CheckedChanged(sender As Object, e As EventArgs) Handles DarkT.CheckedChanged
-        Dim bc As Drawing.Color = SystemColors.ControlDarkDark
-        Dim fc As Drawing.Color = WhiteSmoke
+        Dim bc As Drawing.Color = SystemColors.WindowFrame
+        Dim fc As Drawing.Color = GhostWhite
         Dim cc As Drawing.Color = SystemColors.WindowFrame
         If DarkT.Checked Then
             LightT.Checked = False
@@ -172,7 +172,8 @@ Public Class SettingsDialog
             UpdateChildControlBackColors(Form1, cc)
             UpdateChildControlForeColors(Form1, fc)
             My.Settings.StyleC = "Dark"
-
+            Form1.FileList.ForeColor = SystemColors.WindowText
+            Form1.FileList.BackColor = SystemColors.ControlDarkDark
         Else
             LightT.Checked = True
         End If

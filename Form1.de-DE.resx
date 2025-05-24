@@ -218,7 +218,7 @@
     <value>False</value>
   </data>
   <data name="MenuStrip1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 11.25pt</value>
+    <value>Arial, 9pt</value>
   </data>
   <data name="ToolStripMenuItem1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -259,13 +259,13 @@
     <value>Alt+H</value>
   </data>
   <data name="ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>252, 22</value>
+    <value>222, 22</value>
   </data>
   <data name="ToolStripMenuItem1.Text" xml:space="preserve">
     <value>Dateien &amp;hinzufügen..</value>
   </data>
   <data name="ToolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>249, 6</value>
+    <value>219, 6</value>
   </data>
   <data name="ExitToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -312,7 +312,7 @@
     <value>Alt+F4</value>
   </data>
   <data name="ExitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>252, 22</value>
+    <value>222, 22</value>
   </data>
   <data name="FIleToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -341,7 +341,7 @@
     <value>Strg+D</value>
   </data>
   <data name="FIleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 21</value>
+    <value>64, 20</value>
   </data>
   <data name="FAQToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -386,7 +386,7 @@
     <value>Alt+F</value>
   </data>
   <data name="FAQToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
+    <value>153, 22</value>
   </data>
   <data name="OptionsToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -439,7 +439,7 @@
 </value>
   </data>
   <data name="OptionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
+    <value>153, 22</value>
   </data>
   <data name="HelpToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -462,7 +462,7 @@
 </value>
   </data>
   <data name="HelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 21</value>
+    <value>61, 20</value>
   </data>
   <data name="InfoToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -484,10 +484,10 @@
 </value>
   </data>
   <data name="InfoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 21</value>
+    <value>55, 20</value>
   </data>
   <data name="MenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>516, 27</value>
+    <value>516, 26</value>
   </data>
   <data name="ZipFormatButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Standard</value>
@@ -3630,7 +3630,7 @@
     <value>False</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>516, 414</value>
+    <value>516, 412</value>
   </data>
   <data name="Label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3772,19 +3772,16 @@
   <data name="UnZipButton.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="RawFormatButton.AutoSize" type="System.Boolean, mscorlib">
+  <data name="RARFormatButton.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="RawFormatButton.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="RARFormatButton.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial, 7pt</value>
   </data>
-  <data name="RawFormatButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>84, 54</value>
-  </data>
-  <data name="RawFormatButton.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="RARFormatButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>46, 17</value>
   </data>
-  <data name="RawFormatButton.Text" xml:space="preserve">
+  <data name="RARFormatButton.Text" xml:space="preserve">
     <value>RAR</value>
   </data>
   <data name="Panel_2.Location" type="System.Drawing.Point, System.Drawing">
@@ -3794,7 +3791,7 @@
     <value>216, 79</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 11.25pt</value>
+    <value>Arial, 9pt</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

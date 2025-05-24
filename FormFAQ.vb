@@ -9,6 +9,7 @@
         If IndexView.Nodes.Count > 1 Then
             IndexView.SelectedNode = IndexView.Nodes(1) ' Wählt "1. Was ist FastArchiver?"
         End If
+
     End Sub
 
     Private Sub InitializeFaqContent()
